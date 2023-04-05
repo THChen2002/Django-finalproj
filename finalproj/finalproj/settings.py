@@ -37,8 +37,20 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # 自己的應用程式
     "weather",
+
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # google provider
+    'allauth.socialaccount.providers.google',
 ]
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -104,14 +116,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "zh-hant"
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = "Asia/Taipei"
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
 
+
+LOGIN_REDIRECT_URL = '/'  # 登入後的首頁網址
+
+SITE_ID = 1
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
