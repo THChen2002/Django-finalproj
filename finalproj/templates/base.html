@@ -36,8 +36,7 @@
             
             <div class="text-end">
               {% if user.is_authenticated %}
-                <img src="{{ user.social_auth.extra_data.picture }}" alt="{{ user.username }}'s profile picture">
-                <a>{{user_social_auth.extra_data}}</a>
+                <img src="{{ picture_url }}" class="rounded-circle" alt="{{ user.username }}'s profile picture" width=40px height=40px>
                 <a class="btn btn-lg btn-primary" href="{% url 'Logout' %}" role="button">登出</a>
               {% else %}
                 <a type="button" class="btn btn-outline-light me-2" href="{% url 'Index' %}">Login</a>

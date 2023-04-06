@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -18,7 +16,15 @@ from django.template.loader import render_to_string
 # 首頁
 @login_required(login_url="Login")
 def index(request):
-    return render(request, 'accounts/index.html')
+    userID = request.user.id
+    try:
+        # Get the user's social account for the provider
+        social_account = SocialAccount.objects.get(user = userID)
+        # Get the user's profile picture
+        picture_url = social_account.extra_data.get('picture')
+    except SocialAccount.DoesNotExist:
+        picture_url = '/static/images/ntue.png'
+    return render(request, 'home.html', locals())
 
 
 # 註冊
@@ -68,12 +74,10 @@ def sign_in(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            #social_accounts = SocialAccount.objects.all()
             return redirect('/')  # 導向到首頁
-            #return render(request, '/', {'social_accounts': social_accounts})
 
     context = {
-        'form': form
+        'form': form,
     }
 
     return render(request, 'accounts/login.html', context)
