@@ -20,8 +20,11 @@ import accounts.views as accounts
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", weather.home),
+    #path("", weather.home),
     path("home/", weather.home),
     path('accounts/', include('allauth.urls')),
-    path('login/', accounts.login),
+    path('', accounts.index, name='Index'),
+    path('register', accounts.sign_up, name='Register'),
+    path('login', accounts.sign_in, name='Login'),
+    path('logout', accounts.log_out, name='Logout'),
 ]
