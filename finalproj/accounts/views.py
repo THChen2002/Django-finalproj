@@ -23,8 +23,8 @@ def index(request):
         # Get the user's profile picture
         picture_url = social_account.extra_data.get('picture')
     except SocialAccount.DoesNotExist:
-        picture_url = '/static/images/ntue.png'
-    return render(request, 'home.html', locals())
+        picture_url = '/static/images/user_default.png'
+    return render(request, 'accounts/index.html', locals())
 
 
 # 註冊
@@ -47,7 +47,7 @@ def sign_up(request):
                 '註冊成功通知信',  # 電子郵件標題
                 email_template,  # 電子郵件內容
                 settings.EMAIL_HOST_USER,  # 寄件者
-                ['demo@gmail.com']  # 收件者
+                [request.POST.get("email")]  # 收件者
             )
 
             email.fail_silently = False
@@ -80,7 +80,7 @@ def sign_in(request):
         'form': form,
     }
 
-    return render(request, 'accounts/login.html', context)
+    return render(request, 'accounts/login1.html', context)
 
 
 # 登出
