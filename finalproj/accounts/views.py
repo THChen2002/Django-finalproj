@@ -24,6 +24,8 @@ def index(request):
         picture_url = social_account.extra_data.get('picture')
     except SocialAccount.DoesNotExist:
         picture_url = '/static/images/user_default.png'
+        
+    request.session['picture_url'] = picture_url
     return render(request, 'accounts/index.html', locals())
 
 
@@ -70,17 +72,22 @@ def sign_in(request):
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
-
+        remember_me = request.POST.get("remember_me")
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            if not remember_me:
+                request.session.set_expiry(0)  # <-- Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
+
+                # else browser session will be as long as the session  cookie time "SESSION_COOKIE_AGE"
+
             return redirect('/')  # 導向到首頁
 
     context = {
         'form': form,
     }
 
-    return render(request, 'accounts/login1.html', context)
+    return render(request, 'accounts/login.html', context)
 
 
 # 登出
@@ -88,4 +95,7 @@ def log_out(request):
 
     logout(request)
     return redirect('/')
+
+def profile(request):
+    return render(request, 'accounts/profile.html')
 

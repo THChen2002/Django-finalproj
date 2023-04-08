@@ -41,3 +41,9 @@ class LoginForm(forms.Form):
         label="密碼",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+
+    remember_me = forms.BooleanField(
+        label="記住我",
+        required=False, 
+        widget=forms.CheckboxInput()
+    )

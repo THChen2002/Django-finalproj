@@ -147,3 +147,4 @@ EMAIL_PORT = 587  #TLS通訊埠號
 EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 EMAIL_HOST_USER = 'ntuedjangoweb@gmail.com'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'vkfvecvufhnvhpfl'  #Gmail應用程式的密碼
+

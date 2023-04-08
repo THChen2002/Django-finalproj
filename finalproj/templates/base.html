@@ -1,66 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load static %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+      {% load static %}
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="/static/css/style2.css"/>
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <title>{% block title %}{% endblock %}</title>
+  </head>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>{% block title %}{% endblock %}</title>
-</head>
-
-<body>
+  <body>
     <header class="p-3 bg-dark text-white">
-        <div class="container">
-          <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <div class="container-fluid">
-              <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block align-text-top"></img>
-              科技新知平台
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="mynavbar">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                    <a href="/home/" class="nav-link px-2 text-secondary">首頁</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-white">網站導覽</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-white">關於我們</a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link px-2 text-white">討論區</a>
-                  </li>
+      <div class="row" bis_skin_checked="1">
+        <div class="col-9" bis_skin_checked="1">
+          <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
+            <a style="color:#fff">科技新知平台</a>
+        </div>
+        <form class="col-2">
+            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        </form>
+        <div class="nav col-1" bis_skin_checked="1">
+            {% if user.is_authenticated %}
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="{{ request.session.picture_url }}" class="rounded-circle" alt="{{ user.username }}'s profile picture" width=40px height=40px>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Link 1</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/avatar.png" width="20px" height="20px">&emsp;Profile</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/logout.png" width="20px" height="20px">&emsp;Log Out</a></li>
                 </ul>
-                  {% if user.is_authenticated %}
-                  <ul class="navbar-nav ms-auto ms-2">
-                    <li class="nav-item dropdown">
-                      <a class="nav-link " href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ picture_url }}" class="rounded-circle" alt="{{ user.username }}'s profile picture" width=40px height=40px>
-                      </a>
-                      <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">Link 1</a></li>
-                        <li><a class="dropdown-item" href="#">Link 2</a></li>
-                        <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="/static/images/logout.png" width=18px height=18px>登出</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                    <!--
-                    <img src="{{ picture_url }}" class="rounded-circle" alt="{{ user.username }}'s profile picture" width=40px height=40px>
-                    <a class="btn btn-lg btn-primary" href="{% url 'Logout' %}" role="button">登出</a>
-                    -->
-                  {% else %}
-                    <a type="button" class="btn btn-outline-light me-2" href="{% url 'Index' %}">Login</a>
-                    <a type="button" class="btn btn btn-warning" href="{% url 'Register' %}">Sign-up</a>
-                  {% endif %}
-                </div>
-              </div>
-            </nav>
-      </header>
+              </li>
+            {% else %}
+              <a type="button" class="btn btn-outline-light me-2" href="{% url 'Index' %}">Login</a>
+              <a type="button" class="btn btn btn-warning" href="{% url 'Register' %}">Sign-up</a>
+            {% endif %}
+        </div>
+      </div>
+    </header>
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background: linear-gradient(120deg,#2980b9, #8e44ad)">
+      <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a href="/home/" class="nav-link px-2 text-white">首頁</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">網站導覽</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">關於我們</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link px-2 text-white">討論區</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <main role="main" class="container">
     <div id="content">
@@ -69,7 +71,5 @@
     </main><!-- /.container -->
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
-</body>
+  </body>
 </html>

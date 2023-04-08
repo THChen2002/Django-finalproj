@@ -1,15 +1,44 @@
-{% extends "base.html" %}
-{% load socialaccount %}
-
-{% block title %}Login{% endblock %}
-{% block content %}
-        <h3>註冊</h3>
-        <form action="" method="POST">
-            {% csrf_token %}
-
-            {{ form }}
-
-            <br />
-            <input type="submit" class="btn btn-success" value="儲存">
-        </form>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  	{% load socialaccount %}
+	<head>
+		<meta charset="utf-8">
+		<title>註冊</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+	</head>
+	<body>
+		<div class="center">
+			<h1>註冊</h1>
+			<form method="post">
+			{% csrf_token %}			
+			<div class="txt_field">
+				{{ form.username }}
+				<span></span>
+				<label>帳號</label>
+			</div>
+			<div class="txt_field">
+				{{ form.email }}
+				<span></span>
+				<label>電子郵件</label>
+			</div>
+			<div class="txt_field">
+				{{ form.password1 }}
+				<span></span>
+				<label>密碼</label>
+			</div>
+			<div class="txt_field">
+				{{ form.password2 }}
+				<span></span>
+				<label>密碼確認</label>
+			</div>
+			<input type="submit" class="btn-submit" value="送出"/><br>
+			</form>
+			<div class="signup_link">
+				已經是會員?<a href="{% url 'Login' %}">&nbsp;登入</a>
+			</div>
+		</div>
+	</body>
+</html>
