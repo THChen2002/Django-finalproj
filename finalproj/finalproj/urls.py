@@ -27,4 +27,6 @@ urlpatterns = [
     path('login', accounts.sign_in, name='Login'),
     path('logout', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
+    path('get_allsessions/', accounts.get_allsessions),
+    path('about/', accounts.about),
 ]

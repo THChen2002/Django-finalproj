@@ -47,3 +47,4 @@ class LoginForm(forms.Form):
         required=False, 
         widget=forms.CheckboxInput()
     )
+

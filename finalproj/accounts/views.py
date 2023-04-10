@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, LoginForm
+from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
 
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
+
+import json
+from django.http import JsonResponse
+
+from accounts.models import UserProfile
 
 # Create your views here.
 #def login(request):
@@ -15,8 +22,10 @@ from django.template.loader import render_to_string
 
 # 首頁
 @login_required(login_url="Login")
-def index(request):
+def index(request):   
     userID = request.user.id
+    unit = UserProfile.objects.get(user_id=userID) 
+    profile_pic_url = unit.profile_pic.url
     try:
         # Get the user's social account for the provider
         social_account = SocialAccount.objects.get(user = userID)
@@ -25,7 +34,7 @@ def index(request):
     except SocialAccount.DoesNotExist:
         picture_url = '/static/images/user_default.png'
         
-    request.session['picture_url'] = picture_url
+    request.session['picture_url'] =  profile_pic_url
     return render(request, 'accounts/index.html', locals())
 
 
@@ -96,6 +105,43 @@ def log_out(request):
     logout(request)
     return redirect('/')
 
+#個人檔案頁面
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        form_id = data.get('form_id')
+        if form_id == 'photo-form':
+            unit = UserProfile.objects.get(user_id=request.user.id) 
+            photo = data.get('photo')
+            unit.profile_pic = photo
+            unit.save()
+        else:
+            email = data['data']['email']
+            first_name = data['data']['first_name']
+            last_name = data['data']['last_name']
+            user = request.user
+            user.email = email
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+        return redirect('/profile')
+    else:
+        user = request.user
+        email = user.email
+        first_name = user.first_name
+        last_name = user.last_name
+    return render(request, 'accounts/profile.html', locals())
 
+#取得所有sessions
+def get_allsessions(request):
+	if request.session!=None:
+		strsessions=""
+		for key1,value1 in request.session.items():
+			strsessions= strsessions + key1 + ":" + str(value1) + "<br>"
+		return HttpResponse(strsessions)
+	else:
+		return HttpResponse('Session 不存在!')	
+
+#about頁面
+def about(request):
+     return render(request, 'about.html')

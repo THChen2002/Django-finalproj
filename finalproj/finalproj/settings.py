@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # 自己的應用程式
-    "weather",
+    'weather',
+    'accounts',
 
     # allauth
     'django.contrib.sites',
