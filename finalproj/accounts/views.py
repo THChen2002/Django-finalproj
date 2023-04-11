@@ -139,7 +139,7 @@ def profile(request):
         last_name = user.last_name
     return render(request, 'accounts/profile.html', locals())
 
-
+#使用者點及變更頭像
 def upload_photo(request):
     if request.method == 'POST':
         unit = UserProfile.objects.get(user_id=request.user.id)
@@ -159,7 +159,7 @@ def get_allsessions(request):
 		return HttpResponse('Session 不存在!')	
 
 
-
+#忘記密碼頁面
 def forgot_password(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -187,7 +187,7 @@ def forgot_password(request):
     return render(request, 'accounts/forgot_password.html')
 
 
-
+#使用者收信後的連結頁面
 def password_reset_confirm(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -205,18 +205,18 @@ def password_reset_confirm(request, uidb64, token):
                 user.reset_password_token = None
                 user.save()
                 messages.success(request, '您的密碼已成功重設。')
-                return redirect('password_reset_success')
+                return redirect('password_reset_complete')
         return render(request, 'accounts/reset_password_confirm.html', {'form': form})
     else:
         # 顯示錯誤訊息
         messages.error(request, '密碼重設連結無效或已過期。')
         return redirect('forgot_password')
-
+    
+#密碼重設成功頁面
 def password_reset_complete(request):
     return render(request, 'accounts/reset_password_complete.html')
 
-def password_reset_success(request):
-    return render(request, 'accounts/reset_password_success.html')
+
 #about頁面
 def about(request):
      return render(request, 'about.html')

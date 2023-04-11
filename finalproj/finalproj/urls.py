@@ -36,7 +36,5 @@ urlpatterns = [
     path('reset/confirm/<uidb64>/<token>/', accounts.password_reset_confirm, name='password_reset_confirm'),
     # 密碼重設完成頁面
     path('reset/complete/', accounts.password_reset_complete, name='password_reset_complete'),
-    # 密碼重設成功頁面
-    path('reset/success/', accounts.password_reset_success, name='password_reset_success'),
     path('about/', accounts.about),
 ]

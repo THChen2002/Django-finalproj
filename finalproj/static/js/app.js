@@ -8,7 +8,13 @@ const photoForm = document.querySelector('#photo-form');
 const photoInput = document.querySelector('#photo');
 
 photoInput.addEventListener('change', () => {
+    const maxSize = 2 * 1024 * 1024; // 5MB (以位元組為單位)
     const file = photoInput.files[0];
+    if (file.size > maxSize) {
+        alert('上傳的檔案大小超過2MB，請選擇更小的檔案!');
+        fileInput.value = ''; // 清除選擇的檔案
+        return;
+    }
     const dataToSend = new FormData();
     dataToSend.append('photo', file);
     dataToSend.append('form_id', 'photo-form');
