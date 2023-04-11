@@ -27,6 +27,16 @@ urlpatterns = [
     path('login', accounts.sign_in, name='Login'),
     path('logout', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
+    path('photo', accounts.upload_photo, name='Photo'),
+
     path('get_allsessions/', accounts.get_allsessions),
+    # 忘記密碼頁面
+    path('forgot_password/', accounts.forgot_password, name='forgot_password'),
+    # 密碼重設確認頁面
+    path('reset/confirm/<uidb64>/<token>/', accounts.password_reset_confirm, name='password_reset_confirm'),
+    # 密碼重設完成頁面
+    path('reset/complete/', accounts.password_reset_complete, name='password_reset_complete'),
+    # 密碼重設成功頁面
+    path('reset/success/', accounts.password_reset_success, name='password_reset_success'),
     path('about/', accounts.about),
 ]

@@ -32,7 +32,9 @@
 					<span></span>
 					<label>記住我</label>
 				</div>
-				<div class="pass col-4 text-end">忘記密碼?</div>
+				<div class="pass col-4 text-end">
+					<a href="{% url 'forgot_password'%}" class="text-decoration-none text-reset">忘記密碼?</a>
+				</div>
 			</div>
 			<input type="submit" class="btn-submit" value="登入"/><br><br>
 			<button class="btn-google" onclick="location.href='{% provider_login_url 'google' method='oauth2' %}'">
