@@ -23,9 +23,9 @@ urlpatterns = [
     path("home/", accounts.index),
     path('accounts/', include('allauth.urls')),
     path('', accounts.index, name='Index'),
-    path('register', accounts.sign_up, name='Register'),
-    path('login', accounts.sign_in, name='Login'),
-    path('logout', accounts.log_out, name='Logout'),
+    path('register/', accounts.sign_up, name='Register'),
+    path('login/', accounts.sign_in, name='Login'),
+    path('logout/', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
     path('photo', accounts.upload_photo, name='Photo'),
 

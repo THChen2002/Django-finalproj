@@ -36,15 +36,21 @@ from django.urls import reverse
 
 # 首頁
 @login_required(login_url="Login")
-def index(request):   
-    userID = request.user.id
+def index(request): 
+    user = request.user  
     #unit = UserProfile.objects.get(user_id=userID) 
     #profile_pic_url = unit.profile_pic.url
     try:
         # Get the user's social account for the provider
-        social_account = SocialAccount.objects.get(user = userID)
+        social_account = SocialAccount.objects.get(user = user.id)
         # Get the user's profile picture
         picture_url = social_account.extra_data.get('picture')
+
+        if not UserProfile.objects.filter(user_id=user.id).exists():
+            social_account_name = social_account.extra_data.get('name')
+            social_account_name.encode('utf-8').decode('unicode_escape')
+            profile = UserProfile(user_id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
+            profile.save()
     except SocialAccount.DoesNotExist:
         picture_url = '/static/images/user_default.png'
         
@@ -54,6 +60,8 @@ def index(request):
 
 # 註冊
 def sign_up(request):
+    if request.user.is_authenticated:
+        return redirect('/')  # 如果使用者已經登入，直接導向首頁
 
     form = RegisterForm()
 
@@ -99,6 +107,8 @@ def sign_up(request):
 
 # 登入
 def sign_in(request):
+    if request.user.is_authenticated:
+        return redirect('/')  # 如果使用者已經登入，直接導向首頁
 
     form = LoginForm()
 
@@ -110,10 +120,10 @@ def sign_in(request):
         if user is not None:
             login(request, user)
             if not remember_me:
+
                 request.session.set_expiry(0)  # <-- Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
-
-                # else browser session will be as long as the session  cookie time "SESSION_COOKIE_AGE"
-
+                                                # else browser session will be as long as the session  cookie time "SESSION_COOKIE_AGE"
+                        # 判斷 user 是否為 social account，並檢查 UserProfile 是否存在
             return redirect('/')  # 導向到首頁
 
     context = {
