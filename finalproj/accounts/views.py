@@ -60,7 +60,17 @@ def sign_up(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            
+            # 儲存 User 物件到資料庫並取得已創建的 User 物件
+            user = form.save()
+
+            # 創建 UserProfile 物件
+            profile = UserProfile()
+            profile.user_id = user.id
+            profile.user_name = user.username
+            profile.email = user.email
+
+            profile.save()  # 儲存 UserProfile 物件到資料庫
 
             # 電子郵件內容樣板
             email_template = render_to_string(
@@ -78,7 +88,7 @@ def sign_up(request):
             email.fail_silently = False
             email.send()
 
-            return redirect('/login')
+            return HttpResponse('<script>alert("註冊成功！"); window.location.href = "/login";</script>')
 
     context = {
         'form': form
@@ -126,11 +136,16 @@ def profile(request):
         email = data['data']['email']
         first_name = data['data']['first_name']
         last_name = data['data']['last_name']
-        user = request.user
+        user = request.user        
         user.email = email
         user.first_name = first_name
         user.last_name = last_name
         user.save()
+
+        unit = UserProfile.objects.get(user_id=user.id)
+        unit.first_name = first_name
+        unit.last_name = last_name
+        unit.save()
         return redirect('/profile')
     else:
         user = request.user
