@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 自己的應用程式
     'weather',
     'accounts',
+    'blog',
 
     # allauth
     'django.contrib.sites',
@@ -50,6 +51,9 @@ INSTALLED_APPS = [
 
     # google provider
     'allauth.socialaccount.providers.google',
+
+    'ckeditor',
+    # 'ckeditor_uploader',
 ]
 
 
@@ -135,6 +139,11 @@ SITE_ID = 1
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [ BASE_DIR / "static" ]
+MEDIA_URL = '/media/'
+
+# 放在django 專案根目录，同时也需要新建media資料夾
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
