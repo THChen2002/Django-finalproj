@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField#
 from accounts.models import UserProfile
 
 # 定義標籤名稱欄位
@@ -17,7 +18,7 @@ class Category(models.Model):
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=50, default='')
-    content = RichTextField(blank=True, max_length=300)
+    content = RichTextUploadingField(max_length=300)
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)

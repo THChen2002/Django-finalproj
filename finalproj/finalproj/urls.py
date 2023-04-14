@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 import weather.views as weather
 import accounts.views as accounts
+import blog.views as blog
+import notifications.urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("home/", accounts.index),
     path('accounts/', include('allauth.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', accounts.index, name='Index'),
     path('register/', accounts.sign_up, name='Register'),
     path('login/', accounts.sign_in, name='Login'),
@@ -37,4 +42,10 @@ urlpatterns = [
     # 密碼重設完成頁面
     path('reset/complete/', accounts.password_reset_complete, name='password_reset_complete'),
     path('about/', accounts.about),
+    
+    path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
+    # path('notice/', include('notice.urls', namespace='notice')),
+
+    path('blog/', blog.blog),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

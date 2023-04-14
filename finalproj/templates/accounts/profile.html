@@ -31,9 +31,9 @@
                                     </div>
                                 </form>
                             </div>
-                            <h5 class="my-3">{{ user.username }}</h5>
-                            <p class="text-muted mb-1">Full Stack Developer</p>
-                            <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                            <h5 class="my-3">{{ unit.user_name }}</h5>
+                            <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
+                            <p class="text-muted mb-4">{{ unit.academic }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary">Follow</button>
                                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
@@ -75,7 +75,7 @@
                                     <p class="mb-0">Full Name</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">{{ user.last_name }} {{ user.first_name }}</p>
+                                    <p class="text-muted mb-0">{{ unit.last_name|default:'' }} {{ unit.first_name|default:'' }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -85,23 +85,17 @@
                                     <div class="col-sm-3">
                                         <label for="email">Email address</label>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" placeholder="Your email" readonly>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <a href="#" id="edit-email"><img src="../static/images/edit.png" width=20px height=20px></a>
-                                    </div>                             
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email" name="email" value="{{ unit.email|default:'' }}" placeholder="Your email" readonly>
+                                    </div>                          
                                 </div>
                                 <hr>
                                 <div class="form-group row">
                                     <div class="col-sm-3">
-                                        <label for="first-name">First name</label>
+                                        <label for="first_name">First name</label>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="first-name" name="first-name" value="{{ user.first_name }}" placeholder="Your first name" readonly>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <a href="#" id="edit-firstname"><img src="../static/images/edit.png" width=20px height=20px></a>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ unit.first_name|default:'' }}" placeholder="Your first name" readonly>
                                     </div>
                                 </div>
                                 <hr>
@@ -109,11 +103,8 @@
                                     <div class="col-sm-3">
                                         <label for="last-name">Last name</label>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="last-name" name="last-name" value="{{ user.last_name }}" placeholder="Your last name" readonly>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <a href="#" id="edit-lastname"><img src="../static/images/edit.png" width=20px height=20px></a>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ unit.last_name|default:'' }}" placeholder="Your last name" readonly>
                                     </div>
                                 </div>
                                 <hr>
@@ -121,16 +112,52 @@
                                     <div class="col-sm-3">
                                         <label for="address">Address</label>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="address" name="address" value="{{ user.address }}" placeholder="Your address" readonly>
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <a href="#" id="edit-address"><img src="../static/images/edit.png" width=20px height=20px></a>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="address" name="address" value="{{ unit.address|default:'' }}" placeholder="Your address" readonly>
                                     </div>
                                 </div>
-                                <br>
+                                <hr>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="gender">Gender</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        {% if unit.gender == "M" %}
+                                            <input type="radio" id="gender_M" value="M" checked="checked" name="gender" style="display: none;" disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" name="gender" style="display: none;" disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="Male" readonly>
+                                        {% elif unit.gender == "F" %}
+                                            <input type="radio" id="gender_M" value="M" name="gender" style="display: none;" disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" checked="checked" name="gender" style="display: none;" disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="Female" readonly>
+                                        {% else %}
+                                            <input type="radio" id="gender_M" value="M" name="gender" style="display: none;" disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" name="gender" style="display: none;" disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="" readonly>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="birth_date">Birthdate</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ birthdate }}" placeholder="Your birth date" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+                                        <label for="phone_namber">Phonenumber</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ unit.phone_number|default:'' }}" placeholder="Your phone number" readonly>
+                                    </div>
+                                </div>
+                                <hr>
                                 <button type="button" id="edit-button" class="btn btn-primary" onclick="toggleEditMode()">Edit</button>
-                                <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData('profile-form')" style="display: none;">Save</button>
+                                <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData()" style="display: none;">Save</button>
                             </form>
                         </div>
                     </div>
@@ -204,10 +231,7 @@
             </div>
         </div>
     </section>
-
-    <script src="/static/js/app.js">
-
-    </script>
+    <script src="/static/js/app.js"></script>
     <script>
         const profileUrl = "{% url 'Profile' %}";
         const photoUrl = "{% url 'Photo' %}"

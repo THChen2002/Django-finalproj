@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'weather',
     'accounts',
     'blog',
+    'notice',
 
     # allauth
     'django.contrib.sites',
@@ -52,8 +53,12 @@ INSTALLED_APPS = [
     # google provider
     'allauth.socialaccount.providers.google',
 
+    # 文章編輯套件
     'ckeditor',
-    # 'ckeditor_uploader',
+    'ckeditor_uploader',
+
+    #系統通知套件
+    'notifications',
 ]
 
 
@@ -140,6 +145,8 @@ SITE_ID = 1
 STATIC_URL = "static/"
 STATICFILES_DIRS = [ BASE_DIR / "static" ]
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+CKEDITOR_UPLOAD_PATH = 'upload/'
 
 # 放在django 專案根目录，同时也需要新建media資料夾
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -161,4 +168,24 @@ EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 # EMAIL_HOST_PASSWORD = 'llvlmxvbqwjrvllv'  #Gmail應用程式的密碼
 EMAIL_HOST_USER = '20230412ntue@gmail.com'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'fkcalqnpksjsrlkr'  #Gmail應用程式的密碼
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono-lisa',        
+    'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],        
+    'toolbar_Full': [
+            [ 'Source','-','Save','NewPage','DocProps','-','Templates' ],            
+            [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ],          
+            [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField','-','BidiLtr','BidiRtl', '-', 'Link','Unlink','Anchor'],'/',  
+            [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ],          
+            [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv', '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],          
+            [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ],  '/',            
+            [ 'Styles','Format','Font','FontSize' ] , [ 'TextColor','BGColor' ] , [ 'Maximize', 'ShowBlocks','-','About' ] ,                         
+            ['CodeSnippet'],  #插入程式code按鈕
+        ],        
+    'toolbar': 'Full',        
+    'extraPlugins': 'codesnippet',}   #插入程式code    
+}
 

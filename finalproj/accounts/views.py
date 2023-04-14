@@ -24,10 +24,13 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
+
+from notifications.signals import notify
+
+from datetime import datetime
 
 
 # Create your views here.
@@ -37,8 +40,14 @@ from django.urls import reverse
 # 首頁
 @login_required(login_url="Login")
 def index(request): 
-    user = request.user  
-    #unit = UserProfile.objects.get(user_id=userID) 
+    user = request.user
+    notify.send(
+        request.user,  # 發送者設定為當前登入的使用者
+        recipient=user,  # 接收者設定為當前登入的使用者
+        verb='登入成功',  # 設定通知的動作
+        data={'message': 'Hello'}  # 傳遞一個包含資料的字典
+    )
+    #unit = UserProfile.objects.get(user_id=user.id) 
     #profile_pic_url = unit.profile_pic.url
     try:
         # Get the user's social account for the provider
@@ -146,6 +155,10 @@ def profile(request):
         email = data['data']['email']
         first_name = data['data']['first_name']
         last_name = data['data']['last_name']
+        address = data['data']['address']
+        gender = data['data']['gender']
+        strBirthdate = str(data['data']['birth_date'])
+        phone = data['data']['phone_number']
         user = request.user        
         user.email = email
         user.first_name = first_name
@@ -155,13 +168,18 @@ def profile(request):
         unit = UserProfile.objects.get(user_id=user.id)
         unit.first_name = first_name
         unit.last_name = last_name
+        unit.email = email
+        unit.address = address
+        unit.gender = gender
+        unit.birth_date = strBirthdate
+        unit.phone_number = phone
         unit.save()
         return redirect('/profile')
     else:
         user = request.user
-        email = user.email
-        first_name = user.first_name
-        last_name = user.last_name
+        unit = UserProfile.objects.get(user_id=user.id)
+        birthdate = str(unit.birth_date)
+        occupation = str(unit.occupation).replace("'", "").replace(",", "").title()
     return render(request, 'accounts/profile.html', locals())
 
 #使用者點及變更頭像
