@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 #blog頁面
 def blog(request):
-    return render(request, 'blog/blog.html')
+    return render(request, 'blog/apple-blog.html')

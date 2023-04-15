@@ -4,7 +4,7 @@
     <!--css icon-->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 	<main class="container">
-		<!-- Carousel -->
+		<!-- 輪播廣告 -->
 		<div id="demo" class="carousel slide" data-bs-ride="carousel">
 		<!-- Indicators/dots -->
 			<div class="carousel-indicators">
@@ -33,90 +33,64 @@
 			</button>
 		</div>
 			<br>
-			<p>{{ social_account }}'s Google profile picture </p>
 			{% load notifications_tags %}
 			{% notifications_unread as unread_count %}
-				<p>{{ notification.actor }} {{ notification.verb }} your {{ notification.target }}: {{ notification.description }}</p>
-				<p>Additional data: {{ notification.data.message }}</p>
+			<ul>
+				{% for notification in notifications %}
+				  <li>
+					<h4>{{ notification.verb }}</h4>  <!-- 顯示通知的動詞，例如 'new_message' -->
+					<p>{{ notification.description }}</p>  <!-- 顯示通知的描述內容 -->
+					<p>{{ notification.timestamp }}</p>  <!-- 顯示通知的時間戳記 -->
+				  </li>
+				{% empty %}
+				  <li>No notifications</li>  <!-- 如果沒有通知，顯示 'No notifications' -->
+				{% endfor %}
+			</ul>
+
 			
-				<p>No notifications.{{unread_count}}</p>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="card" style="width: 45rem;">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
+			<p>未讀:{{unread_count}}</p>
+			<!--導覽卡片-->
+				<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
+					<h2 class="pb-2 border-bottom">精選連結</h2>
+				
+					<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
+					  <div class="col" bis_skin_checked="1">
+						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image:url('/static/images/apple.jpg');background-size: cover;" bis_skin_checked="1">
+						  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/apple-blog/" style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">APPLE新聞</a></h3>
+						  </div>
 						</div>
-					</div>
-					<br>
-					<div class="card" style="width: 45rem;">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
+					  </div>
+				
+					  <div class="col" bis_skin_checked="1">
+						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/weather.jpg');background-size: cover;" bis_skin_checked="1">
+						  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="#" style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">氣象科普</a></h3>
+						  </div>
 						</div>
-					</div>
-					<br>
-					<div class="card" style="width: 45rem;">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
+					  </div>
+				
+					  <div class="col" bis_skin_checked="1">
+						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');" bis_skin_checked="1">
+						  <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
+							<ul class="d-flex list-unstyled mt-auto">
+							  <li class="me-auto">
+								<img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+							  </li>
+							  <li class="d-flex align-items-center me-3">
+								<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+								<small>California</small>
+							  </li>
+							  <li class="d-flex align-items-center">
+								<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+								<small>5d</small>
+							  </li>
+							</ul>
+						  </div>
 						</div>
+					  </div>
 					</div>
-				</div>
-			
-				<div class="col-md-4">
-					<div class="position-sticky" style="top: 2rem;">
-					<div class="p-4 mb-3 bg-light rounded">
-						<h4 class="fst-italic">關於</h4>
-						<p class="mb-0">本網站是一個知名科技新聞網站，報導全球最新的科技趨勢和新知識，涵蓋各種領域，包括人工智慧、區塊鏈、物聯網、生物科技等。此外，此網站也提供創業公司的新聞和資訊，讓讀者可以掌握最新的商業趨勢和機會。</p>
-					</div>
-			
-					<div class="p-4">
-						<h4 class="fst-italic">依時間分類</h4>
-						<ol class="list-unstyled mb-0">
-							<li><a href="#">March 2023</a></li>
-							<li><a href="#">February 2023</a></li>
-							<li><a href="#">January 2023</a></li>
-							<li><a href="#">December 2022</a></li>
-							<li><a href="#">November 2022</a></li>
-							<li><a href="#">October 2022</a></li>
-							<li><a href="#">September 2022</a></li>
-							<li><a href="#">August 2022</a></li>
-							<li><a href="#">July 2022</a></li>
-							<li><a href="#">June 2022</a></li>
-							<li><a href="#">May 2022</a></li>
-							<li><a href="#">April 2022</a></li>
-						</ol>
-					</div>
-						<hr>
-					<div class="p-4">
-						<h4 class="fst-italic">社群媒體</h4>
-						<button type="button" href="#" class="btn btn-dark">
-							<span class="button__text">GitHub</span>
-							<span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
-						</button>
-						<button type="button" href="#" class="btn btn-primary">
-							<span class="button__text">Facebook</span>
-							<span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
-						</button>
-						<!--
-						<a href="#" class="btn btn-dark">GitHub</a>
-						<a href="#" class="btn btn-success">Line</a>
-						<a href="#" class="btn btn-primary">Facebook</a>
-						-->
-					</div>
-					</div>
-				</div>
-			</div>
-		</div>			
+				  </div>			
 	</main>
 {% endblock %}

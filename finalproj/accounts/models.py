@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user_id = models.CharField(max_length=50)
     user_name = models.CharField(max_length=50)
-    profile_pic = models.ImageField(upload_to='static/images/profile_pics/',blank=True, null=True)
+    profile_pic = models.ImageField(upload_to='profile_pics/',blank=True, null=True)
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
     email = models.EmailField(max_length=100, blank=True, null=True)

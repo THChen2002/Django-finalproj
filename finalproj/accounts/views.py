@@ -28,31 +28,35 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.contrib import messages
 from django.urls import reverse
 
-from notifications.signals import notify
+import urllib.request
+from django.core.files import File
+from tempfile import TemporaryFile
 
-from datetime import datetime
+from notifications.signals import notify
+from notifications.models import Notification
 
 
 # Create your views here.
-#def login(request):
-#    return render(request, 'accounts/login.html')
 
 # 首頁
 @login_required(login_url="Login")
 def index(request): 
     user = request.user
     notify.send(
-        request.user,  # 發送者設定為當前登入的使用者
-        recipient=user,  # 接收者設定為當前登入的使用者
+        sender=user,  # 發送者設定為當前登入的使用者
+        recipient=User.objects.get(id=1),  # 接收者設定為當前登入的使用者
         verb='登入成功',  # 設定通知的動作
-        data={'message': 'Hello'}  # 傳遞一個包含資料的字典
+        description='歡迎回來',  # 設定通知的描述
     )
-    #unit = UserProfile.objects.get(user_id=user.id) 
-    #profile_pic_url = unit.profile_pic.url
+    profile_pic_url = '/static/images/user_default.png'  # 預設圖片 URL
+
+    if UserProfile.objects.filter(user_id=user.id).exists():
+        unit = UserProfile.objects.get(user_id=user.id)
+        if unit.profile_pic:
+            profile_pic_url = unit.profile_pic.url
+
     try:
-        # Get the user's social account for the provider
-        social_account = SocialAccount.objects.get(user = user.id)
-        # Get the user's profile picture
+        social_account = SocialAccount.objects.get(user=user.id)
         picture_url = social_account.extra_data.get('picture')
 
         if not UserProfile.objects.filter(user_id=user.id).exists():
@@ -60,10 +64,23 @@ def index(request):
             social_account_name.encode('utf-8').decode('unicode_escape')
             profile = UserProfile(user_id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
             profile.save()
+
+            # URL抓取圖片
+            temp_image = TemporaryFile()
+            with urllib.request.urlopen(picture_url) as response:
+                temp_image.write(response.read())
+            temp_image.flush()
+            profile = UserProfile.objects.get(user_id=user.id)
+            profile.profile_pic.save(social_account_name + ".png", File(temp_image))
+            profile.save()
+            unit = UserProfile.objects.get(user_id=user.id)
+            profile_pic_url = unit.profile_pic.url
     except SocialAccount.DoesNotExist:
-        picture_url = '/static/images/user_default.png'
-        
-    request.session['picture_url'] =  picture_url
+        pass
+
+    request.session['picture_url'] = profile_pic_url
+    notifications = Notification.objects.filter(recipient=request.user, unread=True)
+    # notifications.update(unread=False)
     return render(request, 'accounts/index.html', locals())
 
 
@@ -182,13 +199,21 @@ def profile(request):
         occupation = str(unit.occupation).replace("'", "").replace(",", "").title()
     return render(request, 'accounts/profile.html', locals())
 
-#使用者點及變更頭像
+#使用者點擊變更頭像
 def upload_photo(request):
     if request.method == 'POST':
         unit = UserProfile.objects.get(user_id=request.user.id)
         unit.profile_pic = request.FILES['photo']
         unit.save()
-        return JsonResponse({'message': 'Upload Success!'})
+        request.session['picture_url'] =  unit.profile_pic.url
+        notify.send(
+            sender=User.objects.get(id=2),  # 發送者設定為當前登入的使用者
+            recipient=request.user,  # 接收者設定為當前登入的使用者
+            verb='更換成功',  # 設定通知的動作
+            description='頭貼更換成功',  # 設定通知的描述
+        )
+        return redirect('/profile')
+    return render(request, 'accounts/profile.html')
      
 
 #取得所有sessions

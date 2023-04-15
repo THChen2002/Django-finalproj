@@ -1,10 +1,40 @@
 {% extends "base.html" %}
-{% block title %}科技新知{% endblock %}
+{% block title %}APPLE新聞{% endblock %}
 {% block content %}
+	<link rel="stylesheet" type="text/css" href="/static/css/style2.css"/>
     <!--css icon-->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 	<main class="container">
             <br>
+			<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="7000">
+						<img src="\static\images\blog\Apple_products.png" class="d-block w-100" alt="">
+						<div class="carousel-overlay"></div>
+						<div class="carousel-caption d-none d-md-block" style="text-align: center;">
+							<h1 class="banner-h1" >最新APPLE產品消息</h1>
+							<p class="banner-text">提供最即時的消息以及不同觀點</p>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="7000">
+						<img src="\static\images\blog\iphone.png" class="d-block w-100" alt="">
+						<div class="carousel-overlay"></div>
+						<div class="carousel-caption d-none d-md-block">
+							<h1 class="banner-h1">超實用軟體技巧</h1>
+							<p class="banner-text">多樣化軟體教學提升辦工效率</p>
+						</div>
+					</div>
+				</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+			</div>
+			<br>
 			<div class="row">
 				<div class="col-md-8">
 					<div class="card" style="width: 100%;">
@@ -81,6 +111,7 @@
 					</div>
 					</div>
 				</div>
-			</div>			
+			</div>
+			<br>			
 	</main>
 {% endblock %}

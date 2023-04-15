@@ -34,6 +34,7 @@ photoInput.addEventListener('change', () => {
         body: dataToSend
     }).then(response => {
         console.log(response);
+        alert("上傳成功!")
         // Handle response from server
     }).catch(error => {
         console.error(error);

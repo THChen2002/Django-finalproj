@@ -1,0 +1,19 @@
+.carousel-overlay {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .banner-h1{
+    color:#fbf6f6;
+    font-size: 50px;
+    text-shadow: 2px 2px 4px #1f1f1f;
+  }
+  .banner-text{
+    color:#fbf6f6;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px #1f1f1f;
+  }
