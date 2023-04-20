@@ -25,7 +25,11 @@
 				<span></span>
 				<label>密碼</label>
 			</div>
-			
+			<div class="txt_field">			
+				<label style="padding-bottom:15px">驗證碼</label>
+				<span style="padding-left:70px">{{ form.captcha }}</span>
+			</div>
+			<p style="color:red">{{ message }}</p>
 			<div class="row">
 				<div class="col-7">
 					{{ form.remember_me }}

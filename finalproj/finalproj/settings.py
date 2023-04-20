@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    #圖形驗證碼
+    'captcha',
+
     # google provider
     'allauth.socialaccount.providers.google',
 
@@ -168,6 +171,22 @@ EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
 # EMAIL_HOST_PASSWORD = 'llvlmxvbqwjrvllv'  #Gmail應用程式的密碼
 EMAIL_HOST_USER = '20230412ntue@gmail.com'  #寄件者電子郵件
 EMAIL_HOST_PASSWORD = 'fkcalqnpksjsrlkr'  #Gmail應用程式的密碼
+
+CAPTCHA_NOISE_FUNCTIONS = (
+    #'captcha.helpers.noise_null', #没有樣式  
+    'captcha.helpers.noise_arcs', #線  
+    'captcha.helpers.noise_dots', #點  
+)
+#CAPTCHA_IMAGE_SIZE = (150, 70) #圖片大小 
+
+#CAPTCHA_BACKGROUND_COLOR = '#00ff00' #背景頻色
+
+#CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge' #圖片為英文字母 
+#CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge' #圖片中為數學計算式  
+  
+#CAPTCHA_LENGTH = 6 #英文字母個數 
+
+#CAPTCHA_TIMEOUT = 1 #時間限制(分) 
 
 CKEDITOR_CONFIGS = {
     'default': {

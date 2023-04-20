@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from captcha.fields import CaptchaField
 
 
 class RegisterForm(UserCreationForm):
@@ -41,6 +42,8 @@ class LoginForm(forms.Form):
         label="密碼",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+
+    captcha = CaptchaField()
 
     remember_me = forms.BooleanField(
         label="記住我",

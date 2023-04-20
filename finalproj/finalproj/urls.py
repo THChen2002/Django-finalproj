@@ -26,7 +26,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("home/", accounts.index),
     path('accounts/', include('allauth.urls')),
+    path('captcha/', include('captcha.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+
     path('', accounts.index, name='Index'),
     path('register/', accounts.sign_up, name='Register'),
     path('login/', accounts.sign_in, name='Login'),
@@ -47,5 +49,7 @@ urlpatterns = [
     # path('notice/', include('notice.urls', namespace='notice')),
 
     path('apple-blog/', blog.blog),
+
+    path('weather/', weather.weather),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

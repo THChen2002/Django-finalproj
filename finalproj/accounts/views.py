@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from accounts import forms
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
@@ -135,28 +136,26 @@ def sign_up(request):
 def sign_in(request):
     if request.user.is_authenticated:
         return redirect('/')  # 如果使用者已經登入，直接導向首頁
-
-    form = LoginForm()
-
+    
+    form = LoginForm(request.POST)
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        remember_me = request.POST.get("remember_me")
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            if not remember_me:
+             
+        if form.is_valid():
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            remember_me = request.POST.get("remember_me")
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                if not remember_me:
+                    request.session.set_expiry(0)  # <-- Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
+                                                    # else browser session will be as long as the session  cookie time "SESSION_COOKIE_AGE"
+                            # 判斷 user 是否為 social account，並檢查 UserProfile 是否存在
+                return redirect('/')  # 導向到首頁
+        else:
+            message = '驗證碼錯誤!'
 
-                request.session.set_expiry(0)  # <-- Here if the remember me is False, that is why expiry is set to 0 seconds. So it will automatically close the session after the browser is closed.
-                                                # else browser session will be as long as the session  cookie time "SESSION_COOKIE_AGE"
-                        # 判斷 user 是否為 social account，並檢查 UserProfile 是否存在
-            return redirect('/')  # 導向到首頁
-
-    context = {
-        'form': form,
-    }
-
-    return render(request, 'accounts/login.html', context)
+    return render(request, 'accounts/login.html', locals())
 
 
 # 登出

@@ -31,21 +31,20 @@
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src="/static/images/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
-                <div class="position-absolute top-0 end-0"style="background-color: red;border-radius: 50%; width:25%;height:25%;font-size:6px;text-align:center;color:white;">{{unread_count}}</div>
+                <span class="position-absolute top-5 end-0 translate-middle badge border border-light rounded-circle bg-danger p-1">{{unread_count}}</span>
               </a>
-              <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+              <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink" style=" max-height: 300px;overflow-y: auto;">
                 {% for notification in notifications %}
                   <li>
-                  <a class="dropdown-item" href="#">
-                    <h4>{{ notification.verb }}</h4>  <!-- 顯示通知的動詞，例如 'new_message' -->
+                  <a class="dropdown-item" href="#"  >
+                    <h5>{{ notification.verb }}</h5>  <!-- 顯示通知的動詞，例如 'new_message' -->
                     <p>{{ notification.description }}</p>  <!-- 顯示通知的描述內容 -->
                     <p>{{ notification.timestamp }}</p>  <!-- 顯示通知的時間戳記 -->
                   </a>                 
                   </li>
                 {% empty %}
-                  <li>No notifications</li>  <!-- 如果沒有通知，顯示 'No notifications' -->
+                  <li style="text-align: center;">No notifications</li>  <!-- 如果沒有通知，顯示 'No notifications' -->
                 {% endfor %}
-                <li><a class="dropdown-item" href="#">Link 1</a></li>
               </ul>
             </li>
           </div>
