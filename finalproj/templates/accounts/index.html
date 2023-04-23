@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% block title %}首頁{% endblock %}
 {% block content %}
-    <!--css icon-->
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-	<main class="container">
-		<!-- 輪播廣告 -->
-		<div id="demo" class="carousel slide" data-bs-ride="carousel">
+<!--css icon-->
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<main class="container">
+	<!-- 輪播廣告 -->
+	<div id="demo" class="carousel slide" data-bs-ride="carousel">
 		<!-- Indicators/dots -->
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-				<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-			</div>
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+		</div>
 
 		<!-- The slideshow/carousel -->
 		<div class="carousel-inner">
@@ -32,65 +32,62 @@
 				<span class="carousel-control-next-icon"></span>
 			</button>
 		</div>
-			<br>
-			{% load notifications_tags %}
-			{% notifications_unread as unread_count %}
-			<ul>
-				{% for notification in notifications %}
-				  <li>
-					<h4>{{ notification.verb }}</h4>  <!-- 顯示通知的動詞，例如 'new_message' -->
-					<p>{{ notification.description }}</p>  <!-- 顯示通知的描述內容 -->
-					<p>{{ notification.timestamp }}</p>  <!-- 顯示通知的時間戳記 -->
-				  </li>
-				{% empty %}
-				  <li>No notifications</li>  <!-- 如果沒有通知，顯示 'No notifications' -->
-				{% endfor %}
-			</ul>
+		<!--導覽卡片-->
+		<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
+			<h2 class="pb-2 border-bottom">精選連結</h2>
 
-			
-			<p>未讀:{{unread_count}}</p>
-			<!--導覽卡片-->
-				<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
-					<h2 class="pb-2 border-bottom">精選連結</h2>
-				
-					<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
-					  <div class="col" bis_skin_checked="1">
-						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image:url('/static/images/apple.jpg');background-size: cover;" bis_skin_checked="1">
-						  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/apple-blog/" style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">APPLE新聞</a></h3>
-						  </div>
+			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+						style="background-image:url('/static/images/apple.jpg');background-size: cover;"
+						bis_skin_checked="1">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/apple-blog/"
+									style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">APPLE新聞</a>
+							</h3>
 						</div>
-					  </div>
-				
-					  <div class="col" bis_skin_checked="1">
-						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/weather.jpg');background-size: cover;" bis_skin_checked="1">
-						  <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="#" style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">氣象科普</a></h3>
-						  </div>
+					</div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+						style="background-image: url('/static/images/weather.jpg');background-size: cover;"
+						bis_skin_checked="1">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="#"
+									style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">氣象科普</a>
+							</h3>
 						</div>
-					  </div>
-				
-					  <div class="col" bis_skin_checked="1">
-						<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');" bis_skin_checked="1">
-						  <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" bis_skin_checked="1">
+					</div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+						style="background-image: url('unsplash-photo-3.jpg');" bis_skin_checked="1">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" bis_skin_checked="1">
 							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Another longer title belongs here</h3>
 							<ul class="d-flex list-unstyled mt-auto">
-							  <li class="me-auto">
-								<img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
-							  </li>
-							  <li class="d-flex align-items-center me-3">
-								<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-								<small>California</small>
-							  </li>
-							  <li class="d-flex align-items-center">
-								<svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-								<small>5d</small>
-							  </li>
+								<li class="me-auto">
+									<img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32"
+										class="rounded-circle border border-white">
+								</li>
+								<li class="d-flex align-items-center me-3">
+									<svg class="bi me-2" width="1em" height="1em">
+										<use xlink:href="#geo-fill"></use>
+									</svg>
+									<small>California</small>
+								</li>
+								<li class="d-flex align-items-center">
+									<svg class="bi me-2" width="1em" height="1em">
+										<use xlink:href="#calendar3"></use>
+									</svg>
+									<small>5d</small>
+								</li>
 							</ul>
-						  </div>
 						</div>
-					  </div>
 					</div>
-				  </div>			
-	</main>
+				</div>
+			</div>
+		</div>
+</main>
 {% endblock %}

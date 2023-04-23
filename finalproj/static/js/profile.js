@@ -96,10 +96,9 @@ function submitData() {
     }else{
         gender.value = '';
     }
-    alert("edit success!")
     var dataToSend = {'email': email, 'first_name': firstName, 'last_name': lastName, 'address': address, 'gender': gender.value, 'birth_date': birthdate, 'phone_number': phone};
     var csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-
+    alert("edit success!");
     fetch(profileUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json', 'X-CSRFToken': csrfToken},
@@ -116,7 +115,11 @@ function submitData() {
         genderInput.value = data.gender;
         birthdateInput.value = data.birthdate;
         phoneInput.value = data.phone_number;
+        
     })
-    .catch(error => console.error(error));
+    .catch(error => {
+        console.error(error);
+        //alert(error.message);
+    });
     
 }

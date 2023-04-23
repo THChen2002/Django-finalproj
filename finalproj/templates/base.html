@@ -1,86 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      {% load static %}
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!--css icon-->
-      <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-      
-      <!-- Bootstrap CSS -->
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <title>{% block title %}{% endblock %}</title>
-  </head>
+<head>
+  {% load static %}
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <body>
-    <header class="p-3 bg-white text-black">
-      <div class="row" bis_skin_checked="1">
-        <div class="col-lg-8 col-sm-4 justify-content-end align-self-center" bis_skin_checked="1">
-          <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
-            <a href="/" style="color:#000000;text-decoration: none;font-size: 24px;">科技新知平台</a>
+  <!--css icon-->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+  <header class="p-3 bg-white text-black">
+    <div class="row" bis_skin_checked="1">
+      <div class="col-lg-8 col-sm-4 justify-content-end align-self-center" bis_skin_checked="1">
+        <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
+        <a href="/" style="color:#000000;text-decoration: none;font-size: 24px;">科技新知平台</a>
+      </div>
+      <form class="col-lg-3 col-sm-4 align-self-center">
+        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+      </form>
+      <div class="col-lg-1 col-sm-4 row justify-content-end align-self-center">
+        <div class="nav col-lg-6 col-sm-6 align-self-center" bis_skin_checked="1">
+          {% load notifications_tags %}
+          {% notifications_unread as unread_count %}
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/static/images/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
+              <span class="position-absolute top-5 end-0 translate-middle badge border border-light rounded-circle p-1 text-center" style="width: 25px; height: 25px; background-color: #ff2433;">
+                {% if unread_count >= 10 %}
+                  9+
+                {% else %}
+                  {{ unread_count }}
+                {% endif %}
+              </span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink" style=" max-height: 300px; width: 250px; margin: 0; padding: 0; overflow-y: auto;">
+              <li class="text-center">
+                <a class="dropdown-item" href="#" style="color:#288ff6; font-weight: 700;" onclick="markNotificationRead(0)">全部標示為已讀</a>
+              </li>
+              <hr style="margin-top:0px; margin-bottom:0px">
+              {% csrf_token %}
+              <script>
+                const viewUrl = "{% url 'view_notifications' %}";
+                var notifications = JSON.parse('{{ request.session.unread_notifications|escapejs }}');
+              </script>
+              <script src="{% static 'js/notification.js' %}"></script>
+            </ul>
+          </li>
         </div>
-        <form class="col-lg-3 col-sm-4 align-self-center">
-            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-        </form>
-        <div class="col-lg-1 col-sm-4 row justify-content-end align-self-center">
-          <div class="nav col-lg-6 col-sm-6 align-self-center" bis_skin_checked="1">
-            {% load notifications_tags %}
-            {% notifications_unread as unread_count %}         
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/static/images/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
-                <span class="position-absolute top-5 end-0 translate-middle badge border border-light rounded-circle bg-danger p-1">{{unread_count}}</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink" style=" max-height: 300px;overflow-y: auto;">
-                {% for notification in notifications %}
-                  <li>
-                  <a class="dropdown-item" href="#"  >
-                    <h5>{{ notification.verb }}</h5>  <!-- 顯示通知的動詞，例如 'new_message' -->
-                    <p>{{ notification.description }}</p>  <!-- 顯示通知的描述內容 -->
-                    <p>{{ notification.timestamp }}</p>  <!-- 顯示通知的時間戳記 -->
-                  </a>                 
-                  </li>
-                {% empty %}
-                  <li style="text-align: center;">No notifications</li>  <!-- 如果沒有通知，顯示 'No notifications' -->
-                {% endfor %}
-              </ul>
-            </li>
-          </div>
-          <div class="nav col-lg-6 col-sm-6  align-self-center" bis_skin_checked="1">
-            {% if user.is_authenticated %}
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ request.session.picture_url }}" class="rounded-circle" alt="{{ request.session.picture_url }}{{ user.username }}'s profile picture" width=40px height=40px>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Link 1</a></li>
-                <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/avatar.png" width="20px" height="20px">&emsp;Profile</a></li>
-                <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/logout.png" width="20px" height="20px">&emsp;Log Out</a></li>
-              </ul>
-            </li>
-            {% else %}
-            <a type="button" class="btn btn-outline-light me-2" href="{% url 'Index' %}">Login</a>
-            <a type="button" class="btn btn btn-warning" href="{% url 'Register' %}">Sign-up</a>
-            {% endif %}
-          </div>
+        <div class="nav col-lg-6 col-sm-6  align-self-center" bis_skin_checked="1">
+          {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <img src="{{ request.session.picture_url }}" class="rounded-circle"
+                alt="{{ request.session.picture_url }}{{ user.username }}'s profile picture" width=40px height=40px>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end"
+              aria-labelledby="navbarDarkDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Link 1</a></li>
+              <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/avatar.png"
+                    width="20px" height="20px">&emsp;Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/logout.png" width="20px"
+                    height="20px">&emsp;Log Out</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <a type="button" class="btn btn-outline-light me-2" href="{% url 'Index' %}">Login</a>
+          <a type="button" class="btn btn btn-warning" href="{% url 'Register' %}">Sign-up</a>
+          {% endif %}
         </div>
       </div>
-    </header>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background: linear-gradient(120deg,#2980b9, #8e44ad)">
-      <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mynavbar">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a href="/home/" class="nav-link px-2 text-white">首頁</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-white">網站導覽</a>
-            </li>
+    </div>
+  </header>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background: linear-gradient(120deg,#2980b9, #8e44ad)">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a href="/home/" class="nav-link px-2 text-white">首頁</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-white">網站導覽</a>
+          </li>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -95,71 +107,74 @@
           <li class="nav-item">
             <a href="/weather/" class="nav-link px-2 text-white">氣象科普</a>
           </li>
-            <li class="nav-item">
-              <a href="/about/" class="nav-link px-2 text-white">關於我們</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link px-2 text-white">討論區</a>
-            </li>
-          </ul>
-        </div>
+          <li class="nav-item">
+            <a href="/about/" class="nav-link px-2 text-white">關於我們</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-2 text-white">討論區</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-
-    <main role="main" class="container">
-    <div id="content">
-        {% block content %}{% endblock %}
     </div>
-    </main><!-- /.container -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  
+  </nav>
+
+  <main role="main" class="container">
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </main><!-- /.container -->
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
   <footer class="container-fluid">
     <div class="row row-cols-4 py-5" style="  background-color: black;color: white; ">
-        <div class="col-5 d-flex justify-content-center" bis_skin_checked="1">
-          <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
-          <a>科技新知平台© 2023</a>
-        </div>
-    
-        <div class="col-2" bis_skin_checked="1">
-          <h5>主要連結</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">首頁</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">科技新聞</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">科技教學</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">網頁導覽</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">關於我們</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">討論區</a></li>
-          </ul>
-        </div>
+      <div class="col-5 d-flex justify-content-center" bis_skin_checked="1">
+        <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
+        <a>科技新知平台© 2023</a>
+      </div>
 
-        <div class="col-2" bis_skin_checked="1">
-          <h5>其他協助</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">帳戶中心</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">障礙回報</a></li>
-            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">網頁遺失</a></li>
-          </ul>
-        </div>
-    
-        <div class="col-2" bis_skin_checked="1">
-          <h5>社群媒體</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item mb-2">
-              <button type="button" href="#" class="btn btn-dark">
+      <div class="col-2" bis_skin_checked="1">
+        <h5>主要連結</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">首頁</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">科技新聞</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">科技教學</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">網頁導覽</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">關於我們</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">討論區</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2" bis_skin_checked="1">
+        <h5>其他協助</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-muted">帳戶中心</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">障礙回報</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">網頁遺失</a></li>
+        </ul>
+      </div>
+
+      <div class="col-2" bis_skin_checked="1">
+        <h5>社群媒體</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2">
+            <button type="button" href="#" class="btn btn-dark">
               <span class="button__text">GitHub</span>
               <span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
-              </button>
-            </li>
-            <li class="nav-item mb-2">
-              <button type="button" href="#" class="btn btn-primary">
+            </button>
+          </li>
+          <li class="nav-item mb-2">
+            <button type="button" href="#" class="btn btn-primary">
               <span class="button__text">Facebook</span>
               <span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
-              </button>
+            </button>
           </li>
-          </ul>
-        </div>
+        </ul>
       </div>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
+
 </html>

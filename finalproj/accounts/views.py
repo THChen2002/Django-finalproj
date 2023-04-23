@@ -35,6 +35,7 @@ from tempfile import TemporaryFile
 
 from notifications.signals import notify
 from notifications.models import Notification
+from django.core import serializers
 
 
 # Create your views here.
@@ -81,6 +82,8 @@ def index(request):
 
     request.session['picture_url'] = profile_pic_url
     notifications = Notification.objects.filter(recipient=request.user, unread=True)
+    notifications_data = serializers.serialize('json', notifications)
+    request.session['unread_notifications'] = notifications_data
     # notifications.update(unread=False)
     return render(request, 'accounts/index.html', locals())
 
@@ -187,10 +190,11 @@ def profile(request):
         unit.email = email
         unit.address = address
         unit.gender = gender
-        unit.birth_date = strBirthdate
+        if strBirthdate:
+            unit.birth_date = strBirthdate
         unit.phone_number = phone
         unit.save()
-        return redirect('/profile')
+        return redirect('/')
     else:
         user = request.user
         unit = UserProfile.objects.get(user_id=user.id)

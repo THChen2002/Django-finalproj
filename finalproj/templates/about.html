@@ -1,40 +1,41 @@
 {% extends "base.html" %}
 {% block title %}關於我們{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="/static/css/style2.css"/>
-    <main class="container-fluid">
-        <br>
-        <h2>Authors</h2>
-        <div class="row row-cols-2">
-            <div class="col card">
-                <br>
-                <div class="row row-cols-2">
-                    <img decoding="async" class="card-img-top col w-50 rounded-circle" src="/static/images/Thchen.jpg" alt="Card image">
-                    <div class="card-body col">
-                        <h4 class="card-title">陳亭澔</h4>
-                        <p class="card-text">
-                        <ul>
-                            <li>數三AI資教組</li>
-                            <li>負責後端程式設計</li>
-                            <li>負責資料庫設計</li>
-                        </ul>
-                        </p>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profile1">
-                            個人簡歷
-                        </button>
-                        
-                        
-                        <!-- 模态框 -->
-                        <div class="modal fade" id="profile1">
-                            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
+<main class="container-fluid">
+    <br>
+    <h2>Authors</h2>
+    <div class="row row-cols-2">
+        <div class="col card">
+            <br>
+            <div class="row row-cols-2">
+                <img decoding="async" class="card-img-top col w-50 rounded-circle" src="/static/images/Thchen.jpg"
+                    alt="Card image">
+                <div class="card-body col">
+                    <h4 class="card-title">陳亭澔</h4>
+                    <p class="card-text">
+                    <ul>
+                        <li>數三AI資教組</li>
+                        <li>負責後端程式設計</li>
+                        <li>負責資料庫設計</li>
+                    </ul>
+                    </p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profile1">
+                        個人簡歷
+                    </button>
+
+
+                    <!-- 模态框 -->
+                    <div class="modal fade" id="profile1">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
                             <div class="modal-content">
-                        
+
                                 <!-- 模态框头部 -->
                                 <div class="modal-header">
-                                <h4 class="modal-title">個人簡歷</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    <h4 class="modal-title">個人簡歷</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-                        
+
                                 <!-- 模态框内容 -->
                                 <div class="modal-body">
                                     <ol>
@@ -42,81 +43,86 @@
                                         <li>教育背景：</li>
                                         <p>2019年-2023年：就讀於OpenAI的大型語言模型<br>2015年-2019年：取得計算機科學學士學位，就讀於麻省理工學院</p>
                                         <li>技能和專業知識：</li>
-                                        <p>自然語言處理<br>機器學習和深度學習<br>資料分析和可視化<br>Python、Java、C++等程式語言<br>Git和GitHub等版本控制工具</p>
+                                        <p>自然語言處理<br>機器學習和深度學習<br>資料分析和可視化<br>Python、Java、C++等程式語言<br>Git和GitHub等版本控制工具
+                                        </p>
                                         <li>工作經驗：</li>
-                                        <p>2021年至今：OpenAI的大型語言模型ChatGPT，負責提供自然語言處理和其他AI相關的服務<br>2019年-2021年：在麻省理工學院人工智慧實驗室擔任研究助理，負責機器學習和自然語言處理相關項目</p>
+                                        <p>2021年至今：OpenAI的大型語言模型ChatGPT，負責提供自然語言處理和其他AI相關的服務<br>2019年-2021年：在麻省理工學院人工智慧實驗室擔任研究助理，負責機器學習和自然語言處理相關項目
+                                        </p>
                                         <li>獲得的獎項：</li>
                                         <p>2022年：OpenAI傑出貢獻獎</p>
                                     </ol>
                                 </div>
-                        
+
                                 <!-- 模态框底部 -->
                                 <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
                                 </div>
-                        
-                            </div>
+
                             </div>
                         </div>
-                    </div> 
+                    </div>
                 </div>
-            <br>
             </div>
-            <div class="col card">
-                <br>
-                <div class="row row-cols-2">
-                    <img decoding="async" class="card-img-top col w-50 rounded-circle" src="/static/images/Joewu.jpg" alt="Card image">
-                    <div class="card-body col">
+            <br>
+        </div>
+        <div class="col card">
+            <br>
+            <div class="row row-cols-2">
+                <img decoding="async" class="card-img-top col w-50 rounded-circle" src="/static/images/Joewu.jpg"
+                    alt="Card image">
+                <div class="card-body col">
                     <h4 class="card-title">吳兆軒</h4>
                     <p class="card-text">
-                        <ul>
-                            <li>數三AI資教組</li>
-                            <li>負責前端網頁設計</li>
-                            <li>負責CSS撰寫</li>
-                        </ul>
+                    <ul>
+                        <li>數三AI資教組</li>
+                        <li>負責前端網頁設計</li>
+                        <li>負責CSS撰寫</li>
+                    </ul>
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#profile2">
                         個人簡歷
                     </button>
-                    
-                    
+
+
                     <!-- 模态框 -->
                     <div class="modal fade" id="profile2">
                         <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                        <div class="modal-content">
-                    
-                            <!-- 模态框头部 -->
-                            <div class="modal-header">
-                            <h4 class="modal-title">個人簡歷</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            <div class="modal-content">
+
+                                <!-- 模态框头部 -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">個人簡歷</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <!-- 模态框内容 -->
+                                <div class="modal-body">
+                                    <ol>
+                                        <li>姓名：ChatGPT</li>
+                                        <li>教育背景：</li>
+                                        <p>2019年-2023年：就讀於OpenAI的大型語言模型<br>2015年-2019年：取得計算機科學學士學位，就讀於麻省理工學院</p>
+                                        <li>技能和專業知識：</li>
+                                        <p>自然語言處理<br>機器學習和深度學習<br>資料分析和可視化<br>Python、Java、C++等程式語言<br>Git和GitHub等版本控制工具
+                                        </p>
+                                        <li>工作經驗：</li>
+                                        <p>2021年至今：OpenAI的大型語言模型ChatGPT，負責提供自然語言處理和其他AI相關的服務<br>2019年-2021年：在麻省理工學院人工智慧實驗室擔任研究助理，負責機器學習和自然語言處理相關項目
+                                        </p>
+                                        <li>獲得的獎項：</li>
+                                        <p>2022年：OpenAI傑出貢獻獎</p>
+                                    </ol>
+                                </div>
+
+                                <!-- 模态框底部 -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
+                                </div>
+
                             </div>
-                    
-                            <!-- 模态框内容 -->
-                            <div class="modal-body">
-                                <ol>
-                                    <li>姓名：ChatGPT</li>
-                                    <li>教育背景：</li>
-                                    <p>2019年-2023年：就讀於OpenAI的大型語言模型<br>2015年-2019年：取得計算機科學學士學位，就讀於麻省理工學院</p>
-                                    <li>技能和專業知識：</li>
-                                    <p>自然語言處理<br>機器學習和深度學習<br>資料分析和可視化<br>Python、Java、C++等程式語言<br>Git和GitHub等版本控制工具</p>
-                                    <li>工作經驗：</li>
-                                    <p>2021年至今：OpenAI的大型語言模型ChatGPT，負責提供自然語言處理和其他AI相關的服務<br>2019年-2021年：在麻省理工學院人工智慧實驗室擔任研究助理，負責機器學習和自然語言處理相關項目</p>
-                                    <li>獲得的獎項：</li>
-                                    <p>2022年：OpenAI傑出貢獻獎</p>
-                                </ol>
-                            </div>
-                    
-                            <!-- 模态框底部 -->
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">關閉</button>
-                            </div>
-                    
                         </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
-            <br>
             </div>
+            <br>
         </div>
-    </main>
+    </div>
+</main>
 {% endblock %}

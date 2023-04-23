@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 import weather.views as weather
 import accounts.views as accounts
 import blog.views as blog
+import notice.views as notice
 import notifications.urls
 
 urlpatterns = [
@@ -46,6 +47,8 @@ urlpatterns = [
     path('about/', accounts.about),
     
     path('inbox/notifications/', include(notifications.urls, namespace='notifications')),
+    path('notice', notice.view_notifications, name='view_notifications'),
+    
     # path('notice/', include('notice.urls', namespace='notice')),
 
     path('apple-blog/', blog.blog),

@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.models import User
 
 from notifications.signals import notify
 from notifications.models import Notification
+import json
 
 
 
@@ -19,10 +21,20 @@ def send_message(request, recipient):
     )
 
 def view_notifications(request):
-    # 取得使用者的通知
-    notifications = Notification.objects.filter(user=request.user, unread=True)
-
-    # 標記通知為已讀
-    notifications.update(unread=False)
-
-    return render(request, 'notifications.html', {'notifications': notifications})
+    if request.method=="POST":
+        data = json.loads(request.body)
+        id = data.get('id')
+        # id == 0 表示全部標記為已讀 
+        if id == 0:
+            # 取得使用者的通知
+            notifications = Notification.objects.filter(recipient=request.user)
+            # 標記通知為已讀
+            notifications.update(unread=False)
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            # 取得使用者的通知     
+            notifications = Notification.objects.filter(id=id)
+            # 標記通知為已讀
+            notifications.update(unread=False)
+    else:
+        return render(request, 'accounts/index.html')

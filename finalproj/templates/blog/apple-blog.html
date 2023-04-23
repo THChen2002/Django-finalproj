@@ -1,117 +1,131 @@
 {% extends "base.html" %}
 {% block title %}APPLE新聞{% endblock %}
 {% block content %}
-	<link rel="stylesheet" type="text/css" href="/static/css/style2.css"/>
-    <!--css icon-->
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-	<main class="container">
-            <br>
-			<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active" data-bs-interval="7000">
-						<img src="\static\images\blog\Apple_products.png" class="d-block w-100" alt="">
-						<div class="carousel-overlay"></div>
-						<div class="carousel-caption d-none d-md-block" style="text-align: center;">
-							<h1 class="banner-h1" >最新APPLE產品消息</h1>
-							<p class="banner-text">提供最即時的消息以及不同觀點</p>
-						</div>
-					</div>
-					<div class="carousel-item" data-bs-interval="7000">
-						<img src="\static\images\blog\iphone.png" class="d-block w-100" alt="">
-						<div class="carousel-overlay"></div>
-						<div class="carousel-caption d-none d-md-block">
-							<h1 class="banner-h1">超實用軟體技巧</h1>
-							<p class="banner-text">多樣化軟體教學提升辦工效率</p>
-						</div>
-					</div>
+<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
+<!--css icon-->
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+<main class="container">
+	<br>
+	<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active" data-bs-interval="7000">
+				<img src="\static\images\blog\Apple_products.png" class="d-block w-100" alt="">
+				<div class="carousel-overlay"></div>
+				<div class="carousel-caption d-none d-md-block" style="text-align: center;">
+					<h1 class="banner-h1">最新APPLE產品消息</h1>
+					<p class="banner-text">提供最即時的消息以及不同觀點</p>
 				</div>
-					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
-					</button>
-					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
-					</button>
+			</div>
+			<div class="carousel-item" data-bs-interval="7000">
+				<img src="\static\images\blog\iphone.png" class="d-block w-100" alt="">
+				<div class="carousel-overlay"></div>
+				<div class="carousel-caption d-none d-md-block">
+					<h1 class="banner-h1">超實用軟體技巧</h1>
+					<p class="banner-text">多樣化軟體教學提升辦工效率</p>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-md-8">
+			<div class="card" style="width: 100%;">
+				<div class="card-body">
+					<h2 class="card-title">Sample blog post</h2>
+					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+						card's content.</p>
+					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
+						fill the available space and show how a longer snippet of text affects the surrounding content.
+						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
+						same string of text.</p>
+					<a href="#" class="btn btn-outline-primary">more</a>
+				</div>
 			</div>
 			<br>
-			<div class="row">
-				<div class="col-md-8">
-					<div class="card" style="width: 100%;">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
-						</div>
-					</div>
-					<br>
-					<div class="card" style="width: 100%;">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
-						</div>
-					</div>
-					<br>
-					<div class="card" style="width: 100%">
-						<div class="card-body">
-						<h2 class="card-title">Sample blog post</h2>
-						<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-						<p class="card-text">This is some additional paragraph placeholder content. It has been written to fill the available space and show how a longer snippet of text affects the surrounding content. We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact same string of text.</p>
-						<a href="#" class="btn btn-outline-primary">more</a>
-						</div>
-					</div>
+			<div class="card" style="width: 100%;">
+				<div class="card-body">
+					<h2 class="card-title">Sample blog post</h2>
+					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+						card's content.</p>
+					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
+						fill the available space and show how a longer snippet of text affects the surrounding content.
+						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
+						same string of text.</p>
+					<a href="#" class="btn btn-outline-primary">more</a>
 				</div>
-			
-				<div class="col-md-4">
-					<div class="position-sticky" style="top: 2rem;">
-					<div class="p-4 mb-3 rounded">
-						<h4 class="fst-italic">關於</h4>
-						<p class="mb-0">本網站是一個知名科技新聞網站，報導全球最新的科技趨勢和新知識，涵蓋各種領域，包括人工智慧、區塊鏈、物聯網、生物科技等。此外，此網站也提供創業公司的新聞和資訊，讓讀者可以掌握最新的商業趨勢和機會。</p>
-					</div>
-					<hr>
-					<div class="p-4">
-						<h4 class="fst-italic">依時間分類</h4>
-						<ol class="list-unstyled mb-0">
-							<li><a href="#">March 2023</a></li>
-							<li><a href="#">February 2023</a></li>
-							<li><a href="#">January 2023</a></li>
-							<li><a href="#">December 2022</a></li>
-							<li><a href="#">November 2022</a></li>
-							<li><a href="#">October 2022</a></li>
-							<li><a href="#">September 2022</a></li>
-							<li><a href="#">August 2022</a></li>
-							<li><a href="#">July 2022</a></li>
-							<li><a href="#">June 2022</a></li>
-							<li><a href="#">May 2022</a></li>
-							<li><a href="#">April 2022</a></li>
-						</ol>
-					</div>
-						<hr>
-					<div class="p-4">
-						<h4 class="fst-italic">社群媒體</h4>
-						<button type="button" href="#" class="btn btn-dark">
-							<span class="button__text">GitHub</span>
-							<span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
-						</button>
-						<button type="button" href="#" class="btn btn-primary">
-							<span class="button__text">Facebook</span>
-							<span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
-						</button>
-						<!--
+			</div>
+			<br>
+			<div class="card" style="width: 100%">
+				<div class="card-body">
+					<h2 class="card-title">Sample blog post</h2>
+					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+						card's content.</p>
+					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
+						fill the available space and show how a longer snippet of text affects the surrounding content.
+						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
+						same string of text.</p>
+					<a href="#" class="btn btn-outline-primary">more</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div class="position-sticky" style="top: 2rem;">
+				<div class="p-4 mb-3 rounded">
+					<h4 class="fst-italic">關於</h4>
+					<p class="mb-0">
+						本網站是一個知名科技新聞網站，報導全球最新的科技趨勢和新知識，涵蓋各種領域，包括人工智慧、區塊鏈、物聯網、生物科技等。此外，此網站也提供創業公司的新聞和資訊，讓讀者可以掌握最新的商業趨勢和機會。
+					</p>
+				</div>
+				<hr>
+				<div class="p-4">
+					<h4 class="fst-italic">依時間分類</h4>
+					<ol class="list-unstyled mb-0">
+						<li><a href="#">March 2023</a></li>
+						<li><a href="#">February 2023</a></li>
+						<li><a href="#">January 2023</a></li>
+						<li><a href="#">December 2022</a></li>
+						<li><a href="#">November 2022</a></li>
+						<li><a href="#">October 2022</a></li>
+						<li><a href="#">September 2022</a></li>
+						<li><a href="#">August 2022</a></li>
+						<li><a href="#">July 2022</a></li>
+						<li><a href="#">June 2022</a></li>
+						<li><a href="#">May 2022</a></li>
+						<li><a href="#">April 2022</a></li>
+					</ol>
+				</div>
+				<hr>
+				<div class="p-4">
+					<h4 class="fst-italic">社群媒體</h4>
+					<button type="button" href="#" class="btn btn-dark">
+						<span class="button__text">GitHub</span>
+						<span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
+					</button>
+					<button type="button" href="#" class="btn btn-primary">
+						<span class="button__text">Facebook</span>
+						<span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
+					</button>
+					<!--
 						<a href="#" class="btn btn-dark">GitHub</a>
 						<a href="#" class="btn btn-success">Line</a>
 						<a href="#" class="btn btn-primary">Facebook</a>
 						-->
-					</div>
-					</div>
 				</div>
 			</div>
-			<br>			
-	</main>
+		</div>
+	</div>
+	<br>
+</main>
 {% endblock %}
