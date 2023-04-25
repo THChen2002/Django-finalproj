@@ -4,7 +4,7 @@ from accounts.models import UserProfile
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'content', 'author')
+    list_display = ('title', 'category', 'enabled', 'publish_time', 'press')
 
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Category)

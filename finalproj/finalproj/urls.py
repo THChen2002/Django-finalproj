@@ -51,7 +51,9 @@ urlpatterns = [
     
     # path('notice/', include('notice.urls', namespace='notice')),
 
-    path('apple-blog/', blog.blog),
+    path('apple-blog/', blog.index),
+    path('apple-blog/<str:pageindex>/', blog.index),
+    path('blog/<int:detailid>/',  blog.detail),
 
     path('weather/', weather.weather),
 ]

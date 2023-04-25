@@ -17,11 +17,14 @@ class Category(models.Model):
         return self.title
 
 class BlogPost(models.Model):
-    title = models.CharField(max_length=50, default='')
-    content = RichTextUploadingField(max_length=300)
+    title = models.CharField(max_length=500, default='')
+    content = RichTextUploadingField()
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)
+    publish_time = models.DateTimeField(auto_now=True)
+    enabled = models.BooleanField(default=False)
+    press = models.IntegerField(default=0)
     def __str__(self):
         return self.title
 

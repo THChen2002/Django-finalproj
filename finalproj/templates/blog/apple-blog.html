@@ -37,46 +37,31 @@
 	<br>
 	<div class="row">
 		<div class="col-md-8">
+			{% for unit in newsunits %}
 			<div class="card" style="width: 100%;">
 				<div class="card-body">
-					<h2 class="card-title">Sample blog post</h2>
-					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
+					<h2 class="card-title">{{ unit.title }}</h2>
+					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="#">{{ unit.author }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
 						card's content.</p>
-					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
-						fill the available space and show how a longer snippet of text affects the surrounding content.
-						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
-						same string of text.</p>
-					<a href="#" class="btn btn-outline-primary">more</a>
+					<p class="card-text" id="content">{{ unit.content | truncatechars_html:100 | safe }}</p>
+					<a href="/blog/{{unit.id}}/" class="btn btn-outline-primary">more</a>
 				</div>
 			</div>
-			<br>
-			<div class="card" style="width: 100%;">
-				<div class="card-body">
-					<h2 class="card-title">Sample blog post</h2>
-					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-						card's content.</p>
-					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
-						fill the available space and show how a longer snippet of text affects the surrounding content.
-						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
-						same string of text.</p>
-					<a href="#" class="btn btn-outline-primary">more</a>
+			{% empty %}
+				<div class="status warning">
+					<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
 				</div>
-			</div>
-			<br>
-			<div class="card" style="width: 100%">
-				<div class="card-body">
-					<h2 class="card-title">Sample blog post</h2>
-					<h6 class="card-subtitle mb-2 text-muted">January 1, 2021 by <a href="#">Mark</a></h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-						card's content.</p>
-					<p class="card-text">This is some additional paragraph placeholder content. It has been written to
-						fill the available space and show how a longer snippet of text affects the surrounding content.
-						We'll repeat it often to keep the demonstration flowing, so be on the lookout for this exact
-						same string of text.</p>
-					<a href="#" class="btn btn-outline-primary">more</a>
-				</div>
+			{% endfor %}
+			<div class="topfunction">
+			{% if currentpage > 1 %}
+				<a href="/apple-blog/1/" title="上一頁">上一頁
+				</a>
+			{% endif %}
+			{% if currentpage < totpage %}
+				<a href="/apple-blog/2/" title="下一頁">下一頁
+				</a>
+			{% endif %}
 			</div>
 		</div>
 
@@ -127,5 +112,37 @@
 		</div>
 	</div>
 	<br>
+	<div class="contentbox">
+		<table width="100%">
+		<tr>
+		  <th align="left">分類</th>
+		  <th align="left">標題</th>
+		  <th align="left">時間</th>
+		  <th align="left">點閱</th>
+		</tr>
+		{% for unit in newsunits %}
+			<tr class="alt">
+			<td><div class="typeblock">【{{ unit.category }}】</div></td>
+			<td><a href="/newsdetail/{{unit.id}}/">{{ unit.title }}</a></td>
+			<td>{{ unit.publish_time }}</td>
+			<td>{{ unit.press }}</td>
+			</tr>
+		{% empty %}
+			<div class="status warning">
+				<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
+			</div>
+		{% endfor %}
+		</table>
+		<div class="topfunction">
+		{% if currentpage > 1 %}
+			 <a href="/apple-blog/1/" title="上一頁">上一頁
+			</a>
+		{% endif %}
+		{% if currentpage < totpage %}
+			<a href="/apple-blog/2/" title="下一頁">下一頁
+			</a>
+		{% endif %}
+		</div>
+	</div>
 </main>
 {% endblock %}
