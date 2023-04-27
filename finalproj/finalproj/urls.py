@@ -56,5 +56,6 @@ urlpatterns = [
     path('blog/<int:detailid>/',  blog.detail),
 
     path('weather/', weather.weather),
+    path('weather/radar', weather.radar),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
