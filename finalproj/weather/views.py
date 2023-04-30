@@ -5,5 +5,8 @@ from django.shortcuts import render
 def weather(request):
     return render(request, 'weather/weather.html')
 
+def town(request):
+    return render(request, 'weather/town.html')
+
 def radar(request):
     return render(request, 'weather/radar.html')

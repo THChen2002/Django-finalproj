@@ -53,9 +53,10 @@ urlpatterns = [
 
     path('apple-blog/', blog.index),
     path('apple-blog/<str:pageindex>/', blog.index),
-    path('blog/<int:detailid>/',  blog.detail),
+    path('blog/<slug:slug>/',  blog.detail),
 
     path('weather/', weather.weather),
+    path('weather/town', weather.town),
     path('weather/radar', weather.radar),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}APPLE新聞{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="/static/css/style2.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/blogbanner.css" />
 <!--css icon-->
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 <main class="container">
@@ -36,7 +36,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			{% for unit in newsunits %}
 			<div class="card" style="width: 100%;">
 				<div class="card-body">
@@ -45,9 +45,10 @@
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
 						card's content.</p>
 					<p class="card-text" id="content">{{ unit.content | truncatechars_html:100 | safe }}</p>
-					<a href="/blog/{{unit.id}}/" class="btn btn-outline-primary">more</a>
+					<a href="/blog/{{unit.slug}}/" class="btn btn-outline-primary">more</a>
 				</div>
 			</div>
+			<br>
 			{% empty %}
 				<div class="status warning">
 					<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
@@ -65,7 +66,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="position-sticky" style="top: 2rem;">
 				<div class="p-4 mb-3 rounded">
 					<h4 class="fst-italic">關於</h4>
@@ -98,6 +99,8 @@
 						<span class="button__text">GitHub</span>
 						<span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
 					</button>
+					<br>
+					<br>
 					<button type="button" href="#" class="btn btn-primary">
 						<span class="button__text">Facebook</span>
 						<span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
@@ -109,39 +112,6 @@
 						-->
 				</div>
 			</div>
-		</div>
-	</div>
-	<br>
-	<div class="contentbox">
-		<table width="100%">
-		<tr>
-		  <th align="left">分類</th>
-		  <th align="left">標題</th>
-		  <th align="left">時間</th>
-		  <th align="left">點閱</th>
-		</tr>
-		{% for unit in newsunits %}
-			<tr class="alt">
-			<td><div class="typeblock">【{{ unit.category }}】</div></td>
-			<td><a href="/newsdetail/{{unit.id}}/">{{ unit.title }}</a></td>
-			<td>{{ unit.publish_time }}</td>
-			<td>{{ unit.press }}</td>
-			</tr>
-		{% empty %}
-			<div class="status warning">
-				<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
-			</div>
-		{% endfor %}
-		</table>
-		<div class="topfunction">
-		{% if currentpage > 1 %}
-			 <a href="/apple-blog/1/" title="上一頁">上一頁
-			</a>
-		{% endif %}
-		{% if currentpage < totpage %}
-			<a href="/apple-blog/2/" title="下一頁">下一頁
-			</a>
-		{% endif %}
 		</div>
 	</div>
 </main>

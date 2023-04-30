@@ -6,22 +6,75 @@
 <br>
 <br>
 <br>
+<div class="row">
+	<div class="col-md-9">
 		<div class="contentbox">
 			<table width="100%">
 			<tr>
-			  <th align="left"><span class="typeblock">{{category}}&nbsp;&nbsp;</span>&nbsp;&nbsp;{{title}}</th>
+			  <th align="left"><h2>{{title}}</h2></th>
 			</tr>
 			<tr>
-			  <td><span class="newsinfo">
-				<img src="{% static "images/date.png" %}" alt="" width="16" height="16" />&nbsp;{{pubtime}}
-				&nbsp;<img src="{% static "images/user.png" %}" alt="" width="16" height="16" />&nbsp;{{tags}} 
+			  <td>
+				<span class="newsinfo">
+				<span class="typeblock">
+					<img src="{% static "images/blogicon/categories.png" %}" alt="" width="16" height="16" />&nbsp;{{category}}
+				</span>&nbsp;
+				<img src="{% static "images/blogicon/clock.png" %}" alt="" width="16" height="16" />&nbsp;{{pubtime}}&nbsp;
+				<img src="{% static "images/blogicon/price-tag.png" %}" alt="" width="16" height="16" />&nbsp;
+					<span>{{ unit.tags.name }}</span>
+				 
 				<p>&nbsp;&nbsp;{{content | safe}}</p>
+				</span>
 			  </td>
 			</tr>
 			</table>
 			<div class="topfunction">
-				<a href="/newsindex/3/" title="返回首頁">
-				<img src="{% static "images/home.png" %}" alt="返回首頁" width="86" height="32" /></a>
+				<a class="btn btn-light" href="/apple-blog/"><img src="{% static "images/blogicon/back.png" %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
 			</div>
 		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="position-sticky" style="top: 2rem;">
+			<div class="p-4 mb-3 rounded">
+				<h4 class="fst-italic">關於</h4>
+				<p class="mb-0">
+					本網站是一個知名科技新聞網站，報導全球最新的科技趨勢和新知識，涵蓋各種領域，包括人工智慧、區塊鏈、物聯網、生物科技等。此外，此網站也提供創業公司的新聞和資訊，讓讀者可以掌握最新的商業趨勢和機會。
+				</p>
+			</div>
+			<hr>
+			<div class="p-4">
+				<h4 class="fst-italic">依時間分類</h4>
+				<ol class="list-unstyled mb-0">
+					<li><a href="#">March 2023</a></li>
+					<li><a href="#">February 2023</a></li>
+					<li><a href="#">January 2023</a></li>
+					<li><a href="#">December 2022</a></li>
+					<li><a href="#">November 2022</a></li>
+					<li><a href="#">October 2022</a></li>
+					<li><a href="#">September 2022</a></li>
+					<li><a href="#">August 2022</a></li>
+					<li><a href="#">July 2022</a></li>
+					<li><a href="#">June 2022</a></li>
+					<li><a href="#">May 2022</a></li>
+					<li><a href="#">April 2022</a></li>
+				</ol>
+			</div>
+			<hr>
+			<div class="p-4">
+				<h4 class="fst-italic">社群媒體</h4>
+				<button type="button" href="#" class="btn btn-dark">
+					<span class="button__text">GitHub</span>
+					<span class="button__icon"><ion-icon name="logo-github"></ion-icon></span>
+				</button>
+				<br>
+				<br>
+				<button type="button" href="#" class="btn btn-primary">
+					<span class="button__text">Facebook</span>
+					<span class="button__icon"><ion-icon name="logo-facebook"></ion-icon></span>
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
 {% endblock %}

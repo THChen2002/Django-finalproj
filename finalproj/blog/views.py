@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from blog import models
 import math
+
 
 # Create your views here.
 
@@ -35,8 +36,8 @@ def index(request, pageindex=None):  #首頁
 	currentpage = page1
 	return render(request, "blog/apple-blog.html", locals())
 
-def detail(request, detailid=None):  #詳細頁面
-	unit = models.BlogPost.objects.get(id=detailid)
+def detail(request, slug=None):  #詳細頁面
+	unit = models.BlogPost.objects.get(slug=slug)
 	category = unit.category
 	title = unit.title
 	pubtime = unit.publish_time
@@ -44,4 +45,5 @@ def detail(request, detailid=None):  #詳細頁面
 	content = unit.content
 	unit.press += 1
 	unit.save()
+	blog = get_object_or_404(models.BlogPost, slug=slug)
 	return render(request, "blog/detail.html", locals())

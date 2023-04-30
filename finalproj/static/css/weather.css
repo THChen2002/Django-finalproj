@@ -1,0 +1,247 @@
+.img-responsive,
+.thumbnail a>img,
+.thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: auto
+}
+
+.cube-wrap {
+    border: 1px solid #ddd;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 0 transparent;
+    -ms-box-shadow: 0 1px 0 transparent;
+    box-shadow: 0 1px 0 transparent;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 40px;
+    display: block;
+    position: relative;
+    -webkit-transition: all .3s ease-in-out !important;
+    -moz-transition: all .3s ease-in-out !important;
+    -o-transition: all .3s ease-in-out !important;
+    -ms-transform: all .3s ease-in-out !important;
+    transition: all .3s ease-in-out !important
+}
+
+.cube-wrap:hover {
+    -webkit-box-shadow: 0 1px 15px rgba(0, 0, 0, .1);
+    -ms-box-shadow: 0 1px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 15px rgba(0, 0, 0, .1)
+}
+
+.cube-wrap:hover .cube-head {
+    background-color: #eee
+}
+
+.cube-wrap:hover .cube-body:before {
+    opacity: 1
+}
+
+.cube-wrap:hover .cube-body .ovr-text i,
+.cube-wrap:hover .cube-body .ovr-text span {
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -o-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+    -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -moz-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -ms-transform: all .3s cubic-bezier(.645, .045, .355, 1);
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    opacity: 1
+}
+
+.cube-wrap:hover .cube-body .ovr-text i {
+    transition-delay: .1s
+}
+
+.cube-wrap:hover .cube-body .ovr-text span {
+    transition-delay: .2s
+}
+
+.cube-wrap .cube-head {
+    padding: 8px 10px;
+    font-size: .975rem;
+    letter-spacing: 2px;
+    font-weight: 400;
+    color: #555
+}
+
+.cube-wrap .cube-body {
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transform: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    z-index: 0
+}
+
+.cube-wrap .cube-body:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .4);
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transform: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.cube-wrap .cube-body .ovr-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row;
+    -o-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.cube-wrap .cube-body .ovr-text i,
+.cube-wrap .cube-body .ovr-text span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    -moz-transform: translateY(30px);
+    -webkit-transform: translateY(30px);
+    -o-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    transform: translateY(30px);
+    -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -moz-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -o-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    -ms-transform: all .3s cubic-bezier(.645, .045, .355, 1);
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
+    opacity: 0
+}
+
+.cube-wrap .cube-body .ovr-text i {
+    font-size: 1.375rem;
+    padding: 10px
+}
+
+.cube-wrap .cube-body .ovr-text span {
+    font-size: .875rem;
+    letter-spacing: 2px
+}
+
+.fa-wifi:before {
+    content: "\f1eb"
+}
+
+/* map */
+
+:root {
+    --color-gold: rgb(23, 93, 255);
+}
+
+* {
+    font-family: 'Fjalla One';
+}
+
+
+ #app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* position: absolute; */
+    left: 50%;
+    top: 50%;
+    /* transform: translate3d(-50%, -50%, 0); */
+    width: 40%;
+    height: 40%;
+} 
+
+svg {
+    height: 100%;
+    width: 100%;
+    flex: 3;
+}
+
+path {
+    stroke: rgb(128, 164, 247);
+    fill: transparent;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+path:hover {
+    fill: var(--color-gold);
+}
+
+.title_area {
+    flex: 2;
+    margin-right: 3vw;
+    margin-top: -5vh;
+    color: black;
+    font-size: 30px;
+}
+
+h1 {
+    font-size: min(10vw, 2em);
+}
+
+h1 span {
+    color: var(--color-gold);
+    padding-left: 10px;
+}
+
+hr {
+    width: 100px;
+    margin-left: 0;
+    border: none;
+    border-bottom: solid 2px white;
+}
+
+.forcast h2,
+.forcast h4,
+.forcast h5 {
+    margin: 0;
+}
+
+.forcast h2 {
+    margin-top: 20px;
+}
+
+#weather-news {
+    display: flex;
+    border: none;
+    margin: 5px;
+    border-radius: 30px;
+    background-color: #0959A8;
+    font-size: 20px;
+    height: 320px;
+    width: 320px;
+}
+#weather-background {
+    background-color: #3c8fdb;
+}

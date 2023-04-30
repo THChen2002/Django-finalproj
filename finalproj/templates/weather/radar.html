@@ -1,151 +1,483 @@
 {% extends "base.html" %}
 {% block title %}雷達回波{% endblock %}
-{% block content %}  
+{% block content %}
 <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-001.png" alt="雷達回波" height="300" width="300">
 <div class="wrapper">
-    <main class="main-content container">
-      <!-- Tab v1 -->
-      <div class="tab-default">
-        <ul class="nav nav-tabs no-flex" id="mode">
-          <li id="Tab0" class="active">		
-		    <a href="/V8/C/W/OBS_Radar.html?Tab=0" role="button" title="顯示無地形" tabindex="0" pageindex="0" data-idx="0">無地形</a>
-          </li>
-          <li id="Tab1">        
-		    <a href="/V8/C/W/OBS_Radar.html?Tab=1" role="button" title="顯示有地形" tabindex="-1" pageindex="1" data-idx="0">有地形</a>
-          </li>
-		  <li id="Tab2">
-			<a href="/V8/C/W/OBS_Radar_rain.html" aria-label="降雨雷達" target="_self" tabindex="-1" pageindex="2" data-idx="0">降雨雷達</a>
-		  </li>
-        </ul>
-      </div>	  
-      <!-- Ed Tab v1 -->
-      <div role="tabpanel" class="tab-pane fade in active" id="normal">
-        <div class="row">
-          <div class="col-md-8 col-md-push-4">
-            <div class="tab-content">
-              <div class="slider-btn">
-                <p>本開關開啟時將會讀取低解析度的圖形資料以節省網路流量</p>
-                <div class="btn_group">
-                  <a href="javascript:void(0)" role="button" aria-label="節省流量說明" class="about_flow"><span>?</span></a>
-                  <label for="switch-1">節省流量</label>
-                  <input type="checkbox" class="switch" id="switch-1">
-                </div>
-              </div>
-            </div>
-		  
-            <div class="tab-content showIMG">
-				<span class="zoomtime">2023/04/26 11:20</span>
-				<div role="tabpanel" class="tab-pane fade in active">
-					<div class="zoomHolder" id="link-1" style="overflow: hidden; height: 673px;">
-						
-					<img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-001.png" alt="雷達回波" data-elem="pinchzoomer" class="img-responsive" style="position: absolute; transform-origin: 0px 0px 0px; inset: 0px auto auto 0px; transform: matrix(1, 0, 0, 1, 0, 0); touch-action: manipulation; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); backface-visibility: hidden; opacity: 1;"><div class="controlHolder" data-elem="controlHolder"><div class="zoomIn on" style=""></div><div class="zoomOut off" style=""></div></div></div>
-				</div>
-				<div role="tabpanel" class="tab-pane fade in active">						
-					<div class="zoom-fixed" id="link-2" style="display: none;">
-						<img src="/Data/radar/CV1_1000.png" alt="雷達回波" class="img-responsive">						
+	<main class="main-content container">
+		<!-- Tab v1 -->
+		<div class="tab-default">
+			<ul class="nav nav-tabs no-flex" id="mode">
+				<li id="Tab0" class="active">
+					<a href="/V8/C/W/OBS_Radar.html?Tab=0" role="button" title="顯示無地形" tabindex="0" pageindex="0"
+						data-idx="0">無地形</a>
+				</li>
+				<li id="Tab1">
+					<a href="/V8/C/W/OBS_Radar.html?Tab=1" role="button" title="顯示有地形" tabindex="-1" pageindex="1"
+						data-idx="0">有地形</a>
+				</li>
+				<li id="Tab2">
+					<a href="/V8/C/W/OBS_Radar_rain.html" aria-label="降雨雷達" target="_self" tabindex="-1" pageindex="2"
+						data-idx="0">降雨雷達</a>
+				</li>
+			</ul>
+		</div>
+		<!-- Ed Tab v1 -->
+		<div role="tabpanel" class="tab-pane fade in active" id="normal">
+			<div class="row">
+				<div class="col-md-8 col-md-push-4">
+					<div class="tab-content">
+						<div class="slider-btn">
+							<p>本開關開啟時將會讀取低解析度的圖形資料以節省網路流量</p>
+							<div class="btn_group">
+								<a href="javascript:void(0)" role="button" aria-label="節省流量說明"
+									class="about_flow"><span>?</span></a>
+								<label for="switch-1">節省流量</label>
+								<input type="checkbox" class="switch" id="switch-1">
+							</div>
+						</div>
+					</div>
+
+					<div class="tab-content showIMG">
+						<span class="zoomtime">2023/04/29 00:40</span>
+						<div role="tabpanel" class="tab-pane fade in active">
+							<div class="zoomHolder" id="link-1" style="overflow: hidden; height: 673px;">
+
+								<img src="/Data/radar/CV1_3600_202304290040.png" alt="雷達回波" data-elem="pinchzoomer"
+									class="img-responsive"
+									style="position: absolute; transform-origin: 0px 0px 0px; inset: 0px auto auto 0px; transform: matrix(1, 0, 0, 1, 0, 0); touch-action: manipulation; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); backface-visibility: hidden; opacity: 1;">
+								<div class="controlHolder" data-elem="controlHolder">
+									<div class="zoomIn on" style=""></div>
+									<div class="zoomOut off" style=""></div>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade in active">
+							<div class="zoom-fixed" id="link-2" style="display: none;">
+								<img src="/Data/radar/CV1_1000.png" alt="雷達回波" class="img-responsive">
+							</div>
+						</div>
 					</div>
 				</div>
-            </div>
-          </div>
-          <div class="col-md-4 col-md-pull-8">
-			<!-- Start 播放區塊 -->
-            <div class="player_block">
-              <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
-			  <form action="#" class="sky-form2 sky-form label-rounded">
-                <div class="row">
+				<div class="col-md-4 col-md-pull-8">
+					<!-- Start 播放區塊 -->
+					<div class="player_block">
+						<!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
+						<form action="#" class="sky-form2 sky-form label-rounded">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="inline-group">
+										<label for="area0" class="radio"><input type="radio" name="area" id="area0"
+												value="0"><i class="rounded-x"></i>較大範圍區域</label>
+										<label for="area1" class="radio"><input type="radio" name="area" id="area1"
+												value="1"><i class="rounded-x"></i>臺灣鄰近區域</label>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-12">
+											<label class="label" for="selectday">單張顯示（靜態）</label>
+										</div>
+										<div class="col-md-12">
+											<label class="select">
+												<select id="selectday">
+													<option data-target="CV1_3600_202304290040.png">2023/04/29 00:40
+													</option>
+													<option data-target="CV1_3600_202304290030.png">2023/04/29 00:30
+													</option>
+													<option data-target="CV1_3600_202304290020.png">2023/04/29 00:20
+													</option>
+													<option data-target="CV1_3600_202304290010.png">2023/04/29 00:10
+													</option>
+													<option data-target="CV1_3600_202304290000.png">2023/04/29 00:00
+													</option>
+													<option data-target="CV1_3600_202304282350.png">2023/04/28 23:50
+													</option>
+													<option data-target="CV1_3600_202304282340.png">2023/04/28 23:40
+													</option>
+													<option data-target="CV1_3600_202304282330.png">2023/04/28 23:30
+													</option>
+													<option data-target="CV1_3600_202304282320.png">2023/04/28 23:20
+													</option>
+													<option data-target="CV1_3600_202304282310.png">2023/04/28 23:10
+													</option>
+													<option data-target="CV1_3600_202304282300.png">2023/04/28 23:00
+													</option>
+													<option data-target="CV1_3600_202304282250.png">2023/04/28 22:50
+													</option>
+													<option data-target="CV1_3600_202304282240.png">2023/04/28 22:40
+													</option>
+													<option data-target="CV1_3600_202304282230.png">2023/04/28 22:30
+													</option>
+													<option data-target="CV1_3600_202304282220.png">2023/04/28 22:20
+													</option>
+													<option data-target="CV1_3600_202304282210.png">2023/04/28 22:10
+													</option>
+													<option data-target="CV1_3600_202304282200.png">2023/04/28 22:00
+													</option>
+													<option data-target="CV1_3600_202304282150.png">2023/04/28 21:50
+													</option>
+													<option data-target="CV1_3600_202304282140.png">2023/04/28 21:40
+													</option>
+													<option data-target="CV1_3600_202304282130.png">2023/04/28 21:30
+													</option>
+													<option data-target="CV1_3600_202304282120.png">2023/04/28 21:20
+													</option>
+													<option data-target="CV1_3600_202304282110.png">2023/04/28 21:10
+													</option>
+													<option data-target="CV1_3600_202304282100.png">2023/04/28 21:00
+													</option>
+													<option data-target="CV1_3600_202304282050.png">2023/04/28 20:50
+													</option>
+													<option data-target="CV1_3600_202304282040.png">2023/04/28 20:40
+													</option>
+													<option data-target="CV1_3600_202304282030.png">2023/04/28 20:30
+													</option>
+													<option data-target="CV1_3600_202304282020.png">2023/04/28 20:20
+													</option>
+													<option data-target="CV1_3600_202304282010.png">2023/04/28 20:10
+													</option>
+													<option data-target="CV1_3600_202304282000.png">2023/04/28 20:00
+													</option>
+													<option data-target="CV1_3600_202304281950.png">2023/04/28 19:50
+													</option>
+													<option data-target="CV1_3600_202304281940.png">2023/04/28 19:40
+													</option>
+													<option data-target="CV1_3600_202304281930.png">2023/04/28 19:30
+													</option>
+													<option data-target="CV1_3600_202304281920.png">2023/04/28 19:20
+													</option>
+													<option data-target="CV1_3600_202304281910.png">2023/04/28 19:10
+													</option>
+													<option data-target="CV1_3600_202304281900.png">2023/04/28 19:00
+													</option>
+													<option data-target="CV1_3600_202304281850.png">2023/04/28 18:50
+													</option>
+													<option data-target="CV1_3600_202304281840.png">2023/04/28 18:40
+													</option>
+													<option data-target="CV1_3600_202304281830.png">2023/04/28 18:30
+													</option>
+													<option data-target="CV1_3600_202304281820.png">2023/04/28 18:20
+													</option>
+													<option data-target="CV1_3600_202304281810.png">2023/04/28 18:10
+													</option>
+													<option data-target="CV1_3600_202304281800.png">2023/04/28 18:00
+													</option>
+													<option data-target="CV1_3600_202304281750.png">2023/04/28 17:50
+													</option>
+													<option data-target="CV1_3600_202304281740.png">2023/04/28 17:40
+													</option>
+													<option data-target="CV1_3600_202304281730.png">2023/04/28 17:30
+													</option>
+													<option data-target="CV1_3600_202304281720.png">2023/04/28 17:20
+													</option>
+													<option data-target="CV1_3600_202304281710.png">2023/04/28 17:10
+													</option>
+													<option data-target="CV1_3600_202304281700.png">2023/04/28 17:00
+													</option>
+													<option data-target="CV1_3600_202304281650.png">2023/04/28 16:50
+													</option>
+													<option data-target="CV1_3600_202304281640.png">2023/04/28 16:40
+													</option>
+													<option data-target="CV1_3600_202304281630.png">2023/04/28 16:30
+													</option>
+													<option data-target="CV1_3600_202304281620.png">2023/04/28 16:20
+													</option>
+													<option data-target="CV1_3600_202304281610.png">2023/04/28 16:10
+													</option>
+													<option data-target="CV1_3600_202304281600.png">2023/04/28 16:00
+													</option>
+													<option data-target="CV1_3600_202304281550.png">2023/04/28 15:50
+													</option>
+													<option data-target="CV1_3600_202304281540.png">2023/04/28 15:40
+													</option>
+													<option data-target="CV1_3600_202304281530.png">2023/04/28 15:30
+													</option>
+													<option data-target="CV1_3600_202304281520.png">2023/04/28 15:20
+													</option>
+													<option data-target="CV1_3600_202304281510.png">2023/04/28 15:10
+													</option>
+													<option data-target="CV1_3600_202304281500.png">2023/04/28 15:00
+													</option>
+													<option data-target="CV1_3600_202304281450.png">2023/04/28 14:50
+													</option>
+													<option data-target="CV1_3600_202304281440.png">2023/04/28 14:40
+													</option>
+													<option data-target="CV1_3600_202304281430.png">2023/04/28 14:30
+													</option>
+													<option data-target="CV1_3600_202304281420.png">2023/04/28 14:20
+													</option>
+													<option data-target="CV1_3600_202304281410.png">2023/04/28 14:10
+													</option>
+													<option data-target="CV1_3600_202304281400.png">2023/04/28 14:00
+													</option>
+													<option data-target="CV1_3600_202304281350.png">2023/04/28 13:50
+													</option>
+													<option data-target="CV1_3600_202304281340.png">2023/04/28 13:40
+													</option>
+													<option data-target="CV1_3600_202304281330.png">2023/04/28 13:30
+													</option>
+													<option data-target="CV1_3600_202304281320.png">2023/04/28 13:20
+													</option>
+													<option data-target="CV1_3600_202304281310.png">2023/04/28 13:10
+													</option>
+													<option data-target="CV1_3600_202304281300.png">2023/04/28 13:00
+													</option>
+													<option data-target="CV1_3600_202304281250.png">2023/04/28 12:50
+													</option>
+													<option data-target="CV1_3600_202304281240.png">2023/04/28 12:40
+													</option>
+													<option data-target="CV1_3600_202304281230.png">2023/04/28 12:30
+													</option>
+													<option data-target="CV1_3600_202304281220.png">2023/04/28 12:20
+													</option>
+													<option data-target="CV1_3600_202304281210.png">2023/04/28 12:10
+													</option>
+													<option data-target="CV1_3600_202304281200.png">2023/04/28 12:00
+													</option>
+													<option data-target="CV1_3600_202304281150.png">2023/04/28 11:50
+													</option>
+													<option data-target="CV1_3600_202304281140.png">2023/04/28 11:40
+													</option>
+													<option data-target="CV1_3600_202304281130.png">2023/04/28 11:30
+													</option>
+													<option data-target="CV1_3600_202304281120.png">2023/04/28 11:20
+													</option>
+													<option data-target="CV1_3600_202304281110.png">2023/04/28 11:10
+													</option>
+													<option data-target="CV1_3600_202304281100.png">2023/04/28 11:00
+													</option>
+													<option data-target="CV1_3600_202304281050.png">2023/04/28 10:50
+													</option>
+													<option data-target="CV1_3600_202304281040.png">2023/04/28 10:40
+													</option>
+													<option data-target="CV1_3600_202304281030.png">2023/04/28 10:30
+													</option>
+													<option data-target="CV1_3600_202304281020.png">2023/04/28 10:20
+													</option>
+													<option data-target="CV1_3600_202304281010.png">2023/04/28 10:10
+													</option>
+													<option data-target="CV1_3600_202304281000.png">2023/04/28 10:00
+													</option>
+													<option data-target="CV1_3600_202304280950.png">2023/04/28 09:50
+													</option>
+													<option data-target="CV1_3600_202304280940.png">2023/04/28 09:40
+													</option>
+													<option data-target="CV1_3600_202304280930.png">2023/04/28 09:30
+													</option>
+													<option data-target="CV1_3600_202304280920.png">2023/04/28 09:20
+													</option>
+													<option data-target="CV1_3600_202304280910.png">2023/04/28 09:10
+													</option>
+													<option data-target="CV1_3600_202304280900.png">2023/04/28 09:00
+													</option>
+													<option data-target="CV1_3600_202304280850.png">2023/04/28 08:50
+													</option>
+													<option data-target="CV1_3600_202304280840.png">2023/04/28 08:40
+													</option>
+													<option data-target="CV1_3600_202304280830.png">2023/04/28 08:30
+													</option>
+													<option data-target="CV1_3600_202304280820.png">2023/04/28 08:20
+													</option>
+													<option data-target="CV1_3600_202304280810.png">2023/04/28 08:10
+													</option>
+													<option data-target="CV1_3600_202304280800.png">2023/04/28 08:00
+													</option>
+													<option data-target="CV1_3600_202304280750.png">2023/04/28 07:50
+													</option>
+													<option data-target="CV1_3600_202304280740.png">2023/04/28 07:40
+													</option>
+													<option data-target="CV1_3600_202304280730.png">2023/04/28 07:30
+													</option>
+													<option data-target="CV1_3600_202304280720.png">2023/04/28 07:20
+													</option>
+													<option data-target="CV1_3600_202304280710.png">2023/04/28 07:10
+													</option>
+													<option data-target="CV1_3600_202304280700.png">2023/04/28 07:00
+													</option>
+													<option data-target="CV1_3600_202304280650.png">2023/04/28 06:50
+													</option>
+													<option data-target="CV1_3600_202304280640.png">2023/04/28 06:40
+													</option>
+													<option data-target="CV1_3600_202304280630.png">2023/04/28 06:30
+													</option>
+													<option data-target="CV1_3600_202304280620.png">2023/04/28 06:20
+													</option>
+													<option data-target="CV1_3600_202304280610.png">2023/04/28 06:10
+													</option>
+													<option data-target="CV1_3600_202304280600.png">2023/04/28 06:00
+													</option>
+													<option data-target="CV1_3600_202304280550.png">2023/04/28 05:50
+													</option>
+													<option data-target="CV1_3600_202304280540.png">2023/04/28 05:40
+													</option>
+													<option data-target="CV1_3600_202304280530.png">2023/04/28 05:30
+													</option>
+													<option data-target="CV1_3600_202304280520.png">2023/04/28 05:20
+													</option>
+													<option data-target="CV1_3600_202304280510.png">2023/04/28 05:10
+													</option>
+													<option data-target="CV1_3600_202304280500.png">2023/04/28 05:00
+													</option>
+													<option data-target="CV1_3600_202304280450.png">2023/04/28 04:50
+													</option>
+													<option data-target="CV1_3600_202304280440.png">2023/04/28 04:40
+													</option>
+													<option data-target="CV1_3600_202304280430.png">2023/04/28 04:30
+													</option>
+													<option data-target="CV1_3600_202304280420.png">2023/04/28 04:20
+													</option>
+													<option data-target="CV1_3600_202304280410.png">2023/04/28 04:10
+													</option>
+													<option data-target="CV1_3600_202304280400.png">2023/04/28 04:00
+													</option>
+													<option data-target="CV1_3600_202304280350.png">2023/04/28 03:50
+													</option>
+													<option data-target="CV1_3600_202304280340.png">2023/04/28 03:40
+													</option>
+													<option data-target="CV1_3600_202304280330.png">2023/04/28 03:30
+													</option>
+													<option data-target="CV1_3600_202304280320.png">2023/04/28 03:20
+													</option>
+													<option data-target="CV1_3600_202304280310.png">2023/04/28 03:10
+													</option>
+													<option data-target="CV1_3600_202304280300.png">2023/04/28 03:00
+													</option>
+													<option data-target="CV1_3600_202304280250.png">2023/04/28 02:50
+													</option>
+													<option data-target="CV1_3600_202304280240.png">2023/04/28 02:40
+													</option>
+													<option data-target="CV1_3600_202304280230.png">2023/04/28 02:30
+													</option>
+													<option data-target="CV1_3600_202304280220.png">2023/04/28 02:20
+													</option>
+													<option data-target="CV1_3600_202304280210.png">2023/04/28 02:10
+													</option>
+													<option data-target="CV1_3600_202304280200.png">2023/04/28 02:00
+													</option>
+													<option data-target="CV1_3600_202304280150.png">2023/04/28 01:50
+													</option>
+													<option data-target="CV1_3600_202304280140.png">2023/04/28 01:40
+													</option>
+													<option data-target="CV1_3600_202304280130.png">2023/04/28 01:30
+													</option>
+													<option data-target="CV1_3600_202304280120.png">2023/04/28 01:20
+													</option>
+													<option data-target="CV1_3600_202304280110.png">2023/04/28 01:10
+													</option>
+													<option data-target="CV1_3600_202304280100.png">2023/04/28 01:00
+													</option>
+													<option data-target="CV1_3600_202304280050.png">2023/04/28 00:50
+													</option>
+													<option data-target="CV1_3600_202304280040.png">2023/04/28 00:40
+													</option>
+												</select>
+												<i aria-hidden="true"></i>
+											</label>
+											<ul class="play_function" id="play_pause">
+												<li><a href="javascript:void(0)" role="button" title="播放" id="play"> <i
+															class="btn-primary disabled"></i><span>播放</span></a></li>
+												<li><a href="javascript:void(0)" role="button" title="停止" id="pause"><i
+															class="btn-primary disabled"></i><span>停止</span></a></li>
+												<li><label><a href="#" target="#Remark" data-toggle="modal"
+															data-target="#Remark" title="點此檢視"
+															id="DESCRIPTION">播放操作說明</a></label></li>
+												<li>
+												</li>
+											</ul>
+										</div>
+										<div class="clearfix visible-xs visible-sm"></div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="col-md-12">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="inline-group">
+												<label class="label">動態顯示</label>
+												<label for="select_hour0" class="radio"><input type="radio"
+														name="select_hour" id="select_hour0" value="18"><i
+														class="rounded-x"></i>3小時</label>
+												<label for="select_hour1" class="radio"><input type="radio"
+														name="select_hour" id="select_hour1" value="36"><i
+														class="rounded-x"></i>6小時</label>
+												<label for="select_hour2" class="radio"><input type="radio"
+														name="select_hour" id="select_hour2" value="54"><i
+														class="rounded-x"></i>9小時</label>
+												<label for="select_hour3" class="radio"><input type="radio"
+														name="select_hour" id="select_hour3" value="72"><i
+														class="rounded-x"></i>12小時</label>
+											</div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class=" photo_player row">
+										<div class="col-xs-10">
+											<label class="label">播放速度（<span
+													id="slider1-value-rounded">1</span>秒）</label>
+										</div>
+										<div class="col-xs-10 col-xs-offset-1">
+											<div id="slider1-rounded"
+												class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+												aria-disabled="false"><a
+													class="ui-slider-handle ui-state-default ui-corner-all"
+													href="javascript:void(0);" title="控制播放速度" alt="控制播放速度"
+													style="left: 64.2857%;">.</a></div>
+										</div>
+										<div class="col-xs-12">
+											<ul class="play_function" id="playmode">
+												<li><a href="javascript:void(0)" role="button" title="循環播放"><i
+															class="fa fa-repeat"></i><span
+															class="color-white">循環播放</span></a></li>
+												<li><a href="javascript:void(0)" role="button" title="單次播放"><i
+															class="icon-play"></i><span
+															class="color-white">單次播放</span></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- End 播放區塊 -->
+					<!-- Start 說明區塊 -->
 					<div class="col-md-12">
-						<div class="inline-group">
-							<label for="area0" class="radio"><input type="radio" name="area" id="area0" value="0"><i class="rounded-x"></i>較大範圍區域</label>
-							<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1"><i class="rounded-x"></i>臺灣鄰近區域</label>
+						<div class="other">
+							<div id="radar_colorbar_DESP_C">
+								<h4>雷達回波顏色說明(無地形)</h4>
+							</div>
+							<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(無地形)" alt="雷達回波顏色說明(無地形)"
+								src="/V8/assets/img/radar/colorbar_n.png" style="width:100%;">
+							<h4 class="note-md">雷達回波</h4>
+							<ul class="list-unstyled">
+								<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號，
+									稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。
+								</li>
+								<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍"
+										target="_self">雷達設置地點與有效範圍</a></li>
+							</ul>
 						</div>
-					</div>				  
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-12">
-								<label class="label" for="selectday">單張顯示（靜態）</label>
-							</div>
-							<div class="col-md-12">
-								<label class="select">
-									<select id="selectday"><option data-target="CV1_3600_202304261120.png">2023/04/26 11:20</option><option data-target="CV1_3600_202304261110.png">2023/04/26 11:10</option><option data-target="CV1_3600_202304261100.png">2023/04/26 11:00</option>
-                                    </select>
-									<i aria-hidden="true"></i>
-								</label>
-								<ul class="play_function" id="play_pause">
-									<li><a href="javascript:void(0)" role="button" title="播放" id="play"> <i class="btn-primary disabled"></i><span>播放</span></a></li>						    
-									<li><a href="javascript:void(0)" role="button" title="停止" id="pause"><i class="btn-primary disabled"></i><span>停止</span></a></li>
-									<li><label><a href="#" target="#Remark" data-toggle="modal" data-target="#Remark" title="點此檢視" id="DESCRIPTION">播放操作說明</a></label></li><li>
-								</li></ul>
-							</div>
-							<div class="clearfix visible-xs visible-sm"></div>
+						<div class="other">
+							<h4 class="note-md">氣象雷達</h4>
+							<ul class="list-unstyled">
+								<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
+							</ul>
+						</div>
+						<div class="other" id="ContentTable">
+							<!--<h4 class="note-md">最新天氣圖資</h4>-->
+							<!--<ul class="list-unstyled">-->
+							<a class="btn btn-blue" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
+							<!--</ul>-->
+							<div onblur="tabJump(0)" tabindex="0"></div>
 						</div>
 						<div class="clearfix"></div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="row">
-						<div class="col-md-12">
-							<div class="inline-group">
-								<label class="label">動態顯示</label>
-								<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18"><i class="rounded-x"></i>3小時</label>
-								<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36"><i class="rounded-x"></i>6小時</label>
-								<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54"><i class="rounded-x"></i>9小時</label>
-								<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72"><i class="rounded-x"></i>12小時</label>
-							</div>
-						</div>						
-                        <div class="clearfix"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-					  <div class=" photo_player row">
-						<div class="col-xs-10">
-						  <label class="label">播放速度（<span id="slider1-value-rounded">1</span>秒）</label>
-						</div>
-						<div class="col-xs-10 col-xs-offset-1">
-						  <div id="slider1-rounded" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false"><a class="ui-slider-handle ui-state-default ui-corner-all" href="javascript:void(0);" title="控制播放速度" alt="控制播放速度" style="left: 64.2857%;">.</a></div>
-						</div>
-						<div class="col-xs-12">
-						  <ul class="play_function" id="playmode">
-							<li><a href="javascript:void(0)" role="button" title="循環播放"><i class="fa fa-repeat"></i><span class="color-white">循環播放</span></a></li>
-							<li><a href="javascript:void(0)" role="button" title="單次播放"><i class="icon-play"></i><span class="color-white">單次播放</span></a></li>
-						  </ul>
-						</div>
-					  </div>						
-					  <div class="clearfix"></div>					
 					</div>
-                </div>
-              </form>
-            </div>
-			<!-- End 播放區塊 -->
-			<!-- Start 說明區塊 -->
-			<div class="col-md-12">
-                <div class="other">
-					<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(無地形)</h4></div>
-						<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(無地形)" alt="雷達回波顏色說明(無地形)" src="/V8/assets/img/radar/colorbar_n.png" style="width:100%;">
-					<h4 class="note-md">雷達回波</h4>
-					<ul class="list-unstyled">
-						<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
-						<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self">雷達設置地點與有效範圍</a></li>
-					</ul>
-                </div>
-                <div class="other">
-					<h4 class="note-md">氣象雷達</h4>
-					<ul class="list-unstyled">
-						<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
-					</ul>
-                </div>
-                <div class="other" id="ContentTable">
-					<!--<h4 class="note-md">最新天氣圖資</h4>-->
-					<!--<ul class="list-unstyled">-->
-						<a class="btn btn-blue" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
-					<!--</ul>-->
-                <div onblur="tabJump(0)" tabindex="0"></div></div>
-				<div class="clearfix"></div>
-            </div>
-			<!-- End 說明區塊 -->
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-  
-
+					<!-- End 說明區塊 -->
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
 {% endblock %}

@@ -8,20 +8,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!--css icon-->
-  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="/static/css/backtotop.css" />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>{% block title %}{% endblock %}</title>
 </head>
-
+  <button onclick="topFunction()" id="myBtn" ><img ></button>
 <body>
   <header class="p-3 bg-white text-black">
     <div class="row" bis_skin_checked="1">
       <div class="col-lg-8 col-sm-4 justify-content-end align-self-center" bis_skin_checked="1">
         <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
-        <a href="/" style="color:#000000;text-decoration: none;font-size: 24px;">科技新知平台</a>
+        <a href="/" style="color:#000000;text-decoration: none;font-size: 24px;">AI weather</a>
       </div>
       <form class="col-lg-3 col-sm-4 align-self-center">
         <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
@@ -32,7 +35,7 @@
           {% notifications_unread as unread_count %}
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="/static/images/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
+              <img src="/static/images/usericon/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
               <span class="position-absolute top-5 end-0 translate-middle badge border border-light rounded-circle p-1 text-center" style="width: 25px; height: 25px; background-color: #ff2433;">
                 {% if unread_count >= 10 %}
                   9+
@@ -66,9 +69,9 @@
             <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end"
               aria-labelledby="navbarDarkDropdownMenuLink">
               <li><a class="dropdown-item" href="#">Link 1</a></li>
-              <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/avatar.png"
+              <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/usericon/avatar.png"
                     width="20px" height="20px">&emsp;Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/logout.png" width="20px"
+              <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/usericon/logout.png" width="20px"
                     height="20px">&emsp;Log Out</a></li>
             </ul>
           </li>
@@ -132,7 +135,7 @@
     <div class="row row-cols-4 py-5" style="  background-color: black;color: white; ">
       <div class="col-5 d-flex justify-content-center" bis_skin_checked="1">
         <img src="/static/images/ntue.png" alt="" width="40" height="40" class="d-inline-block "></img>
-        <a>科技新知平台© 2023</a>
+        <a>AI Weather© 2023</a>
       </div>
 
       <div class="col-2" bis_skin_checked="1">
@@ -176,5 +179,5 @@
     </div>
   </footer>
 </body>
-
+<script src="../static/js/backtop.js"></script>
 </html>
