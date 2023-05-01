@@ -123,6 +123,7 @@ form.addEventListener('submit', function (event) {
   cityName = document.getElementById('countySelect').value.split('_')[0];
   cityId = document.getElementById('countySelect').value.split('_')[1]
   townName = document.getElementById('townSelect').value;
+  window.location.href = townUrl + "?TID=" + townName;
   const elements = ['MinT', 'MaxT', 'RH', 'WS', 'WD', 'UVI', 'PoP12h'];
   for (const element of elements) {
     var elementData = getWeatherForecast_3hrs(cityId, townName, element);// 呼叫取得天氣預報的函式
@@ -325,7 +326,7 @@ countySelect.addEventListener('change', function() {
         // 將鄉鎮陣列中的元素建立成 option 標籤，加入到鄉鎮下拉式選單中
         for (let i = 0; i < towns.length; i++) {
             const option = document.createElement('option');
-            option.value = towns[i];
+            option.value = 1001701;
             option.textContent = towns[i];
             townSelect.appendChild(option);
         }

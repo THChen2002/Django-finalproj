@@ -6,10 +6,11 @@
 <br>
 <br>
 <br>
+<div class="container">
 <div class="row">
 	<div class="col-md-9">
 		<div class="contentbox">
-			<table width="100%">
+			<table>
 			<tr>
 			  <th align="left"><h2>{{title}}</h2></th>
 			</tr>
@@ -17,19 +18,20 @@
 			  <td>
 				<span class="newsinfo">
 				<span class="typeblock">
-					<img src="{% static "images/blogicon/categories.png" %}" alt="" width="16" height="16" />&nbsp;{{category}}
+					<img src="{% static 'images/blogicon/categories.png'%}" alt="" width="16" height="16" />&nbsp;{{category}}
 				</span>&nbsp;
-				<img src="{% static "images/blogicon/clock.png" %}" alt="" width="16" height="16" />&nbsp;{{pubtime}}&nbsp;
-				<img src="{% static "images/blogicon/price-tag.png" %}" alt="" width="16" height="16" />&nbsp;
-					<span>{{ unit.tags.name }}</span>
-				 
+				<img src="{% static 'images/blogicon/clock.png' %}" alt="" width="16" height="16" />&nbsp;{{pubtime}}&nbsp;
+				<img src="{% static 'images/blogicon/price-tag.png' %}" alt="" width="16" height="16" />&nbsp;
+				{% for tag in tags.all %}
+					<span><a href="#" class="text-decoration-none">#{{ tag }}</a></span>
+				{% endfor %} 
 				<p>&nbsp;&nbsp;{{content | safe}}</p>
 				</span>
 			  </td>
 			</tr>
 			</table>
 			<div class="topfunction">
-				<a class="btn btn-light" href="/apple-blog/"><img src="{% static "images/blogicon/back.png" %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
+				<a class="btn btn-light" href="/apple-blog/"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
 			</div>
 		</div>
 	</div>
@@ -75,6 +77,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <br>
 {% endblock %}

@@ -35,7 +35,7 @@
           {% notifications_unread as unread_count %}
           <li class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="/static/images/usericon/notification.png" alt="" width="40" height="40" class="d-inline-block "></img>
+              <img src="{% static 'images/usericon/notification.png' %}" alt="" width="40" height="40" class="d-inline-block "></img>
               <span class="position-absolute top-5 end-0 translate-middle badge border border-light rounded-circle p-1 text-center" style="width: 25px; height: 25px; background-color: #ff2433;">
                 {% if unread_count >= 10 %}
                   9+
@@ -69,10 +69,8 @@
             <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end"
               aria-labelledby="navbarDarkDropdownMenuLink">
               <li><a class="dropdown-item" href="#">Link 1</a></li>
-              <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="../static/images/usericon/avatar.png"
-                    width="20px" height="20px">&emsp;Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="../static/images/usericon/logout.png" width="20px"
-                    height="20px">&emsp;Log Out</a></li>
+              <li><a class="dropdown-item" href="{% url 'Profile' %}"><img src="{% static 'images/usericon/avatar.png' %}" width="20px" height="20px">&emsp;Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Logout' %}"><img src="{% static 'images/usericon/logout.png' %}" width="20px" height="20px">&emsp;Log Out</a></li>
             </ul>
           </li>
           {% else %}
@@ -121,11 +119,9 @@
     </div>
   </nav>
 
-  <main role="main" class="container">
-    <div id="content">
-      {% block content %}{% endblock %}
-    </div>
-  </main><!-- /.container -->
+  <div id="content">
+    {% block content %}{% endblock %}
+  </div>
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

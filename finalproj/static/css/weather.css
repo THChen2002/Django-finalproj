@@ -161,12 +161,10 @@
 /* map */
 
 :root {
-    --color-gold: rgb(23, 93, 255);
+    --color-blue: #8ABCE3;
 }
 
-* {
-    font-family: 'Fjalla One';
-}
+
 
 
  #app {
@@ -188,14 +186,14 @@ svg {
 }
 
 path {
-    stroke: rgb(128, 164, 247);
-    fill: transparent;
+    stroke: #4998D5;
+    fill: #E6F8FC;
     transition: 0.5s;
     cursor: pointer;
 }
 
 path:hover {
-    fill: var(--color-gold);
+    fill: var(--color-blue);
 }
 
 .title_area {
@@ -241,7 +239,14 @@ hr {
     font-size: 20px;
     height: 320px;
     width: 320px;
+    
 }
-#weather-background {
+#weather-background{
     background-color: #3c8fdb;
+}
+#news-display{
+    margin: 0px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

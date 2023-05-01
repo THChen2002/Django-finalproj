@@ -4,11 +4,12 @@
 
 <link rel="stylesheet" href="/static/css/weather.css">
 
-<section class="main-content content-bg-blue container-fluid">
-    <div class="container container-fluid">
-        <div class="row" id="weather-background">
+<section class="main-content content-bg-blue">
+    <div class="container-fluid" id="weather-background">
+        <div class="row" id="news-display">
             <div class="col-lg-7">
-                <div class="row ">
+                <br>
+                <div class="row">
                     <div class="col-lg-6" id="weather-news">
                         <h1>test</h1>
                         <h2>{{now_area.place}}</h2>
@@ -29,33 +30,17 @@
                         <h4>{{now_area.low}}~{{now_area.high}}</h4>
                         <h2>{{now_area.weather}}</h2>
                     </div>
-                    <div class="col-lg-6" id="weather-news">
+                    <div class="col-lg-6" id="weather-news" v-if="now_area">
                         <h1>test</h1>
-                        <h2>{{now_area.place}}</h2>
-                        <h4>{{now_area.low}}~{{now_area.high}}</h4>
-                        <h2>{{now_area.weather}}</h2>>
+                        <h2>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
+                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
+                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
                     </div>
                 </div>
             </div>
-            <div id="app" class="col-lg-5">
-                <!--<div class="title_area">
-                    <h1>Taiwan<span>///</span><br>Weather Map<br></h1>
-                    <hr />
-            
-                    <div class="forcast" v-if="now_area">
-                        <h5>{{now_area.place}}</h5>
-                        <h4>{{now_area.low}}~{{now_area.high}}</h4>
-                        <h2>{{now_area.weather}}</h2>
-                    </div>
-            
-                </div>
-                -->
+            <div id="app">
                 <svg id="cf503461-00bd-459a-aeb5-062ebc913211" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 595.28 841.89">
-                    <defs />
-                    <title>
-                        taiwan.svg
-                    </title>
                     <path id="161d6372-ac8f-409c-ad51-9db7795c8614" data-name="path2462"
                         class="96fdfe13-4732-40bb-9e9c-cdc6e310fcb9"
                         d="M236.44,701.51,234,705.75l.67.61.85.24,1.83-.55.37-.73,2.07-2.2,1.95-1.22.31-.67-.18-.73-.73-.37-.3-.61-.61-.49-.85.06-1.4.67-.49.55-.61.31-.37.61-.09.27h0Z" />
@@ -239,111 +224,124 @@
                             d="M176.9,53.81l-1.63,1.43.14.47,2.85.2-.14-.81-1.22-1.29Z" />
                     </g>
                 </svg>
+                <div class="title_area">
+                    <h1>Taiwan<span>///</span><br>Weather Map<br></h1>
+                    <hr />
 
-            </div>
-        </div>
-    </div>
-    <div class="container">
-    <!-- 熱門服務 -->
-    <div class="row">
-        <div class="col-md-12">
-            <div class="main-title-bar-v2 center">
-                <h2 class="main-title">圖資專區</h2>
-            </div>
-            <!-- Tab v2 -->
-            <div class="tab-default vision_2">
-                <div class="row">
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="/V8/C/W/OBS_Sat.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_衛星">
-                            <div class="cube-head">衛星</div>
-                            <div class="cube-body" id="first-div">
-                                <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-B0028-002.jpg"
-                                    alt="衛星" class="img-responsive">
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="/weather/radar" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_雷達">
-                            <div class="cube-head">雷達</div>
-                            <div class="cube-body">
-                                <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png"
-                                    alt="雷達" class="img-responsive">
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="/V8/C/P/Rainfall/Rainfall_QZJ.html" title="查看更多資訊" class="cube-wrap"
-                            data-gtmtitle="首頁_圖資專區_雨量">
-                            <div class="cube-head">雨量</div>
-                            <div class="cube-body">
-                                <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0040-002.jpg"
-                                    alt="雨量" class="img-responsive">
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="/V8/C/W/OBS_Temp.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_溫度">
-                            <div class="cube-head">溫度</div>
-                            <div class="cube-body">
-                                <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0038-001.jpg"
-                                    alt="溫度" class="img-responsive">
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="/V8/C/W/OBS_UVI.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_紫外線">
-                            <div class="cube-head">紫外線</div>
-                            <div class="cube-body">
-                                <img src="https://www.cwb.gov.tw/Data/UVI/UVI_CWB.png" alt="紫外線" class="img-responsive">
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-6 col-md-4 px-5p">
-                        <a href="https://wifi.cwb.gov.tw/" target="_blank" rel="noopener noreferrer" title="查看更多資訊"
-                            class="cube-wrap" data-gtmtitle="首頁_圖資專區_風場預報">
-                            <div class="cube-head">風場預報</div>
-                            <div class="cube-body cwb-loaded" id="wifi" style="height: 364px;"><iframe
-                                    src="https://wifi.cwb.gov.tw/" width="100%" height="100%" title="風場預報"></iframe>
-                                <div class="ovr-text">
-                                    <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                    <span>更多資訊</span>
-                                </div>
-                            </div>
-                        </a>
+                    <div class="forcast" v-if="now_area">
+                        <h5>{% verbatim %}{{now_area.place}}{% endverbatim %}</h5>
+                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
+                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
                     </div>
 
                 </div>
             </div>
-            <!-- End Tab v1 -->
         </div>
     </div>
-    <!--end 熱門服務 -->
+    <div class="container">
+        <!-- 熱門服務 -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="main-title-bar-v2 center">
+                    <h2 class="main-title">圖資專區</h2>
+                </div>
+                <!-- Tab v2 -->
+                <div class="tab-default vision_2">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="/V8/C/W/OBS_Sat.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_衛星">
+                                <div class="cube-head">衛星</div>
+                                <div class="cube-body" id="first-div">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-B0028-002.jpg"
+                                        alt="衛星" class="img-responsive">
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="/weather/radar" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_雷達">
+                                <div class="cube-head">雷達</div>
+                                <div class="cube-body">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png"
+                                        alt="雷達" class="img-responsive">
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="/V8/C/P/Rainfall/Rainfall_QZJ.html" title="查看更多資訊" class="cube-wrap"
+                                data-gtmtitle="首頁_圖資專區_雨量">
+                                <div class="cube-head">雨量</div>
+                                <div class="cube-body">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0040-002.jpg"
+                                        alt="雨量" class="img-responsive">
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="/V8/C/W/OBS_Temp.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_溫度">
+                                <div class="cube-head">溫度</div>
+                                <div class="cube-body">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0038-001.jpg"
+                                        alt="溫度" class="img-responsive">
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="/V8/C/W/OBS_UVI.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_紫外線">
+                                <div class="cube-head">紫外線</div>
+                                <div class="cube-body">
+                                    <img src="https://www.cwb.gov.tw/Data/UVI/UVI_CWB.png" alt="紫外線"
+                                        class="img-responsive">
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-xs-6 col-md-4 px-5p">
+                            <a href="https://wifi.cwb.gov.tw/" target="_blank" rel="noopener noreferrer" title="查看更多資訊"
+                                class="cube-wrap" data-gtmtitle="首頁_圖資專區_風場預報">
+                                <div class="cube-head">風場預報</div>
+                                <div class="cube-body cwb-loaded" id="wifi" style="height: 364px;"><iframe
+                                        src="https://wifi.cwb.gov.tw/" width="100%" height="100%" title="風場預報"></iframe>
+                                    <div class="ovr-text">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                        <span>更多資訊</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Tab v1 -->
+            </div>
+        </div>
+        <!--end 熱門服務 -->
     </div>
 </section>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
 <script>
     let api_key = 'CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2'
     let url = `https://opendata.cwb.gov.tw/fileapi/v1/opendataapi/F-D0047-091?Authorization=${api_key}&downloadType=WEB&format=JSON`
@@ -528,6 +526,9 @@
     var paths;
     const app = new Vue({
         el: '#app',
+        created() {
+            window.app = this
+        },
         mounted() {
             axios.get(url).then(data => {
                 console.log(data)
@@ -537,12 +538,12 @@
             paths = document.querySelectorAll('path');
             let _this = this
             paths.forEach(e => {
-                e.onmouseover = function () {
+                e.onclick = function () {
                     _this.filter = this.dataset.nameZh
                 }
             })
         },
-        data: () => {
+        data() {
             return {
                 filter: '',
                 place_data: null,
@@ -566,6 +567,7 @@
                         high: high,
                         weather: weather
                     }
+                    console.log(data)
                 }
                 return data
             }
