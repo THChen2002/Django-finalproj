@@ -164,9 +164,6 @@
     --color-blue: #8ABCE3;
 }
 
-
-
-
  #app {
     display: flex;
     align-items: center;
@@ -195,6 +192,7 @@ path {
 path:hover {
     fill: var(--color-blue);
 }
+
 
 .title_area {
     flex: 2;

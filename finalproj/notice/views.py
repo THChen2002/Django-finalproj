@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from notifications.signals import notify
 from notifications.models import Notification
 import json
+from django.core import serializers
 
 
 
@@ -33,8 +34,13 @@ def view_notifications(request):
             return redirect(request.META.get('HTTP_REFERER'))
         else:
             # 取得使用者的通知     
-            notifications = Notification.objects.filter(id=id)
+            notification = Notification.objects.filter(id=id)
             # 標記通知為已讀
-            notifications.update(unread=False)
+            notification.update(unread=False)
+            notifications = Notification.objects.filter(recipient=request.user, unread=True)
+            notifications_data = serializers.serialize('json', notifications)
+            request.session['unread_notifications'] = notifications_data
+        # 返回空的 HTTP 回應
+        return HttpResponse('')
     else:
         return render(request, 'accounts/index.html')

@@ -225,15 +225,11 @@
                     </g>
                 </svg>
                 <div class="title_area">
-                    <h1>Taiwan<span>///</span><br>Weather Map<br></h1>
-                    <hr />
-
                     <div class="forcast" v-if="now_area">
                         <h5>{% verbatim %}{{now_area.place}}{% endverbatim %}</h5>
                         <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
                         <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
                     </div>
-
                 </div>
             </div>
         </div>
