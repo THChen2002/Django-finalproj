@@ -114,30 +114,23 @@ let chart;
 })();
 
 const form = document.getElementById('region-form');
-const result = document.getElementById('result');
 var cityName = '';
 var townName = '';
-var forecast = [];
 form.addEventListener('submit', function (event) {
   event.preventDefault();  // 防止表單提交
   cityName = document.getElementById('countySelect').value.split('_')[0];
   cityId = document.getElementById('countySelect').value.split('_')[1]
   townName = document.getElementById('townSelect').value;
-  window.location.href = townUrl + "?TID=" + townName;
+  //window.location.href = townUrl + "?TID=" + townName;
   const elements = ['MinT', 'MaxT', 'RH', 'WS', 'WD', 'UVI', 'PoP12h'];
+  var forecast = [];
   for (const element of elements) {
     var elementData = getWeatherForecast_3hrs(cityId, townName, element);// 呼叫取得天氣預報的函式
     forecast.push(elementData);
   }
-  console.log('forecast:' + forecast);// 如果我在fetch前面沒有return這邊會是空的(83行的values值是對的)，如果有加return這邊會是Promise物件，
-  // 但是Promise物件好像只能在下面註解那段中處理，沒辦法存在一個全域變數中
+  console.log('forecast:' + forecast);
   Promise.all(forecast)
     .then(resultArray => {
-      // for (let i = 0; i < resultArray.length; i++) {
-      // forecast[i] = resultArray[i];
-      // }
-      // result.innerHTML = JSON.stringify(forecast, null, 2);
-      // console.log(forecast);
       const minTemp = resultArray[0];
       const maxTemp = resultArray[1];
       const humidity = resultArray[2];
@@ -159,7 +152,7 @@ form.addEventListener('submit', function (event) {
 });
 
 function getValues(arr){
-  console.log('arr'+arr);
+  //console.log('arr'+arr);
   values = [];
   hour = new Date(arr[1].split('~')[1]).getHours();
   //結束時間6點代表為晚上
@@ -260,9 +253,7 @@ function getWeatherForecast_3hrs(cityId, townName, elementName) {
     .then(data => {
       // 在這裡處理返回的 JSON 資料
       locationData = data.records.locations[0].location[0].weatherElement;
-      //console.log(data);
-      // 將結果顯示在網頁上
-      //result.innerHTML = JSON.stringify(locationData, null, 2);
+      console.log(data);
       return get_element_values(locationData);
     })
     .catch(error => console.error(error));
@@ -276,13 +267,13 @@ function get_element_values(json) {
     values.push(res[i].startTime + '~' + res[i].endTime);
     values.push(res[i].elementValue[0].value);
   }
-  result.innerHTML = JSON.stringify(values, null, 2);
   console.log(values);
   return values;
 }
 
 const countySelect = document.getElementById('countySelect');
 const townSelect = document.getElementById('townSelect');
+countySelect.value = '臺北市_F-D0047-063';// 設定預設值
 
 // 鄉鎮清單物件，以縣市為 key，對應鄉鎮的陣列為 value
 const townData = {
@@ -310,30 +301,43 @@ const townData = {
     '金門縣': ['金城鎮', '金湖鎮', '金沙鎮', '金寧鄉', '烈嶼鄉', '烏坵鄉']
 };
 
-countySelect.addEventListener('change', function() {
-    // 取得目前所選擇的縣市值
-    const selectedCounty = countySelect.value.split('_')[0];
+function updateTownSelectOptions() {
+  // 取得目前所選擇的縣市值
+  const selectedCounty = countySelect.value.split('_')[0];
 
-    // 清空鄉鎮選項
-    townSelect.innerHTML = '<option value="" disabled selected>-- Select County --</option>';
-    
-    // 如果有選擇縣市，動態生成對應的鄉鎮選項
-    if (selectedCounty) {
-        //alert(selectedCounty);
+  // 清空鄉鎮選項
+  townSelect.innerHTML = '<option value="" disabled selected>-- Select Town --</option>';
+
+  // 如果有選擇縣市，動態生成對應的鄉鎮選項
+  if (selectedCounty) {
     // 根據所選擇的縣市，從鄉鎮清單物件中取得對應的鄉鎮陣列
-        const towns = townData[selectedCounty];
-        //console.log(towns);
-        // 將鄉鎮陣列中的元素建立成 option 標籤，加入到鄉鎮下拉式選單中
-        for (let i = 0; i < towns.length; i++) {
-            const option = document.createElement('option');
-            option.value = 1001701;
-            option.textContent = towns[i];
-            townSelect.appendChild(option);
-        }
-        // 顯示鄉鎮下拉式選單
-        townSelect.disabled = false;
+    const towns = townData[selectedCounty];
+
+    // 將鄉鎮陣列中的元素建立成 option 標籤，加入到鄉鎮下拉式選單中
+    for (let i = 0; i < towns.length; i++) {
+      const option = document.createElement('option');
+      option.value = towns[i];
+      option.textContent = towns[i];
+      townSelect.appendChild(option);
     }
-});
+    // 顯示鄉鎮下拉式選單
+    townSelect.disabled = false;
+
+    // 設定鄉鎮預設值為第一個鄉鎮
+    if (towns.length > 0) {
+      townSelect.value = towns[0];
+    }
+  } else {
+    // 如果沒有選擇縣市，禁用鄉鎮下拉式選單
+    townSelect.disabled = true;
+  }
+}
+
+// 初次載入網頁時，依據所選擇的縣市動態生成對應的鄉鎮選項
+updateTownSelectOptions();
+
+// 當使用者選擇縣市時，動態生成對應的鄉鎮選項
+countySelect.addEventListener('change', updateTownSelectOptions);
 const canvas = document.getElementById('myChart');
 const downloadBtn = document.getElementById('download-btn');
 downloadBtn.addEventListener('click', () => {

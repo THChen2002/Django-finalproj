@@ -6,17 +6,17 @@
 
 <section class="main-content content-bg-blue">
     <div class="container-fluid" id="weather-background">
-        <div class="row" id="news-display">
+        <div class="row news-display" id="app">
             <div class="col-lg-7">
                 <br>
                 <div class="row">
-                    <div class="col-lg-6" id="weather-news">
+                    <div class="col-lg-6 weather-news" >
                         <h1>test</h1>
                         <h2>{{now_area.place}}</h2>
                         <h4>{{now_area.low}}~{{now_area.high}}</h4>
                         <h2>{{now_area.weather}}</h2>
                     </div>
-                    <div class="col-lg-6" id="weather-news">
+                    <div class="col-lg-6 weather-news">
                         <h1>test</h1>
                         <h2>{{now_area.place}}</h2>
                         <h4>{{now_area.low}}~{{now_area.high}}</h4>
@@ -24,13 +24,13 @@
                     </div>
                 </div>
                 <div class="row ">
-                    <div class="col-lg-6" id="weather-news">
+                    <div class="col-lg-6 weather-news">
                         <h1>test</h1>
                         <h2>{{now_area.place}}</h2>
                         <h4>{{now_area.low}}~{{now_area.high}}</h4>
                         <h2>{{now_area.weather}}</h2>
                     </div>
-                    <div class="col-lg-6" id="weather-news" v-if="now_area">
+                    <div class="col-lg-6 weather-news" v-if="now_area">
                         <h1>test</h1>
                         <h2>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
                         <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div id="app">
+            <div class="map">
                 <svg id="cf503461-00bd-459a-aeb5-062ebc913211" data-name="圖層 1" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 595.28 841.89">
                     <path id="161d6372-ac8f-409c-ad51-9db7795c8614" data-name="path2462"
@@ -224,13 +224,6 @@
                             d="M176.9,53.81l-1.63,1.43.14.47,2.85.2-.14-.81-1.22-1.29Z" />
                     </g>
                 </svg>
-                <div class="title_area">
-                    <div class="forcast" v-if="now_area">
-                        <h5>{% verbatim %}{{now_area.place}}{% endverbatim %}</h5>
-                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
-                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
