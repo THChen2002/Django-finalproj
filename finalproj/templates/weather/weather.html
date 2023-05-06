@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}首頁{% endblock %}
+{% block title %}氣象科普{% endblock %}
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/weather.css">
@@ -10,31 +10,60 @@
             <div class="col-lg-7">
                 <br>
                 <div class="row">
-                    <div class="col-lg-6 weather-news" >
-                        <h1>test</h1>
-                        <h2>{{now_area.place}}</h2>
-                        <h4>{{now_area.low}}~{{now_area.high}}</h4>
-                        <h2>{{now_area.weather}}</h2>
+                    <div class="col-lg-6 weather-news"  v-if="now_area">
+                        <h2>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
+                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
+                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
+                        <form id="home-form" class="sky-form sky-form-fix">
+
+                            <!-- <label class="select">
+                              <select>
+                                <option value="" disabled="" selected="">選擇縣市</option>
+                                <option value="10017">基隆市</option>
+                                <option value="63">臺北市</option>
+                                <option value="65">新北市</option>
+                                <option value="68">桃園市</option>
+                                <option value="10018">新竹市</option>
+                                <option value="10004">新竹縣</option>
+                                <option value="10005">苗栗縣</option>
+                                <option value="66">臺中市</option>
+                                <option value="10007">彰化縣</option>
+                                <option value="10008">南投縣</option>
+                                <option value="10009">雲林縣</option>
+                                <option value="10020">嘉義市</option>
+                                <option value="10010">嘉義縣</option>
+                                <option value="67">臺南市</option>
+                                <option value="64">高雄市</option>
+                                <option value="10013">屏東縣</option>
+                                <option value="10002">宜蘭縣</option>
+                                <option value="10015">花蓮縣</option>
+                                <option value="10014">臺東縣</option>
+                                <option value="10016">澎湖縣</option>
+                                <option value="09020">金門縣</option>
+                                <option value="09007">連江縣</option>
+                              </select>
+                              <i aria-hidden="true"></i>
+                            </label> -->
+                            <label for="home-select-town">鄉鎮預報</label>
+                            <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
+                            <div class="select mb-1">
+                              <select name="TID" class="form-control" id="home-select-town"><option value="" disabled="" selected="">選擇鄉鎮</option><option value="6300100">松山區</option><option value="6300200">信義區</option><option value="6300300">大安區</option><option value="6300400">中山區</option><option value="6300500">中正區</option><option value="6300600">大同區</option><option value="6300700">萬華區</option><option value="6300800">文山區</option><option value="6300900">南港區</option><option value="6301000">內湖區</option><option value="6301100">士林區</option><option value="6301200">北投區</option></select>
+                              <i aria-hidden="true"></i>
+                            </div>
+                            <button type="submit" class="btn btn-default btn-block btn-sm" data-gtmtitle="首頁_鄉鎮預報_確定按鈕">確定</button>
+                          </form>
+                        <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
                     </div>
                     <div class="col-lg-6 weather-news">
                         <h1>test</h1>
-                        <h2>{{now_area.place}}</h2>
-                        <h4>{{now_area.low}}~{{now_area.high}}</h4>
-                        <h2>{{now_area.weather}}</h2>>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 weather-news">
                         <h1>test</h1>
-                        <h2>{{now_area.place}}</h2>
-                        <h4>{{now_area.low}}~{{now_area.high}}</h4>
-                        <h2>{{now_area.weather}}</h2>
                     </div>
-                    <div class="col-lg-6 weather-news" v-if="now_area">
+                    <div class="col-lg-6 weather-news">
                         <h1>test</h1>
-                        <h2>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
-                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
-                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
                     </div>
                 </div>
             </div>
@@ -227,22 +256,22 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="container">
         <!-- 熱門服務 -->
         <div class="row">
             <div class="col-md-12">
                 <div class="main-title-bar-v2 center">
-                    <h2 class="main-title">圖資專區</h2>
+                    <h2 class="main-title" style="text-align: center;">圖資專區</h2>
                 </div>
                 <!-- Tab v2 -->
                 <div class="tab-default vision_2">
                     <div class="row">
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="/V8/C/W/OBS_Sat.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_衛星">
+                            <a href="/V8/C/W/OBS_Sat.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_衛星" style="text-decoration: none;">
                                 <div class="cube-head">衛星</div>
                                 <div class="cube-body" id="first-div">
-                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-B0028-002.jpg"
-                                        alt="衛星" class="img-responsive">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-B0028-002.jpg"alt="衛星" style="width:414.22px ;height:414.22px">
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>
@@ -251,11 +280,10 @@
                             </a>
                         </div>
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="/weather/radar" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_雷達">
+                            <a href="/weather/radar" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_雷達"style="text-decoration: none;">
                                 <div class="cube-head">雷達</div>
                                 <div class="cube-body">
-                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png"
-                                        alt="雷達" class="img-responsive">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png"alt="雷達" style="width:414.22px ;height:414.22px">
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>
@@ -264,12 +292,10 @@
                             </a>
                         </div>
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="/V8/C/P/Rainfall/Rainfall_QZJ.html" title="查看更多資訊" class="cube-wrap"
-                                data-gtmtitle="首頁_圖資專區_雨量">
+                            <a href="/V8/C/P/Rainfall/Rainfall_QZJ.html" title="查看更多資訊" class="cube-wrap"data-gtmtitle="首頁_圖資專區_雨量"style="text-decoration: none;">
                                 <div class="cube-head">雨量</div>
                                 <div class="cube-body">
-                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0040-002.jpg"
-                                        alt="雨量" class="img-responsive">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0040-002.jpg"alt="雨量" style="width:414.22px ;height:414.22px">
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>
@@ -279,11 +305,10 @@
                         </div>
 
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="/V8/C/W/OBS_Temp.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_溫度">
+                            <a href="/V8/C/W/OBS_Temp.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_溫度"style="text-decoration: none;">
                                 <div class="cube-head">溫度</div>
                                 <div class="cube-body">
-                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0038-001.jpg"
-                                        alt="溫度" class="img-responsive">
+                                    <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/DIV2/O-A0038-001.jpg"alt="溫度" style="width:414.22px ;height:414.22px">
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>
@@ -293,11 +318,10 @@
                         </div>
 
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="/V8/C/W/OBS_UVI.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_紫外線">
+                            <a href="/V8/C/W/OBS_UVI.html" title="查看更多資訊" class="cube-wrap" data-gtmtitle="首頁_圖資專區_紫外線"style="text-decoration: none;">
                                 <div class="cube-head">紫外線</div>
                                 <div class="cube-body">
-                                    <img src="https://www.cwb.gov.tw/Data/UVI/UVI_CWB.png" alt="紫外線"
-                                        class="img-responsive">
+                                    <img src="https://www.cwb.gov.tw/Data/UVI/UVI_CWB.png" alt="紫外線"style="width:414.22px ;height:414.22px">
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>
@@ -307,11 +331,9 @@
                         </div>
 
                         <div class="col-xs-6 col-md-4 px-5p">
-                            <a href="https://wifi.cwb.gov.tw/" target="_blank" rel="noopener noreferrer" title="查看更多資訊"
-                                class="cube-wrap" data-gtmtitle="首頁_圖資專區_風場預報">
+                            <a href="https://wifi.cwb.gov.tw/" target="_blank" rel="noopener noreferrer" title="查看更多資訊"class="cube-wrap" data-gtmtitle="首頁_圖資專區_風場預報"style="text-decoration: none;">
                                 <div class="cube-head">風場預報</div>
-                                <div class="cube-body cwb-loaded" id="wifi" style="height: 364px;"><iframe
-                                        src="https://wifi.cwb.gov.tw/" width="100%" height="100%" title="風場預報"></iframe>
+                                <div class="cube-body cwb-loaded" id="wifi" style="height: 414.22px;"><iframe src="https://wifi.cwb.gov.tw/" width="100%" height="100%" title="風場預報"></iframe>
                                     <div class="ovr-text">
                                         <i class="fa fa-info-circle" aria-hidden="true"></i>
                                         <span>更多資訊</span>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'notice',
+    'quiz',
 
     # allauth
     'django.contrib.sites',

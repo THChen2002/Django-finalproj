@@ -22,7 +22,7 @@ class BlogPost(models.Model):
     author = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)
-    publish_time = models.DateTimeField(auto_now=True)
+    publish_time = models.DateTimeField(auto_now_add=True)
     enabled = models.BooleanField(default=False)
     press = models.IntegerField(default=0)
     slug = models.SlugField(default="", null=False)
