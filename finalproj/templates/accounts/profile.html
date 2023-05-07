@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}個人資料{% endblock %}
 {% block content %}
+{% load static %}
 <section style="background-color: #eee;">
     <div class="container py-5">
         <div class="row">
@@ -20,20 +21,24 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <div style="position: relative; display: inline-block;">
-                            <img src="{{ request.session.picture_url }}" alt="{{ user.username }}'s profile picture"
-                                class="rounded-circle img-fluid" style="width: 150px;">
+                            {% if unit.profile_pic %}
+                                <img src="/media/{{ unit.profile_pic }}" alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid" style="width: 150px;">
+                            {% else %}
+                                <img src="{% static 'images/user_default.png' %}" alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid" style="width: 150px;">
+                            {% endif %}
+                            {% if unit.id == user.id %}
                             <form id="photo-form" style="position: absolute; bottom: 0; right: 0;">
                                 {% csrf_token %}
                                 <div class="rounded-circle"
                                     style="position: relative; background-color: white; width: 40px;height: 40px; border: 1px solid rgb(184, 184, 184); ">
-                                    <label for="photo"><img src="../static/images/usericon/camera.png" width=25px height=25px
+                                    <label for="photo"><img src="{% static 'images/usericon/camera.png' %}" width=25px height=25px
                                             style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></label>
                                 </div>
-                                <div class="">
-                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
-                                        style="display: none;">
+                                <div>
+                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*" style="display: none;">
                                 </div>
                             </form>
+                            {% endif %}
                         </div>
                         <h5 class="my-3">{{ unit.user_name }}</h5>
                         <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
@@ -175,10 +180,12 @@
                                 </div>
                             </div>
                             <hr>
-                            <button type="button" id="edit-button" class="btn btn-primary"
-                                onclick="toggleEditMode()">Edit</button>
-                            <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData()"
-                                style="display: none;">Save</button>
+                            {% if unit.id == user.id %}
+                                <button type="button" id="edit-button" class="btn btn-primary"
+                                    onclick="toggleEditMode()">Edit</button>
+                                <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData()"
+                                    style="display: none;">Save</button>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

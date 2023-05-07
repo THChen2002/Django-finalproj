@@ -29,4 +29,19 @@ class BlogPost(models.Model):
     def __str__(self):
         return self.title
 
+class BoardUnit(models.Model):
+    bblogpost = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+    btime = models.DateTimeField(auto_now_add=True)
+    bcontent = models.TextField(null=False)
+    bauthor = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    btimedelta = models.IntegerField(blank=True, null=True,default=0)
+    def __str__(self):
+        return self.bcontent
 
+class BoardUnitResponse(models.Model):
+    bboardunit = models.ForeignKey(BoardUnit, on_delete=models.CASCADE)
+    bresponse = models.TextField(blank=True, default='')
+    bresponse_time = models.DateTimeField(blank=True, null=True)
+    bresponse_author = models.ForeignKey(UserProfile, blank=True, null=True, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.bresponse

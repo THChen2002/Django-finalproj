@@ -52,8 +52,8 @@ def index(request):
     )
     profile_pic_url = '/static/images/user_default.png'  # 預設圖片 URL
 
-    if UserProfile.objects.filter(user_id=user.id).exists():
-        unit = UserProfile.objects.get(user_id=user.id)
+    if UserProfile.objects.filter(id=user.id).exists():
+        unit = UserProfile.objects.get(id=user.id)
         if unit.profile_pic:
             profile_pic_url = unit.profile_pic.url
 
@@ -61,10 +61,10 @@ def index(request):
         social_account = SocialAccount.objects.get(user=user.id)
         picture_url = social_account.extra_data.get('picture')
 
-        if not UserProfile.objects.filter(user_id=user.id).exists():
+        if not UserProfile.objects.filter(id=user.id).exists():
             social_account_name = social_account.extra_data.get('name')
             social_account_name.encode('utf-8').decode('unicode_escape')
-            profile = UserProfile(user_id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
+            profile = UserProfile(id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
             profile.save()
 
             # URL抓取圖片
@@ -72,10 +72,10 @@ def index(request):
             with urllib.request.urlopen(picture_url) as response:
                 temp_image.write(response.read())
             temp_image.flush()
-            profile = UserProfile.objects.get(user_id=user.id)
+            profile = UserProfile.objects.get(id=user.id)
             profile.profile_pic.save(social_account_name + ".png", File(temp_image))
             profile.save()
-            unit = UserProfile.objects.get(user_id=user.id)
+            unit = UserProfile.objects.get(id=user.id)
             profile_pic_url = unit.profile_pic.url
     except SocialAccount.DoesNotExist:
         pass
@@ -104,7 +104,7 @@ def sign_up(request):
 
             # 創建 UserProfile 物件
             profile = UserProfile()
-            profile.user_id = user.id
+            profile.user = User.objects.get(id=user.id)
             profile.user_name = user.username
             profile.email = user.email
 
@@ -168,7 +168,7 @@ def log_out(request):
     return redirect('/')
 
 #個人檔案頁面
-def profile(request):
+def profile(request, id=None):
     if request.method == 'POST':
         data = json.loads(request.body)
         email = data['data']['email']
@@ -184,7 +184,7 @@ def profile(request):
         user.last_name = last_name
         user.save()
 
-        unit = UserProfile.objects.get(user_id=user.id)
+        unit = UserProfile.objects.get(id=user.id)
         unit.first_name = first_name
         unit.last_name = last_name
         unit.email = email
@@ -196,8 +196,13 @@ def profile(request):
         unit.save()
         return redirect('/')
     else:
+        #當前登入的使用者
         user = request.user
-        unit = UserProfile.objects.get(user_id=user.id)
+        #傳入參數的使用者
+        if id:
+            unit = UserProfile.objects.get(id=id)
+        else:
+            unit = UserProfile.objects.get(id=user.id)
         birthdate = str(unit.birth_date)
         occupation = str(unit.occupation).replace("'", "").replace(",", "").title()
     return render(request, 'accounts/profile.html', locals())
@@ -205,7 +210,7 @@ def profile(request):
 #使用者點擊變更頭像
 def upload_photo(request):
     if request.method == 'POST':
-        unit = UserProfile.objects.get(user_id=request.user.id)
+        unit = UserProfile.objects.get(id=request.user.id)
         unit.profile_pic = request.FILES['photo']
         unit.save()
         request.session['picture_url'] =  unit.profile_pic.url

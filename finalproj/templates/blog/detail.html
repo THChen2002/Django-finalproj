@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}APPLE新聞{% endblock %}
+{% block title %}{{title}}{% endblock %}
 {% load static %} 
 
 {% block content %}
@@ -12,7 +12,7 @@
 		<div class="contentbox">
 			<table>
 			<tr>
-			  <th align="left"><h2>{{title}}</h2></th>
+			  <th><h2>{{title}}</h2></th>
 			</tr>
 			<tr>
 			  <td>
@@ -30,6 +30,50 @@
 			  </td>
 			</tr>
 			</table>
+			<br>
+			<div class="row">
+				<div class="col-md-1 d-flex align-items-center">
+					<img src="{{ request.session.picture_url }}" class="rounded-circle mr-3 "
+					alt="{{ request.session.picture_url }}{{ user.username }}'s profile picture" width="40" height="40">
+				</div>
+				<form method="POST" style="padding: 0;margin:0 ;display: flex;" class="col-md-11">
+					<div class="col-md-10">
+					{% csrf_token %}
+					<div class="form-group">
+						<input type="text" class="form-control" name="bcontent" placeholder="發表留言..."style="width: 100%;"></input>
+						<input type="hidden" name="bblogpost" value="{{ unit.id }}">
+						<input type="hidden" name="bauthor" value="{{ request.user.id }}">
+					</div>
+					</div>
+					<div class="col-md-2" style="margin-left:10px">
+						<button type="submit" class="btn btn-primary">留言</button>
+					</div>
+				</form>
+			</div>
+			<div>
+				{% for board in boards %}
+				  <div class="d-flex align-items-center mb-3">
+					{% if board.bauthor.profile_pic %}
+					  <img src="/media/{{ board.bauthor.profile_pic }}" class="rounded-circle mr-3"
+						alt="{{ board.bauthor.user_name }}'s profile picture" width="40" height="40">
+					{% else %}
+					  <img src="{% static 'images/user_default.png' %}" class="rounded-circle mr-3"
+						alt="{{ board.bauthor.user_name }}'s profile picture" width="40" height="40">
+					{% endif %}
+					<div>
+					  <span>&emsp;{{ board.bauthor.user_name }}&emsp;</span>
+						{% if board.btimedelta < 60 %}
+					  		<span>{{ board.btimedelta  }} 分鐘前</span><br>
+					  	{% elif board.btimedelta < 1440 %}
+					  		<span>{% widthratio board.btimedelta 60 1 %} 小時前</span><br>
+						{% else %}
+							<span>{% widthratio board.btimedelta 1440 1 %} 天前</span><br>				
+					  	{% endif %}
+					  		<span>&emsp;{{ board.bcontent }}</span><br>					  
+					</div>
+				  </div> 
+				{% endfor %}
+			</div>
 			<div class="topfunction">
 				<a class="btn btn-light" href="/apple-blog/"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
 			</div>

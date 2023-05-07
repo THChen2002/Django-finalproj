@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPost, Category, Tag
+from .models import BlogPost, Category, Tag, BoardUnit, BoardUnitResponse
 from accounts.models import UserProfile
 
 
@@ -10,3 +10,5 @@ class BlogPostAdmin(admin.ModelAdmin):
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(BoardUnit)
+admin.site.register(BoardUnitResponse)

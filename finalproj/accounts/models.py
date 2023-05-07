@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class UserProfile(models.Model):
-    user_id = models.CharField(max_length=50)
-    user_name = models.CharField(max_length=50)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_name = models.CharField(max_length=50, unique=True)
     profile_pic = models.ImageField(upload_to='profile_pics/',blank=True, null=True)
     first_name = models.CharField(max_length=50, blank=True, null=True)
     last_name = models.CharField(max_length=50, blank=True, null=True)
-    email = models.EmailField(max_length=100, blank=True, null=True)
+    email = models.EmailField(max_length=100, blank=True, null=True, unique=True)
     GENDER_CHOICES = (
         ('M', '男性'),
         ('F', '女性'),
@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     birth_date = models.DateField(blank=True,null=True)
-    phone_number = models.CharField(max_length=20, blank=True, null=True)
+    phone_number = models.CharField(max_length=20, blank=True, null=True, unique=True)
     OCCUPATION_CHOICES = (
         ('teacher', 'Teacher'),
         ('student', 'Student'),
@@ -64,7 +64,6 @@ class UserProfile(models.Model):
     # 其他欄位
     occupation = models.CharField(max_length=100, choices=OCCUPATION_CHOICES, blank=True, null=True)  # 職業欄位，最大長度為 100，選項限定在 OCCUPATION_CHOICES 中
     academic = models.CharField(max_length=100, blank=True, null=True)
-    is_staff = models.BooleanField(default=False)
     
     def __str__(self):
-        return self.user_id
+        return self.user_name

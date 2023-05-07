@@ -26,8 +26,9 @@
         <img src="/static/images/logo.png" alt="" width="50" height="50" class="d-inline-block "></img>
         <a href="/" style="color:#000000;text-decoration: none;font-size: 24px;">AI weather</a>
       </div>
-      <form class="col-lg-3 col-sm-4 align-self-center">
-        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+      <form class="col-lg-3 col-sm-4 align-self-center" action="/apple-blog/" method="get"> 
+        <input id="q" name="q" value="{{ request.GET.q }}" class="form-control mr-sm-2" type="text"
+        placeholder="Search..." aria-label="Search">
       </form>
       <div class="col-lg-1 col-sm-4 row justify-content-end align-self-center">
         <div class="nav col-lg-6 col-sm-6 align-self-center" bis_skin_checked="1">
@@ -175,5 +176,5 @@
     </div>
   </footer>
 </body>
-<script src="../static/js/backtop.js"></script>
+<script src="{% static 'js/backtop.js' %}"></script>
 </html>

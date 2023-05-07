@@ -35,6 +35,7 @@ urlpatterns = [
     path('login/', accounts.sign_in, name='Login'),
     path('logout/', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
+    path('profile/<int:user_id>', accounts.profile, name='Profile'),
     path('photo', accounts.upload_photo, name='Photo'),
 
     path('get_allsessions/', accounts.get_allsessions),
@@ -53,7 +54,7 @@ urlpatterns = [
 
     path('apple-blog/', blog.index),
     path('apple-blog/<str:pageindex>/', blog.index),
-    path('blog/<slug:slug>/',  blog.detail),
+    path('blog/<slug:slug>/',  blog.detail, name='blog_detail'),
 
     path('weather/', weather.weather),
     path('weather/town', weather.town, name='Town'),

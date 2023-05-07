@@ -41,13 +41,12 @@
 	<br>
 	<div class="row">
 		<div class="col-md-9">
+			{{ newsall|length }} 筆資料
 			{% for unit in newsunits %}
 			<div class="card" style="width: 100%;">
 				<div class="card-body">
 					<h2 class="card-title">{{ unit.title }}</h2>
-					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="#">{{ unit.author }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-						card's content.</p>
+					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="{% url 'Profile' user_id=unit.author %}">{{ unit.author.user_name }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
 					<p class="card-text" id="content">{{ unit.content | truncatechars_html:100 | safe }}</p>
 					<a href="/blog/{{unit.slug}}/" class="btn btn-outline-primary">more</a>
 				</div>
