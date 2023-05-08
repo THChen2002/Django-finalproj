@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -200,7 +200,8 @@ def profile(request, id=None):
         user = request.user
         #傳入參數的使用者
         if id:
-            unit = UserProfile.objects.get(id=id)
+            unit = get_object_or_404(UserProfile, id=id)
+            # unit = UserProfile.objects.get(id=id)
         else:
             unit = UserProfile.objects.get(id=user.id)
         birthdate = str(unit.birth_date)

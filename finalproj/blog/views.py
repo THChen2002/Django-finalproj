@@ -72,7 +72,7 @@ def detail(request, slug=None):  #詳細頁面
 		board.save()
 		return redirect(reverse('blog_detail', args=[slug]))
 	else:
-		unit = models.BlogPost.objects.get(slug=slug)
+		unit = get_object_or_404(models.BlogPost, slug=slug)
 		category = unit.category
 		title = unit.title
 		pubtime = unit.publish_time
@@ -80,8 +80,7 @@ def detail(request, slug=None):  #詳細頁面
 		content = unit.content
 		unit.press += 1
 		unit.save()
-		blog = get_object_or_404(models.BlogPost, slug=slug)
-		boards = models.BoardUnit.objects.filter(bblogpost=blog)
+		boards = models.BoardUnit.objects.filter(bblogpost=unit)
 		now = timezone.now()
 		for board in boards:
 			timedelta = now - board.btime

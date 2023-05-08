@@ -1,5 +1,5 @@
 #tab {
-  width: 680px;
+  width: auto;
   background: #ffffff;
 }
 
@@ -28,6 +28,7 @@
 #tab > div {
   clear: both;
   padding: 0 15px;
+  height: 0;
   overflow: hidden;
   visibility: hidden;
 }
@@ -76,3 +77,4 @@ span ~ #tab > div:first-of-type,
 span {
   display: none;
 }
+
