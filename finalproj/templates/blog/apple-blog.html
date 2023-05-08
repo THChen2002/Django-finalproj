@@ -46,7 +46,7 @@
 			<div class="card" style="width: 100%;">
 				<div class="card-body">
 					<h2 class="card-title">{{ unit.title }}</h2>
-					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="{% url 'Profile' user_id=unit.author %}">{{ unit.author.user_name }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
+					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="{% url 'Profile' id=unit.author.id %}">{{ unit.author.user_name }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
 					<p class="card-text" id="content">{{ unit.content | truncatechars_html:100 | safe }}</p>
 					<a href="/blog/{{unit.slug}}/" class="btn btn-outline-primary">more</a>
 				</div>
