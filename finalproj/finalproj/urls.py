@@ -35,7 +35,7 @@ urlpatterns = [
     path('login/', accounts.sign_in, name='Login'),
     path('logout/', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
-    path('profile/<int:user_id>', accounts.profile, name='Profile'),
+    path('profile/<int:id>', accounts.profile, name='Profile'),
     path('photo', accounts.upload_photo, name='Photo'),
 
     path('get_allsessions/', accounts.get_allsessions),

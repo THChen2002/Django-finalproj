@@ -10,49 +10,55 @@
             <div class="col-lg-7">
                 <br>
                 <div class="row">
-                    <div class="col-lg-6 weather-news"  v-if="now_area">
-                        <h2>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
-                        <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}~{% verbatim %}{{now_area.high}}{%endverbatim %}</h4>
-                        <h2>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
-                        <form id="home-form" class="sky-form sky-form-fix">
+                    <div class="col-lg-6 weather-news"  v-if="now_area"style="display:block;color: #fff;">
+                        <div style="margin: 20px 25px ;height: 110px;width:245px;">                        
+                            <h4>{% verbatim %}{{now_area.place}}{% endverbatim %}</h2>
+                            <h4>{% verbatim %}{{now_area.low}}{% endverbatim %}℃~{% verbatim %}{{now_area.high}}{%endverbatim %}℃</h4>
+                            <h4>{% verbatim %}{{now_area.weather}}{% endverbatim %}</h2>
+                        </div>
+                        <div style="margin: 30px 15px ;height: 120px;width:265px;color: #fff;">
+                            <form id="home-form" class="sky-form sky-form-fix">
 
-                            <!-- <label class="select">
-                              <select>
-                                <option value="" disabled="" selected="">選擇縣市</option>
-                                <option value="10017">基隆市</option>
-                                <option value="63">臺北市</option>
-                                <option value="65">新北市</option>
-                                <option value="68">桃園市</option>
-                                <option value="10018">新竹市</option>
-                                <option value="10004">新竹縣</option>
-                                <option value="10005">苗栗縣</option>
-                                <option value="66">臺中市</option>
-                                <option value="10007">彰化縣</option>
-                                <option value="10008">南投縣</option>
-                                <option value="10009">雲林縣</option>
-                                <option value="10020">嘉義市</option>
-                                <option value="10010">嘉義縣</option>
-                                <option value="67">臺南市</option>
-                                <option value="64">高雄市</option>
-                                <option value="10013">屏東縣</option>
-                                <option value="10002">宜蘭縣</option>
-                                <option value="10015">花蓮縣</option>
-                                <option value="10014">臺東縣</option>
-                                <option value="10016">澎湖縣</option>
-                                <option value="09020">金門縣</option>
-                                <option value="09007">連江縣</option>
-                              </select>
-                              <i aria-hidden="true"></i>
-                            </label> -->
-                            <label for="home-select-town">鄉鎮預報</label>
+                                <!-- <label class="select">
+                                  <select>
+                                    <option value="" disabled="" selected="">選擇縣市</option>
+                                    <option value="10017">基隆市</option>
+                                    <option value="63">臺北市</option>
+                                    <option value="65">新北市</option>
+                                    <option value="68">桃園市</option>
+                                    <option value="10018">新竹市</option>
+                                    <option value="10004">新竹縣</option>
+                                    <option value="10005">苗栗縣</option>
+                                    <option value="66">臺中市</option>
+                                    <option value="10007">彰化縣</option>
+                                    <option value="10008">南投縣</option>
+                                    <option value="10009">雲林縣</option>
+                                    <option value="10020">嘉義市</option>
+                                    <option value="10010">嘉義縣</option>
+                                    <option value="67">臺南市</option>
+                                    <option value="64">高雄市</option>
+                                    <option value="10013">屏東縣</option>
+                                    <option value="10002">宜蘭縣</option>
+                                    <option value="10015">花蓮縣</option>
+                                    <option value="10014">臺東縣</option>
+                                    <option value="10016">澎湖縣</option>
+                                    <option value="09020">金門縣</option>
+                                    <option value="09007">連江縣</option>
+                                  </select>
+                                  <i aria-hidden="true"></i>
+                                </label> -->
+                                <label for="home-select-town" style="font-size: 16px;">鄉鎮預報</label>
+                                <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
+                                <div class="d-grid gap-2">
+                                <div class="select mb-1">
+                                  <select name="TID" class="form-control" id="home-select-town"><option value="" disabled="" selected="">選擇鄉鎮</option><option value="6300100">松山區</option><option value="6300200">信義區</option><option value="6300300">大安區</option><option value="6300400">中山區</option><option value="6300500">中正區</option><option value="6300600">大同區</option><option value="6300700">萬華區</option><option value="6300800">文山區</option><option value="6300900">南港區</option><option value="6301000">內湖區</option><option value="6301100">士林區</option><option value="6301200">北投區</option></select>
+                                  <i aria-hidden="true"></i>
+                                </div>
+                                <button type="submit" class="btn btn-secondary" data-gtmtitle="首頁_鄉鎮預報_確定按鈕">確定</button>
+                                </div>
+                              </form>
                             <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
-                            <div class="select mb-1">
-                              <select name="TID" class="form-control" id="home-select-town"><option value="" disabled="" selected="">選擇鄉鎮</option><option value="6300100">松山區</option><option value="6300200">信義區</option><option value="6300300">大安區</option><option value="6300400">中山區</option><option value="6300500">中正區</option><option value="6300600">大同區</option><option value="6300700">萬華區</option><option value="6300800">文山區</option><option value="6300900">南港區</option><option value="6301000">內湖區</option><option value="6301100">士林區</option><option value="6301200">北投區</option></select>
-                              <i aria-hidden="true"></i>
-                            </div>
-                            <button type="submit" class="btn btn-default btn-block btn-sm" data-gtmtitle="首頁_鄉鎮預報_確定按鈕">確定</button>
-                          </form>
-                        <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
+                        </div>      
                     </div>
                     <div class="col-lg-6 weather-news">
                         <h1>test</h1>
@@ -60,7 +66,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 weather-news">
-                        <h1>test</h1>
+                        
                     </div>
                     <div class="col-lg-6 weather-news">
                         <h1>test</h1>
