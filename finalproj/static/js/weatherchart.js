@@ -113,43 +113,43 @@ let chart;
   });
 })();
 
-const form = document.getElementById('region-form');
-var cityName = '';
-var townName = '';
-form.addEventListener('submit', function (event) {
-  event.preventDefault();  // 防止表單提交
-  cityName = document.getElementById('countySelect').value.split('_')[0];
-  cityId = document.getElementById('countySelect').value.split('_')[1]
-  townName = document.getElementById('townSelect').value;
-  //window.location.href = townUrl + "?TID=" + townName;
-  const elements = ['MinT', 'MaxT', 'RH', 'WS', 'WD', 'UVI', 'PoP12h'];
-  var forecast = [];
-  for (const element of elements) {
-    var elementData = getWeatherForecast_3hrs(cityId, townName, element);// 呼叫取得天氣預報的函式
-    forecast.push(elementData);
-  }
-  console.log('forecast:' + forecast);
-  Promise.all(forecast)
-    .then(resultArray => {
-      const minTemp = resultArray[0];
-      const maxTemp = resultArray[1];
-      const humidity = resultArray[2];
-      const windSpeed = resultArray[3];
-      const windDirection = resultArray[4];
-      const uvi = resultArray[5];
-      const pop = resultArray[6];
-      console.log(chart.data);
-      // 更新圖表資料
-      chart.data.datasets[0].data = getValues(maxTemp);
-      chart.data.datasets[1].data = getValues(minTemp);
-      chart.data.labels = getStrDate(maxTemp);
-      chart.update();
+// const form = document.getElementById('region-form');
+// var cityName = '';
+// var townName = '';
+// form.addEventListener('submit', function (event) {
+//   event.preventDefault();  // 防止表單提交
+//   cityName = document.getElementById('countySelect').value.split('_')[0];
+//   cityId = document.getElementById('countySelect').value.split('_')[1]
+//   townName = document.getElementById('townSelect').value;
+//   //window.location.href = townUrl + "?TID=" + townName;
+//   const elements = ['MinT', 'MaxT', 'RH', 'WS', 'WD', 'UVI', 'PoP12h'];
+//   var forecast = [];
+//   for (const element of elements) {
+//     var elementData = getWeatherForecast_3hrs(cityId, townName, element);// 呼叫取得天氣預報的函式
+//     forecast.push(elementData);
+//   }
+//   console.log('forecast:' + forecast);
+//   Promise.all(forecast)
+//     .then(resultArray => {
+//       const minTemp = resultArray[0];
+//       const maxTemp = resultArray[1];
+//       const humidity = resultArray[2];
+//       const windSpeed = resultArray[3];
+//       const windDirection = resultArray[4];
+//       const uvi = resultArray[5];
+//       const pop = resultArray[6];
+//       console.log(chart.data);
+//       // 更新圖表資料
+//       chart.data.datasets[0].data = getValues(maxTemp);
+//       chart.data.datasets[1].data = getValues(minTemp);
+//       chart.data.labels = getStrDate(maxTemp);
+//       chart.update();
       
-    })
-    .catch(error => {
-      console.error(error);
-    });
-});
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// });
 
 function getValues(arr){
   //console.log('arr'+arr);

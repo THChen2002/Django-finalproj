@@ -339,18 +339,19 @@
 					<!-- Start 說明區塊 -->
 					<div class="col-md-12">
 						<div class="other">
-							<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(無地形)</h4></div>
-								<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(無地形)" alt="雷達回波顏色說明(無地形)" src="/static/images/weather/colorbar.png" style="width:35%;">
+							<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(降雨雷達)</h4></div>
+								<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(降雨雷達)" alt="雷達回波顏色說明(降雨雷達)" src="/static/images/weather/colorbar.png" style="width:35%;">
 							<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
 							<ul>
 								<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
-								<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self"style="text-decoration: none;color:#000;font-weight: bold;">雷達設置地點與有效範圍</a></li>
+								<li>降雨雷達觀測有效範圍：降雨雷達為波長5公分(現行雷達波長10公分)之氣象雷達，觀測特性為於強降水區域會造成衰減，故較佳觀測範圍為150公里，理想觀測範圍為75公里；此外，部分區域因受地貌阻擋，可能影響觀測品質或無法進行觀測，其受限區域以藍灰色標示。</li>
 							</ul>
 						</div>
 						<div class="other">
-							<h4 class="note-md">氣象雷達</h4>
-							<ul class="list-unstyled">
-								<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
+							<h4 class="note-md" style="margin-top: 20px;">降雨雷達</h4>
+							<ul>
+								<li>氣象局為加強現行雷達網不易觀測到之低空域降水觀測能力，新建置波長5公分之降雨雷達(雙偏極化雷達)，可較一般都卜勒(單偏極化)氣象雷達提供更多元之降雨觀測資訊，除可提供更貼近地表之高時間解析度(每2分鐘一筆)與高空間解析度(250公尺)之降雨觀測外(現行雷達網時間解析度為10分鐘、空間解析度為1公里)，亦可估算降水粒子大小與型態，能更即時、精準監測與掌握目前降雨的分布狀況。</li>
+								<li>林園雷達觀測資料於雷達鄰近區域易受周圍地形地物影響，故本局移除該區域雷達回波訊號，以確保氣象分析不受錯誤資訊之干擾。建議檢視「單一降雨雷達回波圖」時，可搭配全臺「雷達整合回波圖」一併使用，以便得到較完整的天氣資訊。</li>
 							</ul>
 						</div>
 						<div class="other" id="ContentTable">
@@ -381,4 +382,5 @@
 
 	  
     </main>
+	<br>
 {% endblock %}

@@ -21,6 +21,7 @@ import weather.views as weather
 import accounts.views as accounts
 import blog.views as blog
 import notice.views as notice
+import quiz.views as quiz
 import notifications.urls
 
 urlpatterns = [
@@ -59,5 +60,7 @@ urlpatterns = [
     path('weather/', weather.weather),
     path('weather/town', weather.town, name='Town'),
     path('weather/radar', weather.radar),
+    
+    path('quiz/', quiz.question),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
