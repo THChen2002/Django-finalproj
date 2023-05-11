@@ -4,3 +4,4 @@ django-simple-captcha
 django-ckeditor
 pillow
 django-notifications-hq
+django-filter

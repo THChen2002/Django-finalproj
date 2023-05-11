@@ -8,8 +8,9 @@ class Category(models.Model):
         return self.category
 
 class Question(models.Model):
-    question = models.CharField(max_length=500, unique=True, blank=False)
-    question_url = models.ImageField(upload_to='question_pics/',blank=True, null=True)
+    question = models.CharField(max_length=500, blank=False)
+    # question_url = models.ImageField(upload_to='question_pics/',blank=True, null=True)
+    question_url = models.URLField(blank=True, null=True)
     category = models.ManyToManyField(Category)
     choice1 = models.CharField(max_length=150)
     choice2 = models.CharField(max_length=150)
@@ -28,7 +29,8 @@ class Question(models.Model):
         ('D', 'D'),
     ))
     detail_explanation = models.TextField(blank=True, null=True)
-    explanation_url = models.ImageField(upload_to='explanation_pics/',blank=True, null=True)
+    # explanation_url = models.ImageField(upload_to='explanation_pics/',blank=True, null=True)
+    explanation_url = models.URLField(blank=True, null=True)
     def __str__(self):
         return self.question
 

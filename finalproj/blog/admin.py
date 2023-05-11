@@ -6,6 +6,7 @@ from accounts.models import UserProfile
 class BlogPostAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'enabled', 'publish_time', 'press')
     prepopulated_fields = {"slug": ("title",)}
+    list_filter = ["category", 'tags']
 
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Category)

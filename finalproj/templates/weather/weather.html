@@ -10,74 +10,74 @@
             <div class="col-lg-7">
                 <br>
                 <div class="row">
-                    <div class="col-lg-6 weather-news"  v-if="now_area"style="display:block;color: #fff;">
-                        <div class="row" style="margin: 20px 25px ;margin-top: 30px;height: 110px;width:245px;">
-                            <div class="col-lg-6" style="padding: 0px 30px 0px 0px;">                        
+                    <div class="col-md-6 weather-news"  v-if="now_area"style="color: #fff;font-weight: bold;">
+                        <div class="row" style="margin: 20px 25px ;">
+                            <div class="col-md-6" style="padding: 0px 15px 0px 0px;">                        
                                 <h4>{% verbatim %}{{now_area.place}}{% endverbatim %}</h4>
-                                <p style="margin-top: 5px;margin-bottom: 5px;">{% verbatim %}{{now_area.weather_description}}{% endverbatim %}</p>
+                                <div style="margin-top: 130px ;color: #fff;">
+                                    <form action="town" id="home-form" class="">
+                                        <label for="home-select-town" style="font-size: 16px;">鄉鎮預報</label>
+                                        <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
+                                        <div class="d-grid gap-2">
+                                        <div class="select mb-1">
+                                            <select name="TID" class="form-control form-select" id="home-select-town" style="font-size: 14px;">
+                                                <option value="" disabled="" selected="">選擇鄉鎮</option>
+                                                <option value="6300100">松山區</option>
+                                                <option value="6300200">信義區</option>
+                                                <option value="6300300">大安區</option>
+                                                <option value="6300400">中山區</option>
+                                                <option value="6300500">中正區</option>
+                                                <option value="6300600">大同區</option>
+                                                <option value="6300700">萬華區</option>
+                                                <option value="6300800">文山區</option>
+                                                <option value="6300900">南港區</option>
+                                                <option value="6301000">內湖區</option>
+                                                <option value="6301100">士林區</option>
+                                                <option value="6301200">北投區</option>
+                                            </select>
+                                            <i aria-hidden="true"></i>
+                                        </div>
+                                        <button type="submit" class="btn btn-secondary" data-gtmtitle="首頁_鄉鎮預報_確定按鈕">確定</button>
+                                        </div>
+                                      </form>
+                                    <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
+                                </div>      
                             </div>
-                            <div class="col-lg-6"style="justify-content: center;align-items: center;">                        
-                                <img src="/static/images/weather/sunny.png" alt="" width="100px" height="100px">
-                                <p style="margin-top: 5px;margin-bottom: 5px;text-align: center;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[0] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[0] : '' }}{%endverbatim %}℃</p>
+                            <div class="col-md-6"style="justify-content: center;align-items: center;padding: 0px 0px 0px 25px;"> 
+                                <p style="text-align:center;margin-bottom:16;">{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[0] : '' }}{% endverbatim %}</p>
+                                <p style="text-align:center;margin-bottom:16;">{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[0][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[0][1] : '' }}{% endverbatim %}</p>                 
+                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[0] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[0] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[0] : ''">
+                                <p style="margin-top: 20px;margin-bottom: 16px;text-align: center;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[0] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[0] : '' }}{%endverbatim %}℃</p>
                                 <p style="padding: 0px 5px 0px 5px;justify-content: center;"><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[0] : '' }}{% endverbatim %}%</p>
                             </div>
                         </div>
                        
-                        <div style="margin: 40px 15px ;margin-bottom: 5px;height: 120px;width:265px;color: #fff;">
-                            <form action="town" id="home-form" class="sky-form sky-form-fix">
-                                <label for="home-select-town" style="font-size: 16px;">鄉鎮預報</label>
-                                <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
-                                <div class="d-grid gap-2">
-                                <div class="select mb-1">
-                                    <select name="TID" class="form-control" id="home-select-town">
-                                        <option value="" disabled="" selected="">選擇鄉鎮</option>
-                                        <option value="6300100">松山區</option>
-                                        <option value="6300200">信義區</option>
-                                        <option value="6300300">大安區</option>
-                                        <option value="6300400">中山區</option>
-                                        <option value="6300500">中正區</option>
-                                        <option value="6300600">大同區</option>
-                                        <option value="6300700">萬華區</option>
-                                        <option value="6300800">文山區</option>
-                                        <option value="6300900">南港區</option>
-                                        <option value="6301000">內湖區</option>
-                                        <option value="6301100">士林區</option>
-                                        <option value="6301200">北投區</option>
-                                    </select>
-                                    <i aria-hidden="true"></i>
-                                </div>
-                                <button type="submit" class="btn btn-secondary" data-gtmtitle="首頁_鄉鎮預報_確定按鈕">確定</button>
-                                </div>
-                              </form>
-                            <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
-                        </div>      
+                        
                     </div>
-                    <div class="col-lg-6 weather-news">
+                    <div class="col-md-6 weather-news">
                         <div class="row">
-                            <div class="col-lg-6"style="width: 120px;margin:20px 0px 20px 40px;padding:0px 30px 0px 0px ;text-align:center;color:#fff;font-weight: bold;border-right: 1px solid white;">
-                                <p>今日白天</p>
-                                <p>06:00~18:00</p>
-                                <img src="/static/images/weather/sunny.png" alt="" width="100px" height="100px">
+                            <div class="col-md-6"style="width: 120px;margin:20px 0px 20px 40px;padding:0px 30px 0px 0px ;text-align:center;color:#fff;font-weight: bold;border-right: 0.5px solid white;">
+                                <p>{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[1] : '' }}{% endverbatim %}</p>
+                                <p>{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[1][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[1][1] : '' }}{% endverbatim %}</p>
+                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[1] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[1] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[1] : ''">
                                 <p style="margin-top: 20px;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[1] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[1] : '' }}{%endverbatim %}℃</p>
                                 <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[1] : '' }}{% endverbatim %}%</p>
                             </div>
-                            <div class="col-lg-6"style="width: 120px;margin:20px 40px 20px 0px;padding:0px 0px 0px 30px ;text-align:center;color:#fff;font-weight: bold;border-left: 1px solid white;">
-                                <p>今日晚上</p>
-                                <p>18:00~06:00</p>
-                                <img src="/static/images/weather/sunny.png" alt="" width="100px" height="100px">
+                            <div class="col-md-6"style="width: 120px;margin:20px 40px 20px 0px;padding:0px 0px 0px 30px ;text-align:center;color:#fff;font-weight: bold;border-left: 0.5px solid white;">
+                                <p>{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[2] : '' }}{% endverbatim %}</p>
+                                <p>{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[2][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[2][1] : '' }}{% endverbatim %}</p>
+                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[2] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[2] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[2] : ''">
                                 <p style="margin-top: 20px;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[2] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[2] : '' }}{%endverbatim %}℃</p>
                                 <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[2] : '' }}{% endverbatim %}%</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col-lg-6 weather-news">
-                        
+                <div class="row" >
+                    <div style="display: flex;border: none;margin: 5px;border-radius: 30px;background-color: #0959A8;width: 650px;height: 320px;">
+
                     </div>
-                    <div class="col-lg-6 weather-news">
-                        <h1>test</h1>
-                    </div>
+
                 </div>
             </div>
             <div class="map">
@@ -812,6 +812,9 @@
                 filter: '',
                 place_data: null,
                 weather_data: [],
+                weather_description: '',
+                weather_icon: '',
+                PoP: '',
             }
         },
         computed: {
@@ -822,6 +825,48 @@
                 })
 
                 if (result) {
+                    let start_time = result.weatherElement[0].time.slice(0, 3).map(t => {
+                        let time_arr = t.startTime.split('T')
+                        let date_arr = time_arr[0].split('-')
+                        let formatted_date = `${date_arr[1]}/${date_arr[2]}`
+                        let formatted_time = time_arr[1].slice(0, 5)
+                        return [formatted_date, formatted_time]
+                    })
+                    let end_time = result.weatherElement[0].time.slice(0, 3).map(t => {
+                        let time_arr = t.endTime.split('T')
+                        let date_arr = time_arr[0].split('-')
+                        let formatted_date = `${date_arr[1]}/${date_arr[2]}`
+                        let formatted_time = time_arr[1].slice(0, 5)
+                        return [formatted_date, formatted_time]
+                    })
+                    let day_or_night;
+                    switch (end_time[0][1].split(':')[0]) {
+                        case '06':
+                            day_or_night = ['night', 'day', 'night']
+                        case '18':
+                            day_or_night = ['day', 'night', 'day']
+                    }
+                    let period;
+                    switch (start_time[0][1].split(':')[0]) {
+                        case '06':
+                        case '09':
+                        case '12':
+                        case '15':
+                        period = ['今日白天','今晚明晨','明日白天']
+                        break
+                        case '00':
+                        case '03':
+                        period =  ['今日凌晨','今日白天','今晚明晨']
+                        break
+                        case '18':
+                        case '21':
+                        period = ['今晚明晨','明日白天','明日晚上']
+                        break
+                        default:
+                        period.push('')
+                        break
+                    }
+                    
                     let high = result.weatherElement.find(el => el.elementName === 'MaxT').time.slice(0, 3).map(t => t.elementValue.value)
                     let low = result.weatherElement.find(el => el.elementName === 'MinT').time.slice(0, 3).map(t => t.elementValue.value)
                     let weather_description = result.weatherElement.find(el => el.elementName === 'Wx').time.slice(0, 3).map(t => t.elementValue[0].value)
@@ -833,7 +878,11 @@
                         high: high,
                         weather_description: weather_description,
                         weather_icon: weather_icon,
-                        PoP: PoP
+                        PoP: PoP,
+                        start_time: start_time,
+                        end_time: end_time,
+                        period: period,
+                        day_or_night: day_or_night,
                     }
                     console.log(data)
                 }

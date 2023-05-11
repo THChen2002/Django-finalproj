@@ -63,6 +63,9 @@ INSTALLED_APPS = [
 
     #系統通知套件
     'notifications',
+
+    #過濾器
+    'django_filters'
 ]
 
 
