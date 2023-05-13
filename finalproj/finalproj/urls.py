@@ -62,5 +62,6 @@ urlpatterns = [
     path('weather/radar', weather.radar),
     
     path('quiz/', quiz.question),
+    path('quiz/index/', quiz.quizindex),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

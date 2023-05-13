@@ -11,3 +11,6 @@ def question(request):
         question = Question.objects.get(id=id)
         questions.append(question)
     return render(request, 'quiz/quiz.html', locals())
+
+def quizindex(request):
+     return render(request, 'quiz/quizindex.html')

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}氣象科普測驗首頁{% endblock %}
+{% block content %}
+{% load static %}
+		<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
+			<h2 class="pb-2 border-bottom">測驗選擇</h2>
+            <!--種類卡片-->
+			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image:url('/static/images/apple.jpg');background-size: cover;" bis_skin_checked="1" >
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#apple-blog" aria-expanded="false" aria-controls="collapseExample">APPLE新聞</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/weather.jpg');background-size: cover;" bis_skin_checked="1">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#weather" aria-expanded="false" aria-controls="collapseExample">氣象科普</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');" bis_skin_checked="1">
+						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" bis_skin_checked="1">
+							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="collapseExample">其他</a>
+                            </h3>
+						</div>
+					</div>
+				</div>
+			</div>
+            <h2 class="pb-2 border-bottom"></h2>
+            <!--種類選單-->
+            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
+				<div class="col" bis_skin_checked="1">
+                    <div class="collapse" id="apple-blog">
+                        <div class="card card-body">
+                            <ul style="font-size: 18px;list-style-type: none;">
+                                <li><a class="dropdown-item" href="/quiz">iOS 測驗題</a></li>
+                                <li><a class="dropdown-item" href="/quiz">iPhone 測驗題</a></li>
+                                <li><a class="dropdown-item" href="/quiz">iPadOS 測驗題</a></li>
+                            </ul>
+                        </div>
+                    </div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+                    <div class="collapse" id="weather">
+                        <div class="card card-body" >
+                            <ul style="font-size: 18px;list-style-type: none;">
+                                <li><a class="dropdown-item" href="/quiz">颱風 測驗題</a></li>
+                                <li><a class="dropdown-item" href="/quiz">梅雨 測驗題</a></li>
+                                <li><a class="dropdown-item" href="/quiz">焚風 測驗題</a></li>
+                                <li><a class="dropdown-item" href="/quiz">氣溫 測驗題</a></li>
+                            </ul>
+                        </div>
+                    </div>
+				</div>
+
+				<div class="col" bis_skin_checked="1">
+                    <div class="collapse" id="other">
+                        <div class="card card-body">
+                            <ul style="font-size: 18px;list-style-type: none;">
+                                <li><a class="dropdown-item" href="/quiz">Action</a></li>
+                                <li><a class="dropdown-item" href="/quiz">Another action</a></li>
+                                <li><a class="dropdown-item" href="/quiz">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+
+<br>
+<br>
+{% endblock %}

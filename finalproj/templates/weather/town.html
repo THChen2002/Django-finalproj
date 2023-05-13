@@ -6,14 +6,6 @@
 <div class="container-fluid" bis_skin_checked="1">
     <div class="row" bis_skin_checked="1">
         <div class="col-md-5 col-lg-6" id="app">
-            <!-- <form >
-                <label for="city">縣市：</label>
-                <input type="text" id="city" name="city"><br><br>
-                <label for="town">鄉鎮：</label>
-                <input type="text" id="town" name="town"><br><br>
-                <button type="submit">查詢</button>
-            </form> -->
-
             <form id="region-form">
                 <div class="row g-3">
                     <div class="col-md-5">
@@ -10968,6 +10960,9 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                     <!-- ======================= end東引鄉  ======================= -->
                 </svg>
             </div>
+            <!-- <div v-if="now_area">
+                
+            </div> -->
         </div>
         <main class="col-md-7 ms-sm-auto col-lg-6 px-md-4">
             <div
@@ -10992,27 +10987,28 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                 </div>
             </div>
             <span id="tab-1">逐三小時預報</span>
-            <span id="tab-2">一周溫度曲線</span>
-            <span id="tab-3">一周體感溫度曲線</span>
+            <span id="tab-2">一週溫度曲線</span>
+            <span id="tab-3">一週體感溫度曲線</span>
             <span id="tab-4">過去24小時</span>
 
             <div id="tab">
                 <ul>
                     <li><a href="#tab-1">逐三小時預報</a></li>
-                    <li><a href="#tab-2">一周溫度曲線</a></li>
-                    <li><a href="#tab-3">一周體感溫度曲線</a></li>
+                    <li><a href="#tab-2">一週溫度曲線</a></li>
+                    <li><a href="#tab-3">一週體感溫度曲線</a></li>
                     <li><a href="#tab-4">過去24小時</a></li>
                 </ul>
 
                 <!-- 頁籤的內容區塊 -->
-                <div class="tab-content-1">
-                    <p>主頁面顯示的內容</p>
+                <div class="tab-content-1" id="chart-container">
+                    <canvas class="my-4 w-100" id="3hrChart" width="1800" height="1000"
+                            style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
                 </div>
                 <div class="tab-content-2">
                     <!--一周溫度曲線-->
-                    <div id="chart-container">
-                        <canvas class="my-4 w-100" id="myChart" width="967" height="408"
-                            style="display: block; box-sizing: border-box; height: 364px; width: 864px; white-space: pre-line;"></canvas>
+                    <div>
+                        <canvas class="my-4 w-100" id="weekChart" width="1800" height="1000"
+                            style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
                         <div id="chart-dates">
                             <span>01/01</span>
                             <span>01/02</span>
@@ -11089,10 +11085,6 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
 </style>
 
 <script>
-    var cityId = document.getElementById('countySelect').value.split('_')[1]
-    var townName = document.getElementById('townSelect').value;
-    let api_key = 'CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2'
-    let url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/${cityId}?Authorization=CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2&locationName=${townName}`
     const countyMap = {
                 '10017': '基隆市_F-D0047-051',
                 '63': '臺北市_F-D0047-063',
@@ -11124,20 +11116,54 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
             // 解析URL查詢參數
             const params = new URLSearchParams(window.location.search)
             const tid = params.get('TID').toString()
-            console.log(tid)
+            // console.log(tid)
             const selectedCounty = Object.keys(countyMap).find((key) => tid.startsWith(key)) || countyMap['63'];
             this.selectedCounty = countyMap[selectedCounty];
             this.selectedTown = tid
+            this.townName = document.querySelector("select[name='TID'] option[value='" + tid + "']").textContent;
             const path = document.querySelector(`#T${tid} > path`);
             path.classList.add('active');
         },
         mounted() {
+            var cityId = this.selectedCounty.split('_')[1]
+            var townName = this.townName;
+            //一周溫度
+            let api_key = 'CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2'
+            let url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/${cityId}?Authorization=CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2&locationName=${townName}`
+            axios.get(url).then(data => {
+                console.log(data)
+                this.week_weather_data = data.data.records.locations[0].location[0]
+                let maxTemp = this.get_element_values(this.week_weather_data.weatherElement.find(el => el.elementName === 'MaxT'))
+                let minTemp = this.get_element_values(this.week_weather_data.weatherElement.find(el => el.elementName === 'MinT'))
+                // console.log(this.weather_data)
+                week_chart.data.datasets[0].data = this.getWeekValues(maxTemp);
+                week_chart.data.datasets[1].data = this.getWeekValues(minTemp);
+                week_chart.data.labels = this.getStrDate(maxTemp);
+                week_chart.update();
+            })
+            
+            //逐三小時
+            let num = parseInt(cityId.substring(cityId.length - 2));
+            let newcityId = cityId.substring(0, cityId.length - 2) + (num - 2).toString().padStart(2, "0");
+            console.log(newcityId)
+            url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/${newcityId}?Authorization=CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2&locationName=${townName}`
+            axios.get(url).then(data => {
+                console.log(data)
+                this.hr_weather_data = data.data.records.locations[0].location[0]
+                let T = this.get_element_values(this.hr_weather_data.weatherElement.find(el => el.elementName === 'T'))
+                let AT = this.get_element_values(this.hr_weather_data.weatherElement.find(el => el.elementName === 'AT'))
+                hr_chart.data.datasets[0].data = this.get_hr_values(T);
+                hr_chart.data.datasets[1].data = this.get_hr_values(AT);
+                // hr_chart.data.labels = this.getStrDate(maxTemp);
+                hr_chart.update();
+            })
+
             // 获取所有的path元素
             const paths = document.querySelectorAll('svg g[id^="T"] path');
 
             // 获取下拉式选单元素
             const townSelect = document.getElementById('townSelect');
-
+            // console.log(townSelect)
             // 遍历每个path元素，给它们添加点击事件监听器
             paths.forEach(path => {
                 path.addEventListener('click', () => {
@@ -11189,7 +11215,7 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                             // 找到對應的第一個鄉鎮選項，設定為 selectedTown
                             const firstTown = townOptions[i].value;
                             this.selectedTown = firstTown;
-                            console.log(firstTown)
+                            // console.log(firstTown)
                             // 重新加载页面，并带上新的TID参数
                             const newParams = new URLSearchParams(window.location.search);
                             newParams.set('TID', firstTown);
@@ -11199,13 +11225,152 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                     }
                 }
             });
+            console.log(this.selectedCounty);
+            console.log(this.selectedTown);
+            console.log(this.townName);
+            console.log(this.week_weather_data);
+        },
+        methods:{
+            get_element_values(json) {
+                console.log(json);
+                const res = json.time;
+                const values = [json.elementName];
+                if(json.elementName == 'T'){
+                    for (let i = 0; i < res.length; i++) {
+                        values.push(res[i].dataTime);
+                        values.push(res[i].elementValue[0].value);
+                    }
+                }else{
+                    for (let i = 0; i < res.length; i++) {
+                        values.push(res[i].startTime + '~' + res[i].endTime);
+                        values.push(res[i].elementValue[0].value);
+                    }
+                }
+                console.log(values);
+                return values;
+            },
+            getWeekValues(arr){
+                // console.log('arr'+arr);
+                values = [];
+                hour = new Date(arr[1].split('~')[1]).getHours();
+                //結束時間6點代表為晚上
+                if(hour == 6){
+                    if(arr[0] == 'MinT'){
+                    for (let i = 5; i < arr.length; i += 4) {
+                        values.push(null);
+                        values.push(parseInt(arr[i+1]));
+                    }
+                    }else if(arr[0] == 'MaxT'){
+                    for (let i = 3; i < arr.length; i += 4) {
+                        values.push(parseInt(arr[i+1]));
+                        values.push(null);
+                    }
+                    }
+                }else{
+                    if(arr[0] == 'MinT'){
+                    for (let i = 3; i < arr.length; i += 4) {
+                        values.push(null);
+                        values.push(parseInt(arr[i+1]));
+                    }
+                    }else if(arr[0] == 'MaxT'){
+                    for (let i = 1; i < arr.length; i += 4) {
+                        values.push(parseInt(arr[i+1]));
+                        values.push(null);
+                    }
+                    }
+                }
+                console.log(arr[0],values);
+                return values;
+            }, 
+            get_hr_values(arr){
+                values = [];
+                for (let i = 1; i < 50; i += 2) {
+                    values.push(parseInt(arr[i+1]));
+                }
+                console.log(values);
+                return values;
+            },
+            getStrDate(arr){
+                values = [];
+                hour = new Date(arr[1].split('~')[1]).getHours();
+                //結束時間6點代表為晚上
+                var startIndex;
+                if(hour == 6){
+                    startIndex = 3;
+                }else{
+                    startIndex = 1;
+                }
+                for (let i = startIndex; i < arr.length; i += 4) {
+                    var time = new Date(arr[i].split('~')[0]);
+                    var month = time.getMonth() + 1;
+                    var date = time.getDate();
+                    var day = time.getDay();
+                    switch (day) {
+                    case 0:
+                        day = "日";
+                        break;
+                    case 1:
+                        day = "一";
+                        break;
+                    case 2:
+                        day = "二";
+                        break;
+                    case 3:
+                        day = "三";
+                        break;
+                    case 4:
+                        day = "四";
+                        break;
+                    case 5:
+                        day = "五";
+                        break;
+                    case 6:
+                        day = "六";
+                        break;
+                    }
+                    if(month < 10){
+                    month = '0' + month;
+                    }
+                    if(date < 10){
+                    date = '0' + date;
+                    }
+                    var strDate = month.toString() + '/' + date.toString() + '(' + day + ')';
+                    values.push("白天" + strDate);
+                    values.push("晚上");
+                }
+                console.log(values);
+                return values;
+            }
         },
         data() {
             return {
                 selectedCounty: "",
                 selectedTown: "",
+                townName: "",
+                week_weather_data: null,
+                hr_weather_data: null,
             }
         },
+        computed: {
+            now_area() {
+                if (!this.week_weather_data.length) {
+                    return {}
+                }
+                let data = {};
+                let result = this.week_weather_data;
+                console.log('weather_data:', result)
+                if (result) {
+                    let high = result.weatherElement.find(el => el.elementName === 'MaxT').time.map(t => t.elementValue[0].value)
+                    let low = result.weatherElement.find(el => el.elementName === 'MinT').time.map(t => t.elementValue[0].value)
+                    console.log(high);
+                    data = {
+                        low: low,
+                        high: high,
+                    };
+                }
+                return data;
+            },
+        }
     })
 </script>
 

@@ -1,14 +1,14 @@
 /* globals Chart:false, feather:false */
-let chart;
+let week_chart;
 (function () {
   "use strict";
 
   feather.replace({ "aria-hidden": "true" });
 
   // Graphs
-  var ctx = document.getElementById("myChart");
+  var ctx = document.getElementById("weekChart");
   // eslint-disable-next-line no-unused-vars
-  chart = new Chart(ctx, {
+  week_chart = new Chart(ctx, {
     type: "bar",
     data: {
       labels: [
@@ -113,6 +113,90 @@ let chart;
   });
 })();
 
+let hr_chart;
+(function () {
+  "use strict";
+
+  feather.replace({ "aria-hidden": "true" });
+
+  // Graphs
+  var ctx = document.getElementById("3hrChart");
+  // eslint-disable-next-line no-unused-vars
+  hr_chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "00", "03", "06", "09", "12", "15", "18", "21", 
+        "00", "03", "06", "09", "12", "15", "18", "21", 
+        "00", "03", "06", "09", "12", "15", "18", "21", 
+        "00",
+      ],
+      datasets: [
+        {
+          label: "溫度",
+          data: [
+            30, 28, 25, 27, 30, 31, 30, 28, 
+            25, 27, 30, 31, 30, 28, 25, 27, 
+            30, 31, 30, 28, 25, 27, 30, 31, 
+            30,
+          ],
+          type: "line",
+          lineTension: 0.25,
+          backgroundColor: "transparent",
+          borderColor: "#F5866B",
+          borderWidth: 4,
+          pointBackgroundColor: "#F5866B",
+          spanGaps: true,
+          //fill: false,
+        },
+        {
+          label: "體感溫度",
+          data: [
+            30, 28, 25, 27, 30, 31, 30, 28, 
+            25, 27, 30, 31, 30, 28, 25, 27, 
+            30, 31, 30, 28, 25, 27, 30, 31, 
+            30,
+          ],
+          type: "line",
+          lineTension: 0.25,
+          backgroundColor: "transparent",
+          borderColor: "#C9C9C9",
+          borderWidth: 4,
+          pointBackgroundColor: "#C9C9C9",
+          spanGaps: true,
+          //fill: false,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: false,
+              autoSkip: false,
+            },
+          },
+        ],
+      },
+      tooltips: {
+        enabled: true,
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+          }
+        }
+      },
+      legend: {
+        display: true,
+        labels: {
+          usePointStyle: false,
+        },
+      },
+    },
+  });
+})();
+
 // const form = document.getElementById('region-form');
 // var cityName = '';
 // var townName = '';
@@ -151,125 +235,6 @@ let chart;
 //     });
 // });
 
-function getValues(arr){
-  //console.log('arr'+arr);
-  values = [];
-  hour = new Date(arr[1].split('~')[1]).getHours();
-  //結束時間6點代表為晚上
-  if(hour == 6){
-    if(arr[0] == 'MinT'){
-      for (let i = 5; i < arr.length; i += 4) {
-        values.push(null);
-        values.push(parseInt(arr[i+1]));
-      }
-    }else if(arr[0] == 'MaxT'){
-      for (let i = 3; i < arr.length; i += 4) {
-        values.push(parseInt(arr[i+1]));
-        values.push(null);
-      }
-    }
-  }else{
-    if(arr[0] == 'MinT'){
-      for (let i = 3; i < arr.length; i += 4) {
-        values.push(null);
-        values.push(parseInt(arr[i+1]));
-      }
-    }else if(arr[0] == 'MaxT'){
-      for (let i = 1; i < arr.length; i += 4) {
-        values.push(parseInt(arr[i+1]));
-        values.push(null);
-      }
-    }
-  }
-  console.log(values);
-  return values;
-}
-
-function getStrDate(arr){
-  values = [];
-  hour = new Date(arr[1].split('~')[1]).getHours();
-  //結束時間6點代表為晚上
-  var startIndex;
-  if(hour == 6){
-    startIndex = 3;
-  }else{
-    startIndex = 1;
-  }
-  for (let i = startIndex; i < arr.length; i += 4) {
-    var time = new Date(arr[i].split('~')[0]);
-    var month = time.getMonth() + 1;
-    var date = time.getDate();
-    var day = time.getDay();
-    switch (day) {
-      case 0:
-        day = "日";
-        break;
-      case 1:
-        day = "一";
-        break;
-      case 2:
-        day = "二";
-        break;
-      case 3:
-        day = "三";
-        break;
-      case 4:
-        day = "四";
-        break;
-      case 5:
-        day = "五";
-        break;
-      case 6:
-        day = "六";
-        break;
-    }
-    if(month < 10){
-      month = '0' + month;
-    }
-    if(date < 10){
-      date = '0' + date;
-    }
-    var strDate = month.toString() + '/' + date.toString() + '(' + day + ')';
-    values.push("白天" + strDate);
-    values.push("晚上");
-  }
-  console.log(values);
-  return values;
-}
-
-
-function getWeatherForecast_3hrs(cityId, townName, elementName) {
-  // 請求 URL
-  const url = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/${cityId}?Authorization=CWB-5E6CA7B9-D0AD-4A37-A866-38DF47F8D8E2&locationName=${townName}&elementName=${elementName}`;
-  // 發送請求
-  var locationData;
-  return fetch(url, {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      // 在這裡處理返回的 JSON 資料
-      locationData = data.records.locations[0].location[0].weatherElement;
-      console.log(data);
-      return get_element_values(locationData);
-    })
-    .catch(error => console.error(error));
-}
-
-function get_element_values(json) {
-  //console.log(json);
-  const res = json[0].time;
-  const values = [json[0].elementName];
-  for (let i = 0; i < res.length; i++) {
-    values.push(res[i].startTime + '~' + res[i].endTime);
-    values.push(res[i].elementValue[0].value);
-  }
-  console.log(values);
-  return values;
-}
 
 // // 鄉鎮清單物件，以縣市為 key，對應鄉鎮的陣列為 value
 // const townData = {
@@ -297,7 +262,7 @@ function get_element_values(json) {
 //     '金門縣': ['金城鎮', '金湖鎮', '金沙鎮', '金寧鄉', '烈嶼鄉', '烏坵鄉']
 // };
 
-const canvas = document.getElementById('myChart');
+const canvas = document.getElementById('weekchart');
 const downloadBtn = document.getElementById('download-btn');
 downloadBtn.addEventListener('click', () => {
     // 取得 canvas 圖片資料
