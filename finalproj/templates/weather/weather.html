@@ -51,8 +51,6 @@
                                 <p style="padding: 0px 5px 0px 5px;justify-content: center;"><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[0] : '' }}{% endverbatim %}%</p>
                             </div>
                         </div>
-                       
-                        
                     </div>
                     <div class="col-md-6 weather-news">
                         <div class="row">
@@ -77,7 +75,6 @@
                     <div style="display: flex;border: none;margin: 5px;border-radius: 30px;background-color: #0959A8;width: 650px;height: 320px;">
 
                     </div>
-
                 </div>
             </div>
             <div class="map">
@@ -774,6 +771,7 @@
             axios.get(url).then(data => {
                 console.log(data)
                 this.weather_data = data.data.cwbopendata.dataset.locations.location
+                console.log(this.weather_data)
             })
 
             paths = document.querySelectorAll('path');
@@ -823,7 +821,6 @@
                 let result = this.weather_data.find((obj) => {
                     return obj.locationName === this.filter
                 })
-
                 if (result) {
                     let start_time = result.weatherElement[0].time.slice(0, 3).map(t => {
                         let time_arr = t.startTime.split('T')
