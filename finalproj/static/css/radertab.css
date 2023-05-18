@@ -1,80 +1,33 @@
-#tab {
-  width: auto;
-  background: #ffffff;
+.tab-demo {
+  padding: 20px;
 }
 
-/* 頁籤ul */
-#tab > ul {
-  /* overflow: hidden; */
-  margin: 0;
-  padding: 10px 20px 0 20px;
+.tab-title {
+  display: flex;
+  padding-left: 0px;  /*將li 排列再一起*/
+  
 }
 
-#tab > ul > li {
-  list-style-type: none;
+.tab-title li {
+  padding: auto;
+  border-bottom:2px solid #0071bc;
 }
 
-/* 頁籤上的文字 */
-#tab > ul > li > a { 
-  text-decoration: none;
-  font-size: 18px;
+.tab-title li a {
+  display: block;
+  padding: 10px 5px;
+  width: 150px;
   color: #333;
-  float: left;
+  background-color: #fafafa;
+  text-decoration: none;
+  text-align: center;
+}
+
+.tab-title li.active a {
+  color: #fff;
+  background-color: #0071bc;
+}
+
+.tab-inner {
   padding: 10px;
-  margin-left: 5px;
 }
-
-/*頁籤div內容*/
-#tab > div {
-  clear: both;
-  padding: 0 15px;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-}
-
-/*第一筆的底色*/
-span:target ~ #tab > ul li:first-child a {
-  background: #ffffff;
-}
-
-span:target ~ #tab > div:first-of-type {
-  visibility: hidden;
-  height: 0;
-  padding: 0 15px;
-}
-
-/*頁籤變換&第一筆*/
-span ~ #tab > ul li:first-child a,
-#tab-1:target ~ #tab > ul li a[href$="#tab-1"],
-#tab-2:target ~ #tab > ul li a[href$="#tab-2"],
-#tab-3:target ~ #tab > ul li a[href$="#tab-3"],
-#tab-4:target ~ #tab > ul li a[href$="#tab-4"] {
-  background: #3091f3;
-  border-radius: 5px 5px 0 0;
-}
-
-span ~ #tab > ul li:first-child a::before,
-#tab-1:target ~ #tab > ul li a[href$="#tab-1"]::before,
-#tab-2:target ~ #tab > ul li a[href$="#tab-2"]::before,
-#tab-3:target ~ #tab > ul li a[href$="#tab-3"]::before,
-#tab-4:target ~ #tab > ul li a[href$="#tab-4"]::before {
-  background-color: white;
-  height: 100%;
-}
-
-/*頁籤內容顯示&第一筆*/
-span ~ #tab > div:first-of-type,
-#tab-1:target ~ #tab > div.tab-content-1,
-#tab-2:target ~ #tab > div.tab-content-2,
-#tab-3:target ~ #tab > div.tab-content-3,
-#tab-4:target ~ #tab > div.tab-content-4 {
-  visibility: visible;
-  height: auto;
-  background: #fff;
-}
-
-span {
-  display: none;
-}
-

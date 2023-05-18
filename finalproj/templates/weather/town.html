@@ -5,12 +5,12 @@
 <br>
 <div class="container-fluid" bis_skin_checked="1">
     <div class="row" bis_skin_checked="1">
-        <div class="col-md-5 col-lg-6" id="app">
+        <div class="col-md-4 col-lg-5" id="app">
             <form id="region-form">
                 <div class="row g-3">
                     <div class="col-md-5">
                         <label for="countySelect" class="form-label">County</label>
-                        <select class="form-select" id="countySelect" v-model="selectedCounty">
+                        <select class="form-select form-select" id="countySelect" v-model="selectedCounty">
                             <option value="" disabled>-- Select County --</option>
                             <option value="宜蘭縣_F-D0047-003">宜蘭縣</option>
                             <option value="桃園市_F-D0047-007">桃園市</option>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="col-md-5">
                         <label for="townSelect" class="form-label">Town</label>
-                        <select name="TID" v-if="selectedCounty === '宜蘭縣_F-D0047-003'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '宜蘭縣_F-D0047-003'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown" display="none">
                             <option value="" disabled>-- Select Town --</option>
                             <option value="1000201" data-county="宜蘭縣_F-D0047-003">宜蘭市</option>
@@ -54,7 +54,7 @@
                             <option value="1000211" data-county="宜蘭縣_F-D0047-003">大同鄉</option>
                             <option value="1000212" data-county="宜蘭縣_F-D0047-003">南澳鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '桃園市_F-D0047-007'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '桃園市_F-D0047-007'" class="form-control form-select"
                         id="townSelect" v-model="selectedTown" display="none">
                             <option value="6800100" data-county="桃園市_F-D0047-007">桃園區</option>
                             <option value="6800200" data-county="桃園市_F-D0047-007">中壢區</option>
@@ -70,7 +70,7 @@
                             <option value="6801200" data-county="桃園市_F-D0047-007">觀音區</option>
                             <option value="6801300" data-county="桃園市_F-D0047-007">復興區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '新竹縣_F-D0047-011'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '新竹縣_F-D0047-011'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1000401" data-county="新竹縣_F-D0047-011">竹北市</option>
                             <option value="1000402" data-county="新竹縣_F-D0047-011">竹東鎮</option>
@@ -86,7 +86,7 @@
                             <option value="1000412" data-county="新竹縣_F-D0047-011">尖石鄉</option>
                             <option value="1000413" data-county="新竹縣_F-D0047-011">五峰鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '苗栗縣_F-D0047-015'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '苗栗縣_F-D0047-015'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1000501" data-county="苗栗縣_F-D0047-015">苗栗市</option>
                             <option value="1000502" data-county="苗栗縣_F-D0047-015">苑裡鎮</option>
@@ -107,7 +107,7 @@
                             <option value="1000517" data-county="苗栗縣_F-D0047-015">獅潭鄉</option>
                             <option value="1000518" data-county="苗栗縣_F-D0047-015">泰安鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '彰化縣_F-D0047-019'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '彰化縣_F-D0047-019'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1000701" data-county="彰化縣_F-D0047-019">彰化市</option>
                             <option value="1000702" data-county="彰化縣_F-D0047-019">鹿港鎮</option>
@@ -136,7 +136,7 @@
                             <option value="1000725" data-county="彰化縣_F-D0047-019">竹塘鄉</option>
                             <option value="1000726" data-county="彰化縣_F-D0047-019">溪州鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '南投縣_F-D0047-023'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '南投縣_F-D0047-023'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1000801" data-county="南投縣_F-D0047-023">南投市</option>
                             <option value="1000802" data-county="南投縣_F-D0047-023">埔里鎮</option>
@@ -152,7 +152,7 @@
                             <option value="1000812" data-county="南投縣_F-D0047-023">信義鄉</option>
                             <option value="1000813" data-county="南投縣_F-D0047-023">仁愛鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '雲林縣_F-D0047-027'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '雲林縣_F-D0047-027'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1000901" data-county="雲林縣_F-D0047-027">斗六市</option>
                             <option value="1000902" data-county="雲林縣_F-D0047-027">斗南鎮</option>
@@ -175,7 +175,7 @@
                             <option value="1000919" data-county="雲林縣_F-D0047-027">口湖鄉</option>
                             <option value="1000920" data-county="雲林縣_F-D0047-027">水林鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '嘉義縣_F-D0047-031'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '嘉義縣_F-D0047-031'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001001" data-county="嘉義縣_F-D0047-031">太保市</option>
                             <option value="1001002" data-county="嘉義縣_F-D0047-031">朴子市</option>
@@ -196,7 +196,7 @@
                             <option value="1001017" data-county="嘉義縣_F-D0047-031">大埔鄉</option>
                             <option value="1001018" data-county="嘉義縣_F-D0047-031">阿里山鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '屏東縣_F-D0047-035'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '屏東縣_F-D0047-035'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001301" data-county="屏東縣_F-D0047-035">屏東市</option>
                             <option value="1001302" data-county="屏東縣_F-D0047-035">潮州鎮</option>
@@ -232,7 +232,7 @@
                             <option value="1001332" data-county="屏東縣_F-D0047-035">獅子鄉</option>
                             <option value="1001333" data-county="屏東縣_F-D0047-035">牡丹鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '臺東縣_F-D0047-039'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '臺東縣_F-D0047-039'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001401" data-county="臺東縣_F-D0047-039">臺東市</option>
                             <option value="1001402" data-county="臺東縣_F-D0047-039">成功鎮</option>
@@ -251,7 +251,7 @@
                             <option value="1001415" data-county="臺東縣_F-D0047-039">達仁鄉</option>
                             <option value="1001416" data-county="臺東縣_F-D0047-039">蘭嶼鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '花蓮縣_F-D0047-043'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '花蓮縣_F-D0047-043'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001501" data-county="花蓮縣_F-D0047-043">花蓮市</option>
                             <option value="1001502" data-county="花蓮縣_F-D0047-043">鳳林鎮</option>
@@ -267,7 +267,7 @@
                             <option value="1001512" data-county="花蓮縣_F-D0047-043">萬榮鄉</option>
                             <option value="1001513" data-county="花蓮縣_F-D0047-043">卓溪鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '澎湖縣_F-D0047-047'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '澎湖縣_F-D0047-047'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001601" data-county="澎湖縣_F-D0047-047">馬公市</option>
                             <option value="1001602" data-county="澎湖縣_F-D0047-047">湖西鄉</option>
@@ -276,7 +276,7 @@
                             <option value="1001605" data-county="澎湖縣_F-D0047-047">望安鄉</option>
                             <option value="1001606" data-county="澎湖縣_F-D0047-047">七美鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '基隆市_F-D0047-051'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '基隆市_F-D0047-051'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001701" data-county="基隆市_F-D0047-051">中正區</option>
                             <option value="1001702" data-county="基隆市_F-D0047-051">七堵區</option>
@@ -286,18 +286,18 @@
                             <option value="1001706" data-county="基隆市_F-D0047-051">安樂區</option>
                             <option value="1001707" data-county="基隆市_F-D0047-051">信義區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '新竹市_F-D0047-055'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '新竹市_F-D0047-055'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1001801" data-county="新竹市_F-D0047-055">東區</option>
                             <option value="1001802" data-county="新竹市_F-D0047-055">北區</option>
                             <option value="1001803" data-county="新竹市_F-D0047-055">香山區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '嘉義市_F-D0047-059'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '嘉義市_F-D0047-059'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="1002001" data-county="嘉義市_F-D0047-059">東區</option>
                             <option value="1002002" data-county="嘉義市_F-D0047-059">西區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '臺北市_F-D0047-063'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '臺北市_F-D0047-063'" class="form-control form-select"
                         id="townSelect" v-model="selectedTown">
                             <option value="" disabled="" selected="">選擇鄉鎮</option>
                             <option value="6300100" data-county="臺北市_F-D0047-063">松山區</option>
@@ -313,7 +313,7 @@
                             <option value="6301100" data-county="臺北市_F-D0047-063">士林區</option>
                             <option value="6301200" data-county="臺北市_F-D0047-063">北投區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '高雄市_F-D0047-067'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '高雄市_F-D0047-067'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="6400100" data-county="高雄市_F-D0047-067">鹽埕區</option>
                             <option value="6400200" data-county="高雄市_F-D0047-067">鼓山區</option>
@@ -354,7 +354,7 @@
                             <option value="6403700" data-county="高雄市_F-D0047-067">桃源區</option>
                             <option value="6403800" data-county="高雄市_F-D0047-067">那瑪夏區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '新北市_F-D0047-071'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '新北市_F-D0047-071'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="6500100" data-county="新北市_F-D0047-071">板橋區</option>
                             <option value="6500200" data-county="新北市_F-D0047-071">三重區</option>
@@ -386,7 +386,7 @@
                             <option value="6502800" data-county="新北市_F-D0047-071">萬里區</option>
                             <option value="6502900" data-county="新北市_F-D0047-071">烏來區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '臺中市_F-D0047-075'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '臺中市_F-D0047-075'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="6600100" data-county="臺中市_F-D0047-075">中區</option>
                             <option value="6600200" data-county="臺中市_F-D0047-075">東區</option>
@@ -418,7 +418,7 @@
                             <option value="6602800" data-county="臺中市_F-D0047-075">大里區</option>
                             <option value="6602900" data-county="臺中市_F-D0047-075">和平區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '臺南市_F-D0047-079'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '臺南市_F-D0047-079'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="6700100" data-county="臺南市_F-D0047-079">新營區</option>
                             <option value="6700200" data-county="臺南市_F-D0047-079">鹽水區</option>
@@ -458,14 +458,14 @@
                             <option value="6703600" data-county="臺南市_F-D0047-079">安平區</option>
                             <option value="6703700" data-county="臺南市_F-D0047-079">中西區</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '連江縣_F-D0047-083'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '連江縣_F-D0047-083'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="0900701" data-county="連江縣_F-D0047-083">南竿鄉</option>
                             <option value="0900702" data-county="連江縣_F-D0047-083">北竿鄉</option>
                             <option value="0900703" data-county="連江縣_F-D0047-083">莒光鄉</option>
                             <option value="0900704" data-county="連江縣_F-D0047-083">東引鄉</option>
                         </select>
-                        <select name="TID" v-if="selectedCounty === '金門縣_F-D0047-087'" class="form-control"
+                        <select name="TID" v-if="selectedCounty === '金門縣_F-D0047-087'" class="form-control form-select"
                             id="townSelect" v-model="selectedTown">
                             <option value="0902001" data-county="金門縣_F-D0047-087">金城鎮</option>
                             <option value="0902002" data-county="金門縣_F-D0047-087">金沙鎮</option>
@@ -10964,9 +10964,8 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                 
             </div> -->
         </div>
-        <main class="col-md-7 ms-sm-auto col-lg-6 px-md-4">
-            <div
-                class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <main class="col-md-8 ms-sm-auto col-lg-7 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Dashboard</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                     <div class="btn-group me-2">
@@ -10986,61 +10985,329 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                     </button>
                 </div>
             </div>
-            <span id="tab-1">逐三小時預報</span>
-            <span id="tab-2">一週溫度曲線</span>
-            <span id="tab-3">一週體感溫度曲線</span>
-            <span id="tab-4">過去24小時</span>
-
-            <div id="tab">
-                <ul>
-                    <li><a href="#tab-1">逐三小時預報</a></li>
-                    <li><a href="#tab-2">一週溫度曲線</a></li>
-                    <li><a href="#tab-3">一週體感溫度曲線</a></li>
-                    <li><a href="#tab-4">過去24小時</a></li>
-                </ul>
-
-                <!-- 頁籤的內容區塊 -->
-                <div class="tab-content-1" id="chart-container">
-                    <canvas class="my-4 w-100" id="3hrChart" width="1800" height="1000"
-                            style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
-                </div>
-                <div class="tab-content-2">
-                    <!--一周溫度曲線-->
-                    <div>
-                        <canvas class="my-4 w-100" id="weekChart" width="1800" height="1000"
-                            style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
-                        <div id="chart-dates">
-                            <span>01/01</span>
-                            <span>01/02</span>
-                            <span>01/03</span>
-                            <span>01/04</span>
-                            <span>01/05</span>
-                            <span>01/06</span>
-                            <span>01/07</span>
+            <div>
+                <div class="tab-demo" style="height: 600px;">
+                    <!-- tab標籤列 -->
+                    <ul class="tab-title"style="list-style-type: none;justify-content:center;">
+                      <li class="active" >
+                        <a href="javascript:;" data-tablink="one">逐三小時預報</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" data-tablink="two">一週溫度曲線</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" data-tablink="three">一週體感溫度曲線</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" data-tablink="four">過去24小時</a>
+                      </li>
+                    </ul>
+                    <!-- tab內容 -->
+                    <div class="tab-inner-wrap">
+                        <div id="one" class="tab-inner" >
+                            <div id="chart-container">
+                                <canvas class="my-4 w-100" id="3hrChart" width="1800" height="1000"
+                                        style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
+                            </div>
                         </div>
-                        <div id="chart-dates">
-                            <span>(一)</span>
-                            <span>(二)</span>
-                            <span>(三)</span>
-                            <span>(四)</span>
-                            <span>(五)</span>
-                            <span>(六)</span>
-                            <span>(日)</span>
+                        <div id="two" class="tab-inner">
+                            <!--一周溫度曲線-->
+                            <div>
+                                <canvas class="my-4 w-100" id="weekChart" width="1800" height="1000"
+                                    style="display: block; box-sizing: border-box; white-space: pre-line;"></canvas>
+                                <div id="chart-dates">
+                                    <span>01/01</span>
+                                    <span>01/02</span>
+                                    <span>01/03</span>
+                                    <span>01/04</span>
+                                    <span>01/05</span>
+                                    <span>01/06</span>
+                                    <span>01/07</span>
+                                </div>
+                                <div id="chart-dates">
+                                    <span>(一)</span>
+                                    <span>(二)</span>
+                                    <span>(三)</span>
+                                    <span>(四)</span>
+                                    <span>(五)</span>
+                                    <span>(六)</span>
+                                    <span>(日)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="three" class="tab-inner">
+                            <!-- tab3的內容 -->
+                            內容3
+                        </div>
+                        <div id="four" class="tab-inner">
+                            <!-- tab3的內容 -->
+                            內容3
                         </div>
                     </div>
-                    <!--一周溫度曲線-->
                 </div>
-                <div class="tab-content-3">
-                    <p>頁面2顯示的內容</p>
+                <div class="tab-demo" style="height: 600px;">
+                    <!-- tab標籤列 -->
+                    <ul class="tab-title"style="list-style-type: none;justify-content: center;">
+                      <li class="active" >
+                        <a href="javascript:;" data-tablink="five">逐三小時預報</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" data-tablink="six">一週預報</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;" data-tablink="seven">過去24小時</a>
+                      </li>
+                    </ul>
+                    <!-- tab內容 -->
+                    <div class="tab-inner-wrap">
+                        <div id="five" class="tab-inner" >
+                            <div class="row">
+                                <div class="col-md-1" >
+                                    <table class="table" style="width:100px ;text-align: center;border: 1px solid #DDDDDD;position: absolute;">
+                                        <thead>
+                                            <tr style="background-color: #42A1AE;color: #fff;">
+                                              <th scope="col">日期</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color: #0F83A6;background-color: #fff;">
+                                            <tr>
+                                                <th scope="row">時間</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">天氣狀況</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">溫度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">體感溫度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">降雨機率</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">相對濕度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">蒲福風級</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">風向</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">舒適度</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-11" style="margin-left: 100px;overflow-x: scroll;width: 600px;">
+                                    <table class="table" style="text-align: center;border-collapse: collapse;">
+                                        <thead style="border: 1px solid #DDDDDD;">
+                                            <tr style="color: #fff;width: 300px;">
+                                              <th scope="col" colspan="3" style="background-color: #D83023;">05/14星期日</th>
+                                              <th scope="col" colspan="8" style="background-color: #42A1AE;">05/15星期一</th>
+                                              <th scope="col" colspan="8" style="background-color: #42A1AE;">05/16星期二</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="color: #0F83A6;">
+                                                <td>15:00</td>
+                                                <td>18:00</td>
+                                                <td>21:00</td>
+                                                <td>00:00</td>
+                                                <td>03:00</td>
+                                                <td>06:00</td>
+                                                <td>09:00</td>
+                                                <td>12:00</td>
+                                                <td>15:00</td>
+                                                <td>18:00</td>
+                                                <td>21:00</td>
+                                                <td>00:00</td>
+                                                <td>03:00</td>
+                                                <td>06:00</td>
+                                                <td>09:00</td>
+                                                <td>12:00</td>
+                                                <td>15:00</td>
+                                                <td>18:00</td>
+                                                <td>21:00</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg" alt="" width="23px" height="23px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                            </tr>
+                                            <tr>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                            </tr>
+                                            <tr>
+                                                <td>30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                            </tr>
+                                            <tr>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>   
+                            </div>
+                        </div>
+                        <div id="six" class="tab-inner">
+
+                        </div>
+                        <div id="seven" class="tab-inner">
+                            <!-- tab3的內容 -->
+                            內容3
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-content-4">
-                    <p>頁面3顯示的內容</p>
-                </div>
-            </div>
         </main>
     </div>
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
     integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
     crossorigin="anonymous"></script>
@@ -11053,7 +11320,37 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
 <script>
     const townUrl = "{% url 'Town' %}";
 </script>
-
+<script>
+    $(document).ready(function () {
+        tabCutover();
+      });
+      
+      function tabCutover1() {
+        var tablink = $(".tab-title li.active").find("a").data("tablink");
+      
+        $('#'+ tablink).show().siblings(".tab-inner").hide();
+      
+        $(".tab-title li").click(function () {
+          $('#'+$(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+          $(this).addClass("active").siblings(".active").removeClass("active");
+        });
+      }
+      
+      function tabCutover() {
+      
+       $(".tab-title li.active").each(function () {
+          var tablink = $(this).find("a").data("tablink");
+      
+          $('#'+tablink).show().siblings(".tab-inner").hide();
+        });
+      
+       $(".tab-title li").click(function () {
+          $('#'+$(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+          $(this).addClass("active").siblings(".active").removeClass("active");
+        });
+      }
+      
+</script>
 <style>
     svg {
         height: 100%;
@@ -11373,5 +11670,6 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
         }
     })
 </script>
+
 
 {% endblock %}
