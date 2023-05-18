@@ -1,7 +1,0 @@
-Django
-django-allauth
-django-simple-captcha
-django-ckeditor
-pillow
-django-notifications-hq
-django-filter
