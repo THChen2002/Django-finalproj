@@ -4,383 +4,412 @@
 {% endblock %}
 {% block content %}
 <link rel="stylesheet" href="/static/css/radertab.css">
-    <main class="main-content container">
-      <!-- Tab v1 -->
-      <span id="tab-1">無地形</span>
-      <span id="tab-2">有地形</span>
-      <span id="tab-3">降雨雷達</span>
-
-    <div id="tab">
-        <ul>
-          <li>
-            <a href="#tab-1">無地形</a>
-          </li>
-          <li>
-            <a href="#tab-2">有地形</a>
-          </li>
-          <li>
-            <a href="#tab-3">降雨雷達</a>
-          </li>
-        </ul>
-
-        <!-- 頁籤的內容區塊 -->
-        <div class="tab-content-1">
-			<br>
-			<div class="row" style="color: #222222;">
-				<div class="col-md-4" style="display: flex;border-radius:5px;">
-						<!-- Start 播放區塊 -->
-						<div class="player_block" >
-						  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
-						  <form action="#" class="sky-form2 sky-form label-rounded">
-							<div class="row"style="background-color: #E4F3FE;">
-								<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
-									<div class="inline-group">
-										<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image1')"checked><i class="rounded-x" ></i>&nbsp; 較大範圍區域</label>
-										&emsp;
-										<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image2')"><i class="rounded-x" ></i>&nbsp; 臺灣鄰近區域</label>
-									</div>
-								</div>				  
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-12">
-											<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
-										</div>
-										<div class="col-md-12" style="margin:15px 5px 20px 5px;">
-											<label class="select" >
-												<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
-												<i aria-hidden="true"></i>
-											</label>
-											<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
-												&nbsp; 
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" s>&emsp;停止</button>
-												&nbsp; 
-												<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+<main class="main-content container">
+		<div class="tab-demo" >
+			<!-- tab標籤列 -->
+			<ul class="tab-title"style="list-style-type: none;">
+			  <li class="active" >
+				<a href="javascript:;" data-tablink="one">無地形</a>
+			  </li>
+			  <li>
+				<a href="javascript:;" data-tablink="two">有地形</a>
+			  </li>
+			  <li>
+				<a href="javascript:;" data-tablink="three">降雨雷達</a>
+			  </li>
+			</ul>
+			<!-- tab內容 -->
+			<div class="tab-inner-wrap">
+			  	<div id="one" class="tab-inner" >
+						<br>
+						<div class="row" style="color: #222222;">
+							<div class="col-md-4" style="display: flex;border-radius:5px;">
+									<!-- Start 播放區塊 -->
+									<div class="player_block" >
+									  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
+									  <form action="#" class="sky-form2 sky-form label-rounded">
+										<div class="row"style="background-color: #E4F3FE;">
+											<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
+												<div class="inline-group">
+													<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image1')"checked><i class="rounded-x" ></i>&nbsp; 較大範圍區域</label>
+													&emsp;
+													<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image2')"><i class="rounded-x" ></i>&nbsp; 臺灣鄰近區域</label>
+												</div>
+											</div>				  
+											<div class="col-md-12">
+												<div class="row">
+													<div class="col-md-12">
+														<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
+													</div>
+													<div class="col-md-12" style="margin:15px 5px 20px 5px;">
+														<label class="select" >
+															<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
+															<i aria-hidden="true"></i>
+														</label>
+														<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
+															&nbsp; 
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" s>&emsp;停止</button>
+															&nbsp; 
+															<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+														</div>
+													</div>
+													<div class="clearfix visible-xs visible-sm"></div>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="col-md-12">
+											  <div class="row">
+													<div class="col-md-12">
+														<label class="label"style="font-weight: bold;">動態顯示</label>
+													</div>
+													<div class="col-md-12"style="margin:15px 5px 20px 5px;">
+														<div class="inline-group">
+															<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
+															<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
+															<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
+															<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
+														</div>
+													</div>						
+											  </div>
+											</div>
+											<div class="col-md-12" style="background-color: #187AC8;">
+											  <div class="row">
+												<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
+												  <label class="label">播放速度（<span></span>秒）</label>
+												</div>
+												<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
+												<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
+													&nbsp; 
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
+												</div>
+											  </div>						
+											  <div class="clearfix"></div>					
 											</div>
 										</div>
-										<div class="clearfix visible-xs visible-sm"></div>
+									  </form>
 									</div>
+									<!-- End 播放區塊 -->
+							</div>
+							<div class="col-md-8">
+									<div class="tab-content showIMG">
+										<div>
+											<img id="image1" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-001.png" alt="" width="690px">
+										</div>
+										<div>
+											<img id="image2" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png" alt="" width="690px" style="display:none;">
+										</div>
+									</div>
+							</div>
+							<div class="row" style="margin-top: 20px;">
+								<!-- Start 說明區塊 -->
+								<div class="col-md-12">
+									<div class="other">
+										<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(無地形)</h4></div>
+											<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(無地形)" alt="雷達回波顏色說明(無地形)" src="/static/images/weather/colorbar.png" style="width:35%;">
+										<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
+										<ul>
+											<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
+											<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self"style="text-decoration: none;color:#000;font-weight: bold;">雷達設置地點與有效範圍</a></li>
+										</ul>
+									</div>
+									<div class="other">
+										<h4 class="note-md">氣象雷達</h4>
+										<ul class="list-unstyled">
+											<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
+										</ul>
+									</div>
+									<div class="other" id="ContentTable">
+										<!--<h4 class="note-md">最新天氣圖資</h4>-->
+										<!--<ul class="list-unstyled">-->
+											<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
+										<!--</ul>-->
+									<div onblur="tabJump(0)" tabindex="0"></div></div>
 									<div class="clearfix"></div>
 								</div>
-								<div class="col-md-12">
-								  <div class="row">
-										<div class="col-md-12">
-											<label class="label"style="font-weight: bold;">動態顯示</label>
-										</div>
-										<div class="col-md-12"style="margin:15px 5px 20px 5px;">
-											<div class="inline-group">
-												<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
-												<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
-												<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
-												<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
+								<!-- End 說明區塊 -->
+							</div>
+						</div>						  
+					</div>						  
+			  	<div id="two" class="tab-inner">
+						<br>
+						<div class="row" style="color: #222222;">
+							<div class="col-md-4" style="display: flex;border-radius:5px;">
+									<!-- Start 播放區塊 -->
+									<div class="player_block" >
+									  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
+									  <form action="#" class="sky-form2 sky-form label-rounded">
+										<div class="row"style="background-color: #E4F3FE;">
+											<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
+												<div class="inline-group">
+													<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image3')" checked><i class="rounded-x" ></i>&nbsp; 較大範圍區域</label>
+													&emsp;
+													<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image4')"><i class="rounded-x" ></i>&nbsp; 臺灣鄰近區域</label>
+												</div>
+											</div>				  
+											<div class="col-md-12">
+												<div class="row">
+													<div class="col-md-12">
+														<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
+													</div>
+													<div class="col-md-12" style="margin:15px 5px 20px 5px;">
+														<label class="select" >
+															<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
+															<i aria-hidden="true"></i>
+														</label>
+														<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
+															&nbsp; 
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" >&emsp;停止</button>
+															&nbsp; 
+															<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+														</div>
+													</div>
+													<div class="clearfix visible-xs visible-sm"></div>
+												</div>
+												<div class="clearfix"></div>
 											</div>
-										</div>						
-								  </div>
-								</div>
-								<div class="col-md-12" style="background-color: #187AC8;">
-								  <div class="row">
-									<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
-									  <label class="label">播放速度（<span></span>秒）</label>
-									</div>
-									<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
-									<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
-										&nbsp; 
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
-									</div>
-								  </div>						
-								  <div class="clearfix"></div>					
-								</div>
-							</div>
-						  </form>
-						</div>
-						<!-- End 播放區塊 -->
-				</div>
-				<div class="col-md-8">
-						<div class="tab-content showIMG">
-							<div>
-								<img id="image1" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-001.png" alt="" width="750px">
-							</div>
-							<div>
-								<img id="image2" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-003.png" alt="" width="750px" style="display:none;">
-							</div>
-						</div>
-				</div>
-				<div class="row" style="margin-top: 20px;">
-					<!-- Start 說明區塊 -->
-					<div class="col-md-12">
-						<div class="other">
-							<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(無地形)</h4></div>
-								<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(無地形)" alt="雷達回波顏色說明(無地形)" src="/static/images/weather/colorbar.png" style="width:35%;">
-							<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
-							<ul>
-								<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
-								<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self"style="text-decoration: none;color:#000;font-weight: bold;">雷達設置地點與有效範圍</a></li>
-							</ul>
-						</div>
-						<div class="other">
-							<h4 class="note-md">氣象雷達</h4>
-							<ul class="list-unstyled">
-								<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
-							</ul>
-						</div>
-						<div class="other" id="ContentTable">
-							<!--<h4 class="note-md">最新天氣圖資</h4>-->
-							<!--<ul class="list-unstyled">-->
-								<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
-							<!--</ul>-->
-						<div onblur="tabJump(0)" tabindex="0"></div></div>
-						<div class="clearfix"></div>
-					</div>
-					<!-- End 說明區塊 -->
-				</div>
-			</div>						  
-		</div>	
-        <div class="tab-content-2">
-			<br>
-			<div class="row" style="color: #222222;">
-				<div class="col-md-4" style="display: flex;border-radius:5px;">
-						<!-- Start 播放區塊 -->
-						<div class="player_block" >
-						  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
-						  <form action="#" class="sky-form2 sky-form label-rounded">
-							<div class="row"style="background-color: #E4F3FE;">
-								<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
-									<div class="inline-group">
-										<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image3')" checked><i class="rounded-x" ></i>&nbsp; 較大範圍區域</label>
-										&emsp;
-										<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image4')"><i class="rounded-x" ></i>&nbsp; 臺灣鄰近區域</label>
-									</div>
-								</div>				  
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-12">
-											<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
-										</div>
-										<div class="col-md-12" style="margin:15px 5px 20px 5px;">
-											<label class="select" >
-												<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
-												<i aria-hidden="true"></i>
-											</label>
-											<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
-												&nbsp; 
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" >&emsp;停止</button>
-												&nbsp; 
-												<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+											<div class="col-md-12">
+											  <div class="row">
+													<div class="col-md-12">
+														<label class="label"style="font-weight: bold;">動態顯示</label>
+													</div>
+													<div class="col-md-12"style="margin:15px 5px 20px 5px;">
+														<div class="inline-group">
+															<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
+															<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
+															<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
+															<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
+														</div>
+													</div>						
+											  </div>
+											</div>
+											<div class="col-md-12" style="background-color: #187AC8;">
+											  <div class="row">
+												<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
+												  <label class="label">播放速度（<span></span>秒）</label>
+												</div>
+												<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
+												<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
+													&nbsp; 
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
+												</div>
+											  </div>						
+											  <div class="clearfix"></div>					
 											</div>
 										</div>
-										<div class="clearfix visible-xs visible-sm"></div>
+									  </form>
 									</div>
+									<!-- End 播放區塊 -->
+							</div>
+							<div class="col-md-8">
+									<div class="tab-content showIMG">
+										<div>
+											<img id="image3" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-002.png" alt="" width="690px">
+										</div>
+										<div>
+											<img id="image4" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-004.png" alt="" width="690px" style="display:none;">
+										</div>
+									</div>
+							</div>
+							<div class="row" style="margin-top: 20px;">
+								<!-- Start 說明區塊 -->
+								<div class="col-md-12">
+									<div class="other">
+										<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(有地形)</h4></div>
+											<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(有地形)" alt="雷達回波顏色說明(無地形)" src="/static/images/weather/colorbar.png" style="width:35%;">
+										<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
+										<ul>
+											<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
+											<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self"style="text-decoration: none;color:#000;font-weight: bold;">雷達設置地點與有效範圍</a></li>
+										</ul>
+									</div>
+									<div class="other">
+										<h4 class="note-md">氣象雷達</h4>
+										<ul class="list-unstyled">
+											<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
+										</ul>
+									</div>
+									<div class="other" id="ContentTable">
+										<!--<h4 class="note-md">最新天氣圖資</h4>-->
+										<!--<ul class="list-unstyled">-->
+											<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
+										<!--</ul>-->
+									<div onblur="tabJump(0)" tabindex="0"></div></div>
 									<div class="clearfix"></div>
 								</div>
-								<div class="col-md-12">
-								  <div class="row">
-										<div class="col-md-12">
-											<label class="label"style="font-weight: bold;">動態顯示</label>
-										</div>
-										<div class="col-md-12"style="margin:15px 5px 20px 5px;">
-											<div class="inline-group">
-												<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
-												<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
-												<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
-												<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
+								<!-- End 說明區塊 -->
+							</div>
+						</div>						  
+					</div>						  
+			  	<div id="three" class="tab-inner">
+						<br>
+						<div class="row" style="color: #222222;">
+							<div class="col-md-4" style="display: flex;border-radius:5px;">
+									<!-- Start 播放區塊 -->
+									<div class="player_block" >
+									  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
+									  <form action="#" class="sky-form2 sky-form label-rounded">
+										<div class="row"style="background-color: #E4F3FE;">
+											<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
+												<div class="inline-group">
+													<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image5')"checked><i class="rounded-x" ></i>&nbsp; 新北樹林</label>
+													&emsp;
+													<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image6')"><i class="rounded-x" ></i>&nbsp; 台中南屯</label>
+													&emsp;
+													<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="2" class="form-check-input"onclick="showImage('image7')"><i class="rounded-x" ></i>&nbsp; 高雄林園</label>
+												</div>
+											</div>				  
+											<div class="col-md-12">
+												<div class="row">
+													<div class="col-md-12">
+														<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
+													</div>
+													<div class="col-md-12" style="margin:15px 5px 20px 5px;">
+														<label class="select" >
+															<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
+															<i aria-hidden="true"></i>
+														</label>
+														<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
+															&nbsp; 
+															<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" s>&emsp;停止</button>
+															&nbsp; 
+															<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+														</div>
+													</div>
+													<div class="clearfix visible-xs visible-sm"></div>
+												</div>
+												<div class="clearfix"></div>
 											</div>
-										</div>						
-								  </div>
-								</div>
-								<div class="col-md-12" style="background-color: #187AC8;">
-								  <div class="row">
-									<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
-									  <label class="label">播放速度（<span></span>秒）</label>
-									</div>
-									<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
-									<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
-										&nbsp; 
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
-									</div>
-								  </div>						
-								  <div class="clearfix"></div>					
-								</div>
-							</div>
-						  </form>
-						</div>
-						<!-- End 播放區塊 -->
-				</div>
-				<div class="col-md-8">
-						<div class="tab-content showIMG">
-							<div>
-								<img id="image3" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-002.png" alt="" width="750px">
-							</div>
-							<div>
-								<img id="image4" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0058-004.png" alt="" width="750px" style="display:none;">
-							</div>
-						</div>
-				</div>
-				<div class="row" style="margin-top: 20px;">
-					<!-- Start 說明區塊 -->
-					<div class="col-md-12">
-						<div class="other">
-							<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(有地形)</h4></div>
-								<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(有地形)" alt="雷達回波顏色說明(無地形)" src="/static/images/weather/colorbar.png" style="width:35%;">
-							<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
-							<ul>
-								<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
-								<li><a href="/V8/C/W/OBS_Radar_Description.html" title="雷達設置地點與有效範圍" target="_self"style="text-decoration: none;color:#000;font-weight: bold;">雷達設置地點與有效範圍</a></li>
-							</ul>
-						</div>
-						<div class="other">
-							<h4 class="note-md">氣象雷達</h4>
-							<ul class="list-unstyled">
-								<li>氣象雷達開始掃描15分鐘內，可於本局網頁上可看到新的雷達合成圖。若無法看到最新雷達圖，建議利用「重新整理」功能來更新資料的顯示。</li>
-							</ul>
-						</div>
-						<div class="other" id="ContentTable">
-							<!--<h4 class="note-md">最新天氣圖資</h4>-->
-							<!--<ul class="list-unstyled">-->
-								<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
-							<!--</ul>-->
-						<div onblur="tabJump(0)" tabindex="0"></div></div>
-						<div class="clearfix"></div>
-					</div>
-					<!-- End 說明區塊 -->
-				</div>
-			</div>						  
-		</div>	
-        <div class="tab-content-3">
-			<br>
-			<div class="row" style="color: #222222;">
-				<div class="col-md-4" style="display: flex;border-radius:5px;">
-						<!-- Start 播放區塊 -->
-						<div class="player_block" >
-						  <!--<form action="#" id="sky-form2" class="sky-form label-rounded">-->
-						  <form action="#" class="sky-form2 sky-form label-rounded">
-							<div class="row"style="background-color: #E4F3FE;">
-								<div class="col-md-12 player" style="margin:20px 5px 20px 5px;">
-									<div class="inline-group">
-										<label for="area0" class="radio" ><input type="radio" name="area" id="area0" value="0"class="form-check-input" onclick="showImage('image5')"checked><i class="rounded-x" ></i>&nbsp; 新北樹林</label>
-										&emsp;
-										<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="1" class="form-check-input"onclick="showImage('image6')"><i class="rounded-x" ></i>&nbsp; 台中南屯</label>
-										&emsp;
-										<label for="area1" class="radio"><input type="radio" name="area" id="area1" value="2" class="form-check-input"onclick="showImage('image7')"><i class="rounded-x" ></i>&nbsp; 高雄林園</label>
-									</div>
-								</div>				  
-								<div class="col-md-12">
-									<div class="row">
-										<div class="col-md-12">
-											<label class="label" for="selectday" style="font-weight: bold;">單張顯示（靜態）</label>
-										</div>
-										<div class="col-md-12" style="margin:15px 5px 20px 5px;">
-											<label class="select" >
-												<select id="selectday"><option data-target="CV1_3600_202305082130.png">2023/05/08 21:30</option><option data-target="CV1_3600_202305082120.png">2023/05/08 21:20</option><option data-target="CV1_3600_202305082110.png">2023/05/08 21:10</option><option data-target="CV1_3600_202305082100.png">2023/05/08 21:00</option><option data-target="CV1_3600_202305082050.png">2023/05/08 20:50</option><option data-target="CV1_3600_202305082040.png">2023/05/08 20:40</option><option data-target="CV1_3600_202305082030.png">2023/05/08 20:30</option><option data-target="CV1_3600_202305082020.png">2023/05/08 20:20</option><option data-target="CV1_3600_202305082010.png">2023/05/08 20:10</option><option data-target="CV1_3600_202305082000.png">2023/05/08 20:00</option><option data-target="CV1_3600_202305081950.png">2023/05/08 19:50</option><option data-target="CV1_3600_202305081940.png">2023/05/08 19:40</option><option data-target="CV1_3600_202305081930.png">2023/05/08 19:30</option><option data-target="CV1_3600_202305081920.png">2023/05/08 19:20</option><option data-target="CV1_3600_202305081910.png">2023/05/08 19:10</option><option data-target="CV1_3600_202305081900.png">2023/05/08 19:00</option><option data-target="CV1_3600_202305081850.png">2023/05/08 18:50</option><option data-target="CV1_3600_202305081840.png">2023/05/08 18:40</option><option data-target="CV1_3600_202305081830.png">2023/05/08 18:30</option><option data-target="CV1_3600_202305081820.png">2023/05/08 18:20</option><option data-target="CV1_3600_202305081810.png">2023/05/08 18:10</option><option data-target="CV1_3600_202305081800.png">2023/05/08 18:00</option><option data-target="CV1_3600_202305081750.png">2023/05/08 17:50</option><option data-target="CV1_3600_202305081740.png">2023/05/08 17:40</option><option data-target="CV1_3600_202305081730.png">2023/05/08 17:30</option><option data-target="CV1_3600_202305081720.png">2023/05/08 17:20</option><option data-target="CV1_3600_202305081710.png">2023/05/08 17:10</option><option data-target="CV1_3600_202305081700.png">2023/05/08 17:00</option><option data-target="CV1_3600_202305081650.png">2023/05/08 16:50</option><option data-target="CV1_3600_202305081640.png">2023/05/08 16:40</option><option data-target="CV1_3600_202305081630.png">2023/05/08 16:30</option><option data-target="CV1_3600_202305081620.png">2023/05/08 16:20</option><option data-target="CV1_3600_202305081610.png">2023/05/08 16:10</option><option data-target="CV1_3600_202305081600.png">2023/05/08 16:00</option><option data-target="CV1_3600_202305081550.png">2023/05/08 15:50</option><option data-target="CV1_3600_202305081540.png">2023/05/08 15:40</option><option data-target="CV1_3600_202305081530.png">2023/05/08 15:30</option><option data-target="CV1_3600_202305081520.png">2023/05/08 15:20</option><option data-target="CV1_3600_202305081510.png">2023/05/08 15:10</option><option data-target="CV1_3600_202305081500.png">2023/05/08 15:00</option><option data-target="CV1_3600_202305081450.png">2023/05/08 14:50</option><option data-target="CV1_3600_202305081440.png">2023/05/08 14:40</option><option data-target="CV1_3600_202305081430.png">2023/05/08 14:30</option><option data-target="CV1_3600_202305081420.png">2023/05/08 14:20</option><option data-target="CV1_3600_202305081410.png">2023/05/08 14:10</option><option data-target="CV1_3600_202305081400.png">2023/05/08 14:00</option><option data-target="CV1_3600_202305081350.png">2023/05/08 13:50</option><option data-target="CV1_3600_202305081340.png">2023/05/08 13:40</option><option data-target="CV1_3600_202305081330.png">2023/05/08 13:30</option><option data-target="CV1_3600_202305081320.png">2023/05/08 13:20</option><option data-target="CV1_3600_202305081310.png">2023/05/08 13:10</option><option data-target="CV1_3600_202305081300.png">2023/05/08 13:00</option><option data-target="CV1_3600_202305081250.png">2023/05/08 12:50</option><option data-target="CV1_3600_202305081240.png">2023/05/08 12:40</option><option data-target="CV1_3600_202305081230.png">2023/05/08 12:30</option><option data-target="CV1_3600_202305081220.png">2023/05/08 12:20</option><option data-target="CV1_3600_202305081210.png">2023/05/08 12:10</option><option data-target="CV1_3600_202305081200.png">2023/05/08 12:00</option><option data-target="CV1_3600_202305081150.png">2023/05/08 11:50</option><option data-target="CV1_3600_202305081140.png">2023/05/08 11:40</option><option data-target="CV1_3600_202305081130.png">2023/05/08 11:30</option><option data-target="CV1_3600_202305081120.png">2023/05/08 11:20</option><option data-target="CV1_3600_202305081110.png">2023/05/08 11:10</option><option data-target="CV1_3600_202305081100.png">2023/05/08 11:00</option><option data-target="CV1_3600_202305081050.png">2023/05/08 10:50</option><option data-target="CV1_3600_202305081040.png">2023/05/08 10:40</option><option data-target="CV1_3600_202305081030.png">2023/05/08 10:30</option><option data-target="CV1_3600_202305081020.png">2023/05/08 10:20</option><option data-target="CV1_3600_202305081010.png">2023/05/08 10:10</option><option data-target="CV1_3600_202305081000.png">2023/05/08 10:00</option><option data-target="CV1_3600_202305080950.png">2023/05/08 09:50</option><option data-target="CV1_3600_202305080940.png">2023/05/08 09:40</option><option data-target="CV1_3600_202305080930.png">2023/05/08 09:30</option><option data-target="CV1_3600_202305080920.png">2023/05/08 09:20</option><option data-target="CV1_3600_202305080910.png">2023/05/08 09:10</option><option data-target="CV1_3600_202305080900.png">2023/05/08 09:00</option><option data-target="CV1_3600_202305080850.png">2023/05/08 08:50</option><option data-target="CV1_3600_202305080840.png">2023/05/08 08:40</option><option data-target="CV1_3600_202305080830.png">2023/05/08 08:30</option><option data-target="CV1_3600_202305080820.png">2023/05/08 08:20</option><option data-target="CV1_3600_202305080810.png">2023/05/08 08:10</option><option data-target="CV1_3600_202305080800.png">2023/05/08 08:00</option><option data-target="CV1_3600_202305080750.png">2023/05/08 07:50</option><option data-target="CV1_3600_202305080740.png">2023/05/08 07:40</option><option data-target="CV1_3600_202305080730.png">2023/05/08 07:30</option><option data-target="CV1_3600_202305080720.png">2023/05/08 07:20</option><option data-target="CV1_3600_202305080710.png">2023/05/08 07:10</option><option data-target="CV1_3600_202305080700.png">2023/05/08 07:00</option><option data-target="CV1_3600_202305080650.png">2023/05/08 06:50</option><option data-target="CV1_3600_202305080640.png">2023/05/08 06:40</option><option data-target="CV1_3600_202305080630.png">2023/05/08 06:30</option><option data-target="CV1_3600_202305080620.png">2023/05/08 06:20</option><option data-target="CV1_3600_202305080610.png">2023/05/08 06:10</option><option data-target="CV1_3600_202305080600.png">2023/05/08 06:00</option><option data-target="CV1_3600_202305080550.png">2023/05/08 05:50</option><option data-target="CV1_3600_202305080540.png">2023/05/08 05:40</option><option data-target="CV1_3600_202305080530.png">2023/05/08 05:30</option><option data-target="CV1_3600_202305080520.png">2023/05/08 05:20</option><option data-target="CV1_3600_202305080510.png">2023/05/08 05:10</option><option data-target="CV1_3600_202305080500.png">2023/05/08 05:00</option><option data-target="CV1_3600_202305080450.png">2023/05/08 04:50</option><option data-target="CV1_3600_202305080440.png">2023/05/08 04:40</option><option data-target="CV1_3600_202305080430.png">2023/05/08 04:30</option><option data-target="CV1_3600_202305080420.png">2023/05/08 04:20</option><option data-target="CV1_3600_202305080410.png">2023/05/08 04:10</option><option data-target="CV1_3600_202305080400.png">2023/05/08 04:00</option><option data-target="CV1_3600_202305080350.png">2023/05/08 03:50</option><option data-target="CV1_3600_202305080340.png">2023/05/08 03:40</option><option data-target="CV1_3600_202305080330.png">2023/05/08 03:30</option><option data-target="CV1_3600_202305080320.png">2023/05/08 03:20</option><option data-target="CV1_3600_202305080310.png">2023/05/08 03:10</option><option data-target="CV1_3600_202305080300.png">2023/05/08 03:00</option><option data-target="CV1_3600_202305080250.png">2023/05/08 02:50</option><option data-target="CV1_3600_202305080240.png">2023/05/08 02:40</option><option data-target="CV1_3600_202305080230.png">2023/05/08 02:30</option><option data-target="CV1_3600_202305080220.png">2023/05/08 02:20</option><option data-target="CV1_3600_202305080210.png">2023/05/08 02:10</option><option data-target="CV1_3600_202305080200.png">2023/05/08 02:00</option><option data-target="CV1_3600_202305080150.png">2023/05/08 01:50</option><option data-target="CV1_3600_202305080140.png">2023/05/08 01:40</option><option data-target="CV1_3600_202305080130.png">2023/05/08 01:30</option><option data-target="CV1_3600_202305080120.png">2023/05/08 01:20</option><option data-target="CV1_3600_202305080110.png">2023/05/08 01:10</option><option data-target="CV1_3600_202305080100.png">2023/05/08 01:00</option><option data-target="CV1_3600_202305080050.png">2023/05/08 00:50</option><option data-target="CV1_3600_202305080040.png">2023/05/08 00:40</option><option data-target="CV1_3600_202305080030.png">2023/05/08 00:30</option><option data-target="CV1_3600_202305080020.png">2023/05/08 00:20</option><option data-target="CV1_3600_202305080010.png">2023/05/08 00:10</option><option data-target="CV1_3600_202305080000.png">2023/05/08 00:00</option><option data-target="CV1_3600_202305072350.png">2023/05/07 23:50</option><option data-target="CV1_3600_202305072340.png">2023/05/07 23:40</option><option data-target="CV1_3600_202305072330.png">2023/05/07 23:30</option><option data-target="CV1_3600_202305072320.png">2023/05/07 23:20</option><option data-target="CV1_3600_202305072310.png">2023/05/07 23:10</option><option data-target="CV1_3600_202305072300.png">2023/05/07 23:00</option><option data-target="CV1_3600_202305072250.png">2023/05/07 22:50</option><option data-target="CV1_3600_202305072240.png">2023/05/07 22:40</option><option data-target="CV1_3600_202305072230.png">2023/05/07 22:30</option><option data-target="CV1_3600_202305072220.png">2023/05/07 22:20</option><option data-target="CV1_3600_202305072210.png">2023/05/07 22:10</option><option data-target="CV1_3600_202305072200.png">2023/05/07 22:00</option><option data-target="CV1_3600_202305072150.png">2023/05/07 21:50</option><option data-target="CV1_3600_202305072140.png">2023/05/07 21:40</option><option data-target="CV1_3600_202305072130.png">2023/05/07 21:30</option></select>
-												<i aria-hidden="true"></i>
-											</label>
-											<div class="col-xs-12"style="margin:5px 0px 5px 0px;">
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" >&emsp;播放</button>
-												&nbsp; 
-												<button type="button" class="btn btn-light"><img src="/static/images/weather/stop.png" alt=""width="15" height="15" s>&emsp;停止</button>
-												&nbsp; 
-												<a href="" style="text-decoration: none;color:#000;font-weight: bold;">播放操作說明</a>
+											<div class="col-md-12">
+											  <div class="row">
+													<div class="col-md-12">
+														<label class="label"style="font-weight: bold;">動態顯示</label>
+													</div>
+													<div class="col-md-12"style="margin:15px 5px 20px 5px;">
+														<div class="inline-group">
+															<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
+															<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
+															<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
+															<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
+														</div>
+													</div>						
+											  </div>
+											</div>
+											<div class="col-md-12" style="background-color: #187AC8;">
+											  <div class="row">
+												<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
+												  <label class="label">播放速度（<span></span>秒）</label>
+												</div>
+												<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
+												<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
+													&nbsp; 
+													<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
+												</div>
+											  </div>						
+											  <div class="clearfix"></div>					
 											</div>
 										</div>
-										<div class="clearfix visible-xs visible-sm"></div>
+									  </form>
 									</div>
+									<!-- End 播放區塊 -->
+							</div>
+							<div class="col-md-8">
+									<div class="tab-content showIMG">
+										<div>
+											<img id="image5" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-001.png" alt="" width="690px">
+										</div>
+										<div>
+											<img id="image6" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-002.png" alt="" width="690px" style="display:none;">
+										</div>
+										<div>
+											<img id="image7" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-003.png" alt="" width="690px" style="display:none;">
+										</div>
+									</div>
+							</div>
+							<div class="row" style="margin-top: 20px;">
+								<!-- Start 說明區塊 -->
+								<div class="col-md-12">
+									<div class="other">
+										<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(降雨雷達)</h4></div>
+											<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(降雨雷達)" alt="雷達回波顏色說明(降雨雷達)" src="/static/images/weather/colorbar.png" style="width:35%;">
+										<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
+										<ul>
+											<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
+											<li>降雨雷達觀測有效範圍：降雨雷達為波長5公分(現行雷達波長10公分)之氣象雷達，觀測特性為於強降水區域會造成衰減，故較佳觀測範圍為150公里，理想觀測範圍為75公里；此外，部分區域因受地貌阻擋，可能影響觀測品質或無法進行觀測，其受限區域以藍灰色標示。</li>
+										</ul>
+									</div>
+									<div class="other">
+										<h4 class="note-md" style="margin-top: 20px;">降雨雷達</h4>
+										<ul>
+											<li>氣象局為加強現行雷達網不易觀測到之低空域降水觀測能力，新建置波長5公分之降雨雷達(雙偏極化雷達)，可較一般都卜勒(單偏極化)氣象雷達提供更多元之降雨觀測資訊，除可提供更貼近地表之高時間解析度(每2分鐘一筆)與高空間解析度(250公尺)之降雨觀測外(現行雷達網時間解析度為10分鐘、空間解析度為1公里)，亦可估算降水粒子大小與型態，能更即時、精準監測與掌握目前降雨的分布狀況。</li>
+											<li>林園雷達觀測資料於雷達鄰近區域易受周圍地形地物影響，故本局移除該區域雷達回波訊號，以確保氣象分析不受錯誤資訊之干擾。建議檢視「單一降雨雷達回波圖」時，可搭配全臺「雷達整合回波圖」一併使用，以便得到較完整的天氣資訊。</li>
+										</ul>
+									</div>
+									<div class="other" id="ContentTable">
+										<!--<h4 class="note-md">最新天氣圖資</h4>-->
+										<!--<ul class="list-unstyled">-->
+											<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
+										<!--</ul>-->
+									<div onblur="tabJump(0)" tabindex="0"></div></div>
 									<div class="clearfix"></div>
 								</div>
-								<div class="col-md-12">
-								  <div class="row">
-										<div class="col-md-12">
-											<label class="label"style="font-weight: bold;">動態顯示</label>
-										</div>
-										<div class="col-md-12"style="margin:15px 5px 20px 5px;">
-											<div class="inline-group">
-												<label for="select_hour0" class="radio"><input type="radio" name="select_hour" id="select_hour0" value="18" class="form-check-input"><i class="rounded-x"></i>&nbsp; 3小時</label>
-												<label for="select_hour1" class="radio"><input type="radio" name="select_hour" id="select_hour1" value="36" class="form-check-input"><i class="rounded-x"></i>&nbsp;6小時</label>
-												<label for="select_hour2" class="radio"><input type="radio" name="select_hour" id="select_hour2" value="54" class="form-check-input"><i class="rounded-x"></i>&nbsp;9小時</label>
-												<label for="select_hour3" class="radio"><input type="radio" name="select_hour" id="select_hour3" value="72" class="form-check-input"><i class="rounded-x"></i>&nbsp;12小時</label>
-											</div>
-										</div>						
-								  </div>
-								</div>
-								<div class="col-md-12" style="background-color: #187AC8;">
-								  <div class="row">
-									<div class="col-xs-10"style="margin:10px 0px 10px 0px;color:#fff;font-weight: bold;">
-									  <label class="label">播放速度（<span></span>秒）</label>
-									</div>
-									<div><input style="width: 100%;" type="range" id="slider" name="slider" min="1" max="15" value="0.1"></div>
-									<div class="col-xs-12"style="margin:15px 5px 15px 5px;">
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/replay.png" alt=""width="15" height="15" >&emsp;循環播放</button>
-										&nbsp; 
-										<button type="button" class="btn btn-light"><img src="/static/images/weather/play.png" alt=""width="15" height="15" s>&emsp;單次播放</button>
-									</div>
-								  </div>						
-								  <div class="clearfix"></div>					
-								</div>
+								<!-- End 說明區塊 -->
 							</div>
-						  </form>
-						</div>
-						<!-- End 播放區塊 -->
-				</div>
-				<div class="col-md-8">
-						<div class="tab-content showIMG">
-							<div>
-								<img id="image5" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-001.png" alt="" width="750px">
-							</div>
-							<div>
-								<img id="image6" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-002.png" alt="" width="750px" style="display:none;">
-							</div>
-							<div>
-								<img id="image7" src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/MSC/O-A0084-003.png" alt="" width="750px" style="display:none;">
-							</div>
-						</div>
-				</div>
-				<div class="row" style="margin-top: 20px;">
-					<!-- Start 說明區塊 -->
-					<div class="col-md-12">
-						<div class="other">
-							<div id="radar_colorbar_DESP_C"><h4>雷達回波顏色說明(降雨雷達)</h4></div>
-								<img id="radarbar_C" class="margin-bottom-10" title="雷達回波顏色說明(降雨雷達)" alt="雷達回波顏色說明(降雨雷達)" src="/static/images/weather/colorbar.png" style="width:35%;">
-							<h4 class="note-md" style="margin-top: 20px;">雷達回波</h4>
-							<ul>
-								<li>雷達發射之電磁波經由大氣中的降水粒子(雨、雪、冰雹等)反射回來的訊號， 稱為雷達回波(reflectivity)，根據雷達接收到降水粒子所反射回來的訊號強度，再利用不同顏色顯示，即可製成雷達回波圖。回波的強度與降水粒子的大小、形狀、狀態以及單位體積內粒子的數量有關，一般而言，反射回來的訊號越強，降水的強度就越強，因此可藉由雷達回波圖研判天氣系統的降水強度及分布狀況。</li>
-								<li>降雨雷達觀測有效範圍：降雨雷達為波長5公分(現行雷達波長10公分)之氣象雷達，觀測特性為於強降水區域會造成衰減，故較佳觀測範圍為150公里，理想觀測範圍為75公里；此外，部分區域因受地貌阻擋，可能影響觀測品質或無法進行觀測，其受限區域以藍灰色標示。</li>
-							</ul>
-						</div>
-						<div class="other">
-							<h4 class="note-md" style="margin-top: 20px;">降雨雷達</h4>
-							<ul>
-								<li>氣象局為加強現行雷達網不易觀測到之低空域降水觀測能力，新建置波長5公分之降雨雷達(雙偏極化雷達)，可較一般都卜勒(單偏極化)氣象雷達提供更多元之降雨觀測資訊，除可提供更貼近地表之高時間解析度(每2分鐘一筆)與高空間解析度(250公尺)之降雨觀測外(現行雷達網時間解析度為10分鐘、空間解析度為1公里)，亦可估算降水粒子大小與型態，能更即時、精準監測與掌握目前降雨的分布狀況。</li>
-								<li>林園雷達觀測資料於雷達鄰近區域易受周圍地形地物影響，故本局移除該區域雷達回波訊號，以確保氣象分析不受錯誤資訊之干擾。建議檢視「單一降雨雷達回波圖」時，可搭配全臺「雷達整合回波圖」一併使用，以便得到較完整的天氣資訊。</li>
-							</ul>
-						</div>
-						<div class="other" id="ContentTable">
-							<!--<h4 class="note-md">最新天氣圖資</h4>-->
-							<!--<ul class="list-unstyled">-->
-								<a class="btn btn-primary" href="/V8/C/W/graph_collection.html">最新天氣圖資</a>
-							<!--</ul>-->
-						<div onblur="tabJump(0)" tabindex="0"></div></div>
-						<div class="clearfix"></div>
-					</div>
-					<!-- End 說明區塊 -->
-				</div>
-			</div>						  
-        </div>
-	</div>
-	<script>	
-		function showImage(imageID) {
-		// 隱藏所有照片
-		var images = document.getElementsByTagName('img');
-		for (var i = 0; i < images.length; i++) {
-		  images[i].style.display = 'none';
-		}
-		
-		// 顯示指定照片
-		var image = document.getElementById(imageID);
-		image.style.display = 'block';
-	  }</script>
-
-	  
-    </main>
-	<br>
+						</div>						  
+			  	</div>
+			</div>
+		  </div>		  
+        </div>  
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>$(document).ready(function () {
+	tabCutover();
+  });
+  
+  /*錯誤版*/
+  function tabCutover1() {
+	var tablink = $(".tab-title li.active").find("a").data("tablink");
+  
+	$('#'+ tablink).show().siblings(".tab-inner").hide();
+  
+	$(".tab-title li").click(function () {
+	  $('#'+$(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+	  $(this).addClass("active").siblings(".active").removeClass("active");
+	});
+  }
+  
+  /*tab 收合*/
+  function tabCutover() {
+  
+   $(".tab-title li.active").each(function () {
+	  var tablink = $(this).find("a").data("tablink");
+  
+	  $('#'+tablink).show().siblings(".tab-inner").hide();
+	});
+  
+   $(".tab-title li").click(function () {
+	  $('#'+$(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+	  $(this).addClass("active").siblings(".active").removeClass("active");
+	});
+  }
+  </script>
+<script>	
+	function showImage(imageID) {
+	// 隱藏所有照片
+	var images = document.getElementsByTagName('img');
+	for (var i = 0; i < images.length; i++) {
+	  images[i].style.display = 'none';
+	}
+	
+	// 顯示指定照片
+	var image = document.getElementById(imageID);
+	image.style.display = 'block';
+  }
+</script>	
+<br>
 {% endblock %}
