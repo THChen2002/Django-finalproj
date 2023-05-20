@@ -197,6 +197,120 @@ let hr_chart;
   });
 })();
 
+let week_AT_chart;
+(function () {
+  "use strict";
+
+  feather.replace({ "aria-hidden": "true" });
+
+  // Graphs
+  var ctx = document.getElementById("weekATChart");
+  // eslint-disable-next-line no-unused-vars
+  week_AT_chart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+        "白天",
+        "晚上",
+      ],
+      datasets: [
+        {
+          label: "高溫",
+          data: [
+            30,
+            null,
+            28,
+            null,
+            25,
+            null,
+            27,
+            null,
+            30,
+            null,
+            31,
+            null,
+            30,
+            null,
+          ],
+          type: "line",
+          lineTension: 0.25,
+          backgroundColor: "transparent",
+          borderColor: "#f44336",
+          borderWidth: 4,
+          pointBackgroundColor: "#f44336",
+          spanGaps: true,
+          //fill: false,
+        },
+        {
+          label: "低溫",
+          data: [
+            null,
+            16,
+            null,
+            16,
+            null,
+            15,
+            null,
+            15,
+            null,
+            16,
+            null,
+            18,
+            null,
+            18,
+          ],
+          type: "line",
+          lineTension: 0.25,
+          backgroundColor: "transparent",
+          borderColor: "#2196f3",
+          borderWidth: 4,
+          pointBackgroundColor: "#2196f3",
+          spanGaps: true,
+          //fill: false,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: false,
+              autoSkip: false,
+            },
+          },
+        ],
+      },
+      tooltips: {
+        enabled: true,
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+          }
+        }
+      },
+      legend: {
+        display: true,
+        labels: {
+          usePointStyle: false,
+        },
+      },
+    },
+  });
+})();
+
 // const form = document.getElementById('region-form');
 // var cityName = '';
 // var townName = '';
@@ -262,7 +376,7 @@ let hr_chart;
 //     '金門縣': ['金城鎮', '金湖鎮', '金沙鎮', '金寧鄉', '烈嶼鄉', '烏坵鄉']
 // };
 
-const canvas = document.getElementById('weekchart');
+const canvas = document.getElementById('weekChart');
 const downloadBtn = document.getElementById('download-btn');
 downloadBtn.addEventListener('click', () => {
     // 取得 canvas 圖片資料
@@ -271,7 +385,7 @@ downloadBtn.addEventListener('click', () => {
     // 建立一個下載連結
     const link = document.createElement('a');
     link.href = imgData;
-    link.download = `${cityName}${townName}溫度預測圖.png`;
+    link.download = `溫度預測圖.png`;
     
     // 將連結加到文件中，並自動點擊下載
     document.body.appendChild(link);

@@ -31,8 +31,10 @@
 			</tr>
 			</table>
 			<br>
-			<div class="row">
-				<div class="col-md-1 d-flex align-items-center">
+			<div  style="border: 1px solid #959393;background-color: #eeeded;padding: 6px;border-radius: 15px;">
+				<div class="row" style="margin:0px;padding:15px 0px;border-bottom: 1px solid #BEBEBE;">
+				<h2 style="font-weight: bold;margin: 10px 0px 20px 0px;">留言區</h2>
+				<div class="col-md-1 d-flex" style="justify-content: center;">
 					<img src="{{ request.session.picture_url }}" class="rounded-circle mr-3 "
 					alt="{{ request.session.picture_url }}{{ user.username }}'s profile picture" width="40" height="40">
 				</div>
@@ -40,19 +42,20 @@
 					<div class="col-md-10">
 					{% csrf_token %}
 					<div class="form-group">
-						<input type="text" class="form-control" name="bcontent" placeholder="發表留言..."style="width: 100%;"></input>
+						<input type="text" class="form-control" name="bcontent" placeholder="發表留言..."style="width: 95%;"></input>
 						<input type="hidden" name="bblogpost" value="{{ unit.id }}">
 						<input type="hidden" name="bauthor" value="{{ request.user.id }}">
 					</div>
 					</div>
-					<div class="col-md-2" style="margin-left:10px">
-						<button type="submit" class="btn btn-primary">留言</button>
+					<div class="col-md-2">
+						<button type="submit" class="btn btn-primary" style="width: 70%;">留言</button>
 					</div>
 				</form>
-			</div>
-			<div>
+				</div>
+				<div style="padding-bottom: 15px;">
 				{% for board in boards %}
-				  <div class="d-flex align-items-center mb-3">
+				<div class="row" style="margin:0px;padding:15px 0px;border-bottom: 1px solid #BEBEBE;">
+				 	<div class="col-md-1 d-flex"style="justify-content: center;">
 					{% if board.bauthor.profile_pic %}
 					  <img src="/media/{{ board.bauthor.profile_pic }}" class="rounded-circle mr-3"
 						alt="{{ board.bauthor.user_name }}'s profile picture" width="40" height="40">
@@ -60,22 +63,25 @@
 					  <img src="{% static 'images/user_default.png' %}" class="rounded-circle mr-3"
 						alt="{{ board.bauthor.user_name }}'s profile picture" width="40" height="40">
 					{% endif %}
-					<div>
+					</div> 
+					<div class="col-md-11"style="padding:0px;">
 					  <span>&emsp;{{ board.bauthor.user_name }}&emsp;</span>
 						{% if board.btimedelta < 60 %}
-					  		<span>{{ board.btimedelta  }} 分鐘前</span><br>
+					  		<span >{{ board.btimedelta  }} 分鐘前</span><br>
 					  	{% elif board.btimedelta < 1440 %}
 					  		<span>{% widthratio board.btimedelta 60 1 %} 小時前</span><br>
 						{% else %}
 							<span>{% widthratio board.btimedelta 1440 1 %} 天前</span><br>				
 					  	{% endif %}
-					  		<span>&emsp;{{ board.bcontent }}</span><br>					  
+					  		<span>&emsp;{{ board.bcontent }}</span>				  
 					</div>
-				  </div> 
+				</div>
 				{% endfor %}
+				</div>
 			</div>
-			<div class="topfunction">
-				<a class="btn btn-light" href="/apple-blog/"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
+			<br>
+			<div class="topfunction" >
+				<a class="btn btn-light" href="/apple-blog/" style="border: 2px solid black;border-radius: 8px;"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
 			</div>
 		</div>
 	</div>

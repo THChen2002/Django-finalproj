@@ -64,7 +64,7 @@ def index(request):
         if not UserProfile.objects.filter(id=user.id).exists():
             social_account_name = social_account.extra_data.get('name')
             social_account_name.encode('utf-8').decode('unicode_escape')
-            profile = UserProfile(id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
+            profile = UserProfile(user_id=user.id, user_name=social_account_name, first_name=user.first_name, last_name=user.last_name)
             profile.save()
 
             # URL抓取圖片

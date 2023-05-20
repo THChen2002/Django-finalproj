@@ -13,35 +13,40 @@
          <button type="button" class="btn btn-danger"  data-bs-toggle="modal"data-bs-target="#alert" style="float: right; margin-left: 20px;">回測驗首頁</button>
       </div>
    </div>
-   {% for question in questions %}
-   <div class="mainquiz container-fluid">
-      <div class="scp-quizzes-main" >
-         <div class="scp-quizzes-data">
-            <div class="row">
-               <div>
-                  <h3>{{ question.question }}</h3>
+   <form id="quizForm" action="/quiz/result/" method="post">
+      {% csrf_token %}
+      {% for question in questions %}
+      <div class="mainquiz container-fluid">
+         <div class="scp-quizzes-main">
+            <div class="scp-quizzes-data">
+               <div class="row">
+                  <div>
+                     <h3>{{ question.question }}</h3>
 
-                  {% if question.question_url%}
-                  <img src="{{ question.question_url }}" alt="" width="30%">
-                  {% endif %}
+                     {% if question.question_url%}
+                     <img src="{{ question.question_url }}" alt="" width="30%">
+                     {% endif %}
+                  </div>
                </div>
+               <br>
+               <input type="radio" name="question{{ forloop.counter }}" value="{{ question.choice1 }}">
+               <label id="label1_{{ forloop.counter }}" onclick="recordAnswer({{ forloop.counter }}, this, 'A')">1. {{ question.choice1 }}</label>
+               <br>
+               <input type="radio" name="question{{ forloop.counter }}" value="{{ question.choice2 }}">
+               <label id="label2_{{ forloop.counter }}" onclick="recordAnswer({{ forloop.counter }}, this, 'B')">2. {{ question.choice2 }}</label>
+               <br>
+               <input type="radio" name="question{{ forloop.counter }}" value="{{ question.choice3 }}">
+               <label id="label3_{{ forloop.counter }}" onclick="recordAnswer({{ forloop.counter }}, this, 'C')">3. {{ question.choice3 }}</label>
+               <br>
+               <input type="radio" name="question{{ forloop.counter }}" value="{{ question.choice4 }}">
+               <label id="label4_{{ forloop.counter }}" onclick="recordAnswer({{ forloop.counter }}, this, 'D')">4. {{ question.choice4 }}</label>
+               <input type="hidden" id="hiddenInput{{ forloop.counter }}" name="question{{ forloop.counter }}" value='{"id": {{ question.pk }}, "userAnswer": "0"}'>
             </div>
-            <br>
-            <input type="radio" name="question{{ forloop.counter }}" onchange="recordAnswer({{ forloop.counter }}, this)">
-            <label id="label1_{{ forloop.counter }}">1. {{ question.choice1 }}</label>
-            <br>
-            <input type="radio" name="question{{ forloop.counter }}" onchange="recordAnswer({{ forloop.counter }}, this)">
-            <label id="label2_{{ forloop.counter }}">2. {{ question.choice2 }}</label>
-            <br>
-            <input type="radio" name="question{{ forloop.counter }}" onchange="recordAnswer({{ forloop.counter }}, this)">
-            <label id="label3_{{ forloop.counter }}">3. {{ question.choice3 }}</label>
-            <br>
-            <input type="radio" name="question{{ forloop.counter }}" onchange="recordAnswer({{ forloop.counter }}, this)">
-            <label id="label4_{{ forloop.counter }}">4. {{ question.choice4 }}</label>
          </div>
       </div>
-   </div>
-{% endfor %}
+      {% endfor %}
+      <button type="submit">提交</button>
+   </form>
 
 
 
@@ -71,25 +76,33 @@
 <script>
    // 定義一個空物件來儲存使用者的選項
    var answers = {};
- 
+
    // 當使用者選擇一個選項時，將選項存入answers變數中
-   function recordAnswer(questionNum, selectedOption) {
-     answers[questionNum] = selectedOption.value;
-     // 將使用者選到的label改成藍色
-     var labelId = "label" + selectedOption.id;
-     document.getElementById(labelId).style.backgroundColor = "blue";
+   function recordAnswer(questionNum, selectedOption, userAnswer) {
+      // 將之前選中的標籤顏色重置
+      var prevSelectedOptions = document.querySelectorAll("[id$='_" + questionNum + "']");
+      console.log("prev",prevSelectedOptions);
+      if (prevSelectedOptions) {
+         for (var i = 0; i < prevSelectedOptions.length; i++) {
+            var prevSelectedOption = prevSelectedOptions[i];
+
+            // 将之前选中的标签颜色重置
+            prevSelectedOption.style.backgroundColor = "";
+         }
+      }
+      // 更新答案及相關標籤的顏色和選中狀態
+      answers[questionNum] = userAnswer;
+      var hiddenInput = document.getElementById("hiddenInput" + questionNum);
+      var hiddenValue = hiddenInput.value;
+      var hiddenValueObject = JSON.parse(hiddenValue);
+      hiddenValueObject.userAnswer = userAnswer;
+      hiddenInput.value = JSON.stringify(hiddenValueObject);
+      var labelId = selectedOption.id;
+      console.log(labelId);
+      document.getElementById(labelId).style.backgroundColor = "#78C1EA";
+      
+      console.log(answers);
    }
-   alert(answers);
- </script>
-{% comment %} <script type="text/javascript">
-   $(document).ready(function () {
-      $('label').click(function () {
-         $('label').removeClass('checked');
-         $(this).addClass('checked');
-      });
-   });
-   function nextQuestion() {
-      //window.location.href = "/quiz/";
-   }
-</script> {% endcomment %}
+   
+</script>
 {% endblock %}
