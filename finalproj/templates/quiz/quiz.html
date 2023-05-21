@@ -2,6 +2,7 @@
 {% block title %}氣象科普測驗{% endblock %}
 {% block content %}
 {% load static %}
+{% load quiz_filter %}
 <link rel="stylesheet" href="/static/css/quiz.css">
 <div class="container" style="justify-content: center;">
    <br>
@@ -15,6 +16,11 @@
    </div>
    <form id="quizForm" action="/quiz/result/" method="post">
       {% csrf_token %}
+      <!-- 這裡是為了讓後端知道是哪一個測驗 -->
+      <input type="hidden"  name="quiz_id" value='{{ quiz_id }}'>
+      <!-- 這裡是為了讓後端知道花了多少時間 -->
+      <input type="hidden" id="timeInput" name="time" value="0">
+      <div id="timer">00:00</div>
       {% for question in questions %}
       <div class="mainquiz container-fluid">
          <div class="scp-quizzes-main">
@@ -22,6 +28,11 @@
                <div class="row">
                   <div>
                      <h3>{{ question.question }}</h3>
+                     <h4>難易度：
+                        {% for i in question.question_level|times %}
+                        <img src="{% static 'images/quiz/star.png' %}" width="30px" height="30px">
+                        {% endfor %}
+                     </h4>
 
                      {% if question.question_url%}
                      <img src="{{ question.question_url }}" alt="" width="30%">
@@ -103,6 +114,50 @@
       
       console.log(answers);
    }
-   
 </script>
+<script>
+   // 計時器變數
+   var timerInterval;
+   var seconds = 0, minutes = 0
+   var timerDisplay = document.getElementById('timer');
+   var timeInput = document.getElementById('timeInput');
+
+   // 啟動計時器
+   function startTimer() {
+      timerInterval = setInterval(updateTimer, 1000);
+   }
+ 
+   // 更新計時器顯示
+   function updateTimer() {
+      seconds++;
+      if (seconds >= 60) {
+         seconds = 0;
+         minutes++;
+         if (minutes >= 60) {
+            alert('時間到!');
+         }
+      }
+ 
+      // 格式化時間
+      var timeString = formatTime(minutes) + ":" + formatTime(seconds);
+
+      // 更新計時器顯示
+      timerDisplay.textContent = timeString;
+      // 將時間值設定為隱藏input元素的值
+      timeInput.value = minutes*60 + seconds;
+   }
+ 
+   // 格式化時間
+   function formatTime(time) {
+      return time < 10 ? "0" + time : time;
+   }
+   // 提交表單時停止計時器
+   document.getElementById('quizForm').addEventListener('submit', function() {
+      clearInterval(timerInterval);
+   });
+
+ 
+   // 開始計時器
+   startTimer();
+ </script>
 {% endblock %}

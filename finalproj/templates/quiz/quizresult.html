@@ -4,14 +4,21 @@
 {% load static %}
 {% load quiz_filter %}
 <link rel="stylesheet" href="/static/css/quiz.css">
-<div class="container" style="justify-content: center;">
+<div class="container" >
    <br>
    <div class="row">
       <div class="col-md-6">
-         <h1>氣象科普測驗</h1>
+         <h1>測驗結果</h1>
       </div>
-      <div class="col-md-6">
-         <button type="button" class="btn btn-danger"  data-bs-toggle="modal"data-bs-target="#alert" style="float: right; margin-left: 20px;">回測驗首頁</button>
+      <div class="col-md-6" >
+         <div class="row" style="display: flex;align-items: center;">
+            <div class=" col-md-6">
+               <h4>總題數：{{ quiz.question_amount }}，答對題數：{{ correct_amount }} 分數：{{ quiz_result.score }} 花費時間：{{ user_answer_time | get_str_time }}</h4>
+            </div>
+            <div class="col-md-6">
+               <a href="/quiz/index/" type="button" class="btn btn-danger"   style="float: right; margin-left: 20px;">回測驗首頁</a>
+            </div>
+         </div>
       </div>
    </div>
    {% for question in questions %}
@@ -20,8 +27,8 @@
          <div class="scp-quizzes-data">
             <div class="row">
                <div>
-                  <h3>{{ question.question }} </h3>
-                  <h4 class="justify-content-end" style="display: inline;">正確答案 {{ question.correct_answer }}{{ userAnswer|get_answer:forloop.counter }}</h4>
+                  <h3>{{ forloop.counter }}. {{ question.question }} </h3>
+                  <h4 class="justify-content-end" style="display: inline;">正確答案 {{ question.correct_answer }}{{ userAnswer|get_answer:forloop.counter }} 正確率：{{ question.correct_rate }}%</h4>
                   {% if question.question_url%}
                   <img src="{{ question.question_url }}" alt="" width="30%">
                   {% endif %}

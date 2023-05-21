@@ -31,8 +31,30 @@ class Question(models.Model):
     detail_explanation = models.TextField(blank=True, null=True)
     # explanation_url = models.ImageField(upload_to='explanation_pics/',blank=True, null=True)
     explanation_url = models.URLField(blank=True, null=True)
+    choice1_selected = models.IntegerField(default=0)
+    choice2_selected = models.IntegerField(default=0)
+    choice3_selected = models.IntegerField(default=0)
+    choice4_selected = models.IntegerField(default=0)
+    total_amount = models.IntegerField(default=0)
+    correct_amount = models.IntegerField(default=0)
+    correct_rate = models.FloatField(default=0)
     def __str__(self):
         return self.question
+    
+    def save(self, *args, **kwargs):
+        if self.correct_answer == 'A':
+            self.correct_amount = self.choice1_selected
+        elif self.correct_answer == 'B':
+            self.correct_amount = self.choice2_selected
+        elif self.correct_answer == 'C':
+            self.correct_amount = self.choice3_selected
+        elif self.correct_answer == 'D':
+            self.correct_amount = self.choice4_selected
+
+        self.total_amount = self.choice1_selected + self.choice2_selected + self.choice3_selected + self.choice4_selected
+        self.correct_rate = round((self.correct_amount / self.total_amount), 4)*100
+        super().save(*args, **kwargs)
+
 
 class Quiz(models.Model):
     quiz_name = models.CharField(max_length=50)
@@ -52,7 +74,9 @@ class Quiz(models.Model):
 class QuizResult(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.PROTECT)
     user = models.ForeignKey(UserProfile, on_delete=models.PROTECT)
+    correct_amount = models.IntegerField(blank=False,default=0)
     score = models.IntegerField(blank=False)
+    user_answer_time = models.IntegerField(blank=False, default=0)
     def __str__(self):
         return self.quiz.quiz_name + ' - ' + self.user.user.username + ' - ' + str(self.score)
     
@@ -60,31 +84,6 @@ class QuizResultDetail(models.Model):
     quiz_result = models.ForeignKey(QuizResult, on_delete=models.PROTECT)
     question = models.ForeignKey(Question, on_delete=models.PROTECT)
     user_answer = models.CharField(max_length=50)
-    user_answer_time = models.IntegerField(blank=False, default=0)
     correct = models.BooleanField(default=False)
-    choice1_selected = models.IntegerField(default=0)
-    choice2_selected = models.IntegerField(default=0)
-    choice3_selected = models.IntegerField(default=0)
-    choice4_selected = models.IntegerField(default=0)
-    total_amount = models.IntegerField(default=0)
-    correct_amount = models.IntegerField(default=0)
     def __str__(self):
-        return self.quiz_result.quiz.quiz_name + ' - ' + self.quiz_result.user.user.username + ' - ' + self.question.question
-    
-    def save(self, *args, **kwargs):
-        if self.user_answer == self.question.correct_answer:
-            if self.question.correct_answer == self.question.choice1:
-                self.correct_amount = self.choice1_selected
-            elif self.question.correct_answer == self.question.choice2:
-                self.correct_amount = self.choice2_selected
-            elif self.question.correct_answer == self.question.choice3:
-                self.correct_amount = self.choice3_selected
-            elif self.question.correct_answer == self.question.choice4:
-                self.correct_amount = self.choice4_selected
-        else:
-            self.correct_amount = 0
-
-        self.total_amount = self.choice1_selected + self.choice2_selected + self.choice3_selected + self.choice4_selected
-
-        super().save(*args, **kwargs)
-    
+        return self.quiz_result.quiz.quiz_name

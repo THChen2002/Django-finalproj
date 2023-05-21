@@ -5,12 +5,12 @@
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 <main class="container">
 	<!-- 輪播廣告 -->
-	<div id="demo" class="carousel slide" data-bs-ride="carousel">
+	<div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<!-- Indicators/dots -->
 		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-			<button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
 		</div>
 
 		<!-- The slideshow/carousel -->
@@ -25,51 +25,31 @@
 				<img src="\static\images\banner3.jpg" alt="" class="d-block w-100">
 			</div>
 			<!-- Left and right controls/icons -->
-			<button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-				<span class="carousel-control-prev-icon"></span>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    			<span class="visually-hidden">Previous</span>
 			</button>
-			<button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-				<span class="carousel-control-next-icon"></span>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" >
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+	</div>
 		<!--導覽卡片-->
 		<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
 			<h2 class="pb-2 border-bottom">精選連結</h2>
 
-			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-						style="background-image:url('/static/images/apple.jpg');background-size: cover;"
-						bis_skin_checked="1" >
-						<div class="d-flex flex-column h-100 text-white text-shadow-1" bis_skin_checked="1" style="padding:75px 50px;">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/apple-blog/"
-									style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">APPLE新聞</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-						style="background-image: url('/static/images/weather.jpg');background-size: cover;"
-						bis_skin_checked="1">
-						<div class="d-flex flex-column h-100 text-white text-shadow-1" bis_skin_checked="1" style="padding:75px 50px;">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/weather/"
-									style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">氣象科普</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/weather.jpg');background-size: cover;"bis_skin_checked="1">
-						<div class="d-flex flex-column h-100 text-white text-shadow-1" bis_skin_checked="1" style="padding:75px 50px;">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="/quiz/index/" style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;">測驗專區</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div class="row " style="justify-content: center;">
+                <a href="/apple-blog/" class="col-md-3 shadow-lg overflow-hidden" style="text-decoration: none;height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/apple.jpg');background-size: cover;" role="button" >
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >APPLE新聞</h3>
+				</a>
+                <a href="/weather/" class="col-md-3 shadow-lg overflow-hidden" style="text-decoration: none;height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/weather.jpg');background-size: cover;" role="button">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >氣象科普</h3>
+                </a>
+                <a href="/" class="col-md-3 shadow-lg overflow-hidden" style="text-decoration: none;height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/apple.jpg');background-size: cover;" role="button" >
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >其他</h3>
+				</a>
+            </div>
 		</div>
 </main>
 {% endblock %}

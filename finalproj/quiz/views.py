@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Question, Quiz, QuizResult, QuizResultDetail
 import random
 import json
@@ -11,7 +11,8 @@ def question(request):
     # for id in questions_order:
     #     question = Question.objects.get(id=id)
     #     questions.append(question)
-    quiz = Quiz.objects.get(id=1)    
+    quiz_id = 1
+    quiz = Quiz.objects.get(id=quiz_id)    
     questions = []
     for question in quiz.quiz_questions.all():
         questions.append(question)
@@ -22,44 +23,66 @@ def quizindex(request):
 
 def quizresult(request):
     if request.method == 'POST':
+        quiz_result = None
+        quiz = None
         questions = []
         userAnswer = []
+        correct_amount = 0
+        user_answer_time = 0
+        # 獲取表單數據
         for i, (key, value) in enumerate(request.POST.items()):
+            # csrfmiddlewaretoken 為 CSRF 驗證所需的隱藏欄位，不需要處理
             if i == 0:
                 pass
+            # quiz_id
+            elif i == 1:
+                quiz_id = value
+                # 保存 QuizResult 物件
+                quiz = Quiz.objects.get(id=quiz_id)
+                quiz_result = QuizResult.objects.create(
+                    quiz=quiz,
+                    user_id=request.user.id,
+                    score=100,
+                    user_answer_time=0,
+                )
+            elif i == 2:
+                user_answer_time = value
+                quiz_result.user_answer_time = user_answer_time
+                quiz_result.save()
             else:
-                question_dict = json.loads(value)  # 将字符串解析为字典
-                question_id = question_dict.get('id')  # 获取字典中的id值
-                questions.append(Question.objects.get(id=question_id))
-                userAnswer.append(question_dict.get('userAnswer'))
+                question_dict = json.loads(value)  # 將 JSON 字串轉換為字典
+                question_id = question_dict.get('id')  # 獲取題目 ID
+                user_answer = question_dict.get('userAnswer')  # 獲取用戶的答案
+                question = Question.objects.get(id=question_id)
+                questions.append(question)
+                userAnswer.append(user_answer)
+                correct = False
+
+                #答對
+                if question.correct_answer == user_answer:
+                    correct_amount += 1
+                    correct = True
+                
+                if user_answer == 'A':
+                    question.choice1_selected += 1
+                elif user_answer == 'B':
+                    question.choice2_selected += 1
+                elif user_answer == 'C':
+                    question.choice3_selected += 1
+                elif user_answer == 'D':
+                    question.choice4_selected += 1
+                question.save()
+
+                # 保存 QuizResultDetail 物件
+                quiz_result_detail = QuizResultDetail.objects.create(
+                    quiz_result=quiz_result,
+                    question=question,
+                    user_answer=user_answer,
+                    correct=correct
+                )
                 # print(i, question_id, question_dict.get('userAnswer'))
-        # 獲取表單數據
-    #     quiz_id = request.POST.get('quiz_id')
-    #     user_id = request.POST.get('user_id')
-    #     score = request.POST.get('score')
-    #     answers = request.POST.getlist('answers')  # 假設答案以列表形式提交
-        
-    #     # 保存 QuizResult 物件
-    #     quiz_result = QuizResult.objects.create(
-    #         quiz_id=quiz_id,
-    #         user_id=user_id,
-    #         score=score
-    #     )
-        
-    #     # 保存 QuizResultDetail 物件
-    #     for i, answer in enumerate(answers):
-    #         question_id = request.POST.get(f'question_{i}_id')  # 假設每個問題的ID為 question_<i>_id
-    #         user_answer = answer
-    #         # 根據需要進行其他欄位的獲取
-            
-    #         quiz_result_detail = QuizResultDetail.objects.create(
-    #             quiz_result=quiz_result,
-    #             question_id=question_id,
-    #             user_answer=user_answer
-    #             # 根據需要進行其他欄位的賦值
-    #         )
-        
-    #     return redirect('quiz_results')  # 重新導向到顯示測驗結果的頁面
-    
-    # 如果不是 POST 請求，可能需要進行其他處理，例如渲染提交頁面
+        quiz_result.score = correct_amount * quiz.question_score
+        quiz_result.correct_amount = correct_amount
+        quiz_result.save() 
+
     return render(request, 'quiz/quizresult.html', locals())

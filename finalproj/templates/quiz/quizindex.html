@@ -3,42 +3,21 @@
 {% block content %}
 {% load static %}
 		<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
-			<h2 class="pb-2 border-bottom">測驗選擇</h2>
-            <!--種類卡片-->
-			<div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image:url('/static/images/apple.jpg');background-size: cover;" bis_skin_checked="1" >
-						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#apple-blog" aria-expanded="false" aria-controls="collapseExample">APPLE新聞</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/static/images/weather.jpg');background-size: cover;" bis_skin_checked="1">
-						<div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1" bis_skin_checked="1">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#weather" aria-expanded="false" aria-controls="collapseExample">氣象科普</a>
-							</h3>
-						</div>
-					</div>
-				</div>
-
-				<div class="col" bis_skin_checked="1">
-					<div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('unsplash-photo-3.jpg');" bis_skin_checked="1">
-						<div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1" bis_skin_checked="1">
-							<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
-                                <a href="#"	style=" text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;" role="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="collapseExample">其他</a>
-                            </h3>
-						</div>
-					</div>
-				</div>
-			</div>
-            <h2 class="pb-2 border-bottom"></h2>
+			<h2 class="pb-2 border-bottom ">測驗選擇</h2>
+            <div class="row " style="justify-content: center;">
+                <div class="col-md-3 shadow-lg overflow-hidden" style="height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/apple.jpg');background-size: cover;" role="button" data-bs-toggle="collapse" data-bs-target="#apple-blog" aria-expanded="false" aria-controls="collapseExample">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >APPLE新聞</h3>
+                </div>
+                <div class="col-md-3 shadow-lg overflow-hidden" style="height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/weather.jpg');background-size: cover;" role="button" data-bs-toggle="collapse" data-bs-target="#weather" aria-expanded="false" aria-controls="collapseExample">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >氣象科普</h3>
+                </div>
+                <div class="col-md-3 shadow-lg overflow-hidden" style="height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/apple.jpg');background-size: cover;" role="button" data-bs-toggle="collapse" data-bs-target="#other" aria-expanded="false" aria-controls="collapseExample">
+                    <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >其他</h3>
+                </div>
+            </div>
+            <h2 class="pb-2 border-bottom" ></h2>
             <!--種類選單-->
-            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" bis_skin_checked="1">
+            <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 " bis_skin_checked="1" style="padding-bottom: 20px;height: 200px;width: auto;">
 				<div class="col" bis_skin_checked="1">
                     <div class="collapse" id="apple-blog">
                         <div class="card card-body">
