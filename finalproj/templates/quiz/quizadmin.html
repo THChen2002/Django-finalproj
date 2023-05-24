@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% block title %}測驗管理頁面{% endblock %}
+{% block content %}
+{% load static %}
+
+<!-- 新增問題表單 -->
+<h2>新增問題</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ questionForm.as_p }}
+    <button type="submit" class="btn btn-primary" name="questionForm">新增</button>
+</form>
+
+<h2>新增測驗</h2>
+<form method="POST" id="quizForm">
+    {% csrf_token %}
+    {{ quizForm.as_p }}
+    <button type="submit" class="btn btn-primary" name="quizForm">新增</button>
+</form>
+
+<!-- 問題列表 -->
+<h2>問題列表</h2> <span id="select-count">已選題數：</span>
+<form method="POST" id="filterForm">
+    {% csrf_token %}
+    題目：{{ questionFilter.form.question }}
+    分類：{{ questionFilter.form.category }}
+    題目類型：{{ questionFilter.form.question_type }}
+    <button type="submit" class="btn btn-primary" name="queryForm">查詢</button>
+    <input type="hidden" id="selectedQuestionsInput" name="selected_questions" value="{{ selected_questions }}" />
+</form>
+<br />
+<table class="table">
+    <thead>
+        <th>題目</th>
+        <th>分類</th>
+        <th>題目類型</th>
+        <th>操作<button class="btn btn-primary" id="select-all-btn">全部選擇</button><button class="btn btn-danger" id="clear-all-btn">全部清除</button></th>
+    </thead>
+    <tbody>
+        {% for question in questionFilter.qs %}
+        <tr>
+            <td>{{ question.question }}</td>
+            <td>
+                {% for category in question.category.all %}
+                {{ category.category }}
+                {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+            <td>{{ question.get_question_type_display }}</td>
+            <td>
+                <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+// 在 DOM 加載完成後執行
+document.addEventListener('DOMContentLoaded', function () {
+    // 獲取選擇按鈕元素
+    var selectButtons = document.querySelectorAll('.select-question');
+    var selectElement = document.getElementById('id_quiz_questions');
+    var hiddenInput = document.getElementById('selectedQuestionsInput');
+    var selectedQuestions = new Set();
+    console.log('hiddenInput',hiddenInput.value);
+    if(hiddenInput.value != '[]'){
+        selectedQuestions = new Set(hiddenInput.value.replace('[', '').replace(']', '').split(',').map(function (item) {
+            return parseInt(item.trim()) == NaN ? null : parseInt(item.trim());
+        }));
+    }
+
+    function updateSelectElement() {
+        selectElement.querySelectorAll('option').forEach(function (option) {
+            if (selectedQuestions.has(parseInt(option.value))) {
+                option.selected = true;
+            } else {
+                option.selected = false;
+            }
+        });
+    }
+
+    updateSelectElement();
+
+    // 更新勾選狀態
+    selectButtons.forEach(function (button) {
+        if (selectedQuestions.has(parseInt(button.value))) {
+            button.checked = true;
+        }
+
+        button.addEventListener('click', function () {
+            var questionId = parseInt(button.value);
+            console.log('btn',button);
+            if (button.checked) {
+                selectedQuestions.add(questionId);
+            } else {
+                selectedQuestions.delete(questionId);
+            }
+            console.log('selectedQuestions',selectedQuestions);
+            // 更新隱藏的輸入欄位值
+            hiddenInput.value = Array.from(selectedQuestions).join(',');
+
+            // 重置選中的選項
+            selectElement.querySelectorAll('option').forEach(function (option) {
+                option.selected = selectedQuestions.has(parseInt(option.value));
+            });
+            updateSelectedCount();
+        });
+    });
+
+    // 監聽 quiz_questions 選擇框的變化事件
+    selectElement.addEventListener('change', function () {
+        
+        selectedQuestions = new Set();
+
+        // 清除所有選擇按鈕的勾選
+        selectButtons.forEach(function (button) {
+            button.checked = false;
+        });
+
+        // 更新勾選狀態
+        selectElement.querySelectorAll('option').forEach(function (option) {
+            if (option.selected) {
+                selectedQuestions.add(parseInt(option.value));
+            }
+            var button = document.querySelector('.select-question[value="' + option.value + '"]');
+            if (button) {
+                button.checked = option.selected;
+            }
+        });
+        console.log('selectedQuestions',selectedQuestions);
+        // 更新隱藏的輸入欄位值
+        hiddenInput.value = Array.from(selectedQuestions).join(',');
+        updateSelectedCount();
+    });
+
+    // 更新已選擇題目數量
+    function updateSelectedCount() {
+        var selectedCountElement = document.getElementById('select-count');
+        var questionAmountInput = document.getElementById('id_question_amount');
+        var count = selectedQuestions.size;
+        selectedCountElement.textContent = '已選題數：' + count;
+        questionAmountInput.value = count;
+    }
+
+    updateSelectedCount();
+
+    // 獲取全部選擇按鈕和全部清除按鈕的元素
+    var selectAllBtn = document.getElementById('select-all-btn');
+    var clearAllBtn = document.getElementById('clear-all-btn');
+
+    // 全部選擇按鈕的點擊事件處理函式
+    selectAllBtn.addEventListener('click', function () {
+        // 遍歷篩選結果中的題目
+        document.querySelectorAll('.select-question').forEach(function (button) {
+            // 如果題目在篩選結果中，則勾選它並將其添加到已選擇題目集合中
+            if (button.closest('tr')) {
+                button.checked = true;
+                selectedQuestions.add(parseInt(button.value));
+                console.log('selectedQuestions',selectedQuestions);
+            }
+        });
+
+        // 更新隱藏的輸入欄位值
+        hiddenInput.value = Array.from(selectedQuestions).join(',');
+
+        // 更新選擇框的選擇狀態
+        updateSelectElement();
+
+        // 更新已選擇題目數量
+        updateSelectedCount();
+    });
+
+    // 全部清除按鈕的點擊事件處理函式
+    clearAllBtn.addEventListener('click', function () {
+        // 遍歷篩選結果中的題目
+        document.querySelectorAll('.select-question').forEach(function (button) {
+            // 如果題目在篩選結果中，則取消勾選它並從已選擇題目集合中刪除
+            if (button.closest('tr')) {
+                button.checked = false;
+                selectedQuestions.delete(parseInt(button.value));
+                console.log('selectedQuestions',selectedQuestions);
+            }
+        });
+
+        // 更新隱藏的輸入欄位值
+        hiddenInput.value = Array.from(selectedQuestions).join(',');
+
+        // 更新選擇框的選擇狀態
+        updateSelectElement();
+
+        // 更新已選擇題目數量
+        updateSelectedCount();
+    });
+
+
+    // // 獲取表單元素
+    // var quizForm = document.getElementById('quizForm');
+    // var filterForm = document.getElementById('filterForm');
+
+    // // 監聽 filterForm 的提交事件
+    // filterForm.addEventListener('submit', function (event) {
+    //     event.preventDefault();
+
+
+    //     // 建立 FormData 物件
+    //     var formData = new FormData();
+    //     formData.append('queryForm', '');
+    //     var filterFormInputElements = filterForm.querySelectorAll('input, select, textarea');
+    //     filterFormInputElements.forEach(function(input) {
+    //         formData.append(input.name, input.value);
+    //         console.log(input.name, input.value);
+    //     });
+
+    //     // 獲取 quizForm 的所有 input 元素
+    //     var quizFormInputElements = quizForm.querySelectorAll('input, select, textarea');
+        
+    //     // 將 quizForm 的資料添加到 FormData 中
+    //     quizFormInputElements.forEach(function(input) {
+    //         formData.append(input.name, input.value);
+    //         console.log(input.name, input.value);
+    //     });
+
+    //     // 提交 FormData 給後端處理
+    //     fetch("{% url 'quiz_admin' %}", {
+    //         method: 'POST',
+    //         body: formData,
+    //         headers: {
+    //             'X-CSRFToken': document.getElementsByName("csrfmiddlewaretoken")[0].value
+    //         }
+    //     })
+    //     .then(function (response) {
+    //         // 在此處處理表單提交後的回應
+    //     })
+    //     .catch(function (error) {
+    //         console.error('Error:', error);
+    //     });
+    // });
+});
+</script>
+
+{% endblock %}

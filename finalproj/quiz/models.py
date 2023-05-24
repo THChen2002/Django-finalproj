@@ -52,7 +52,8 @@ class Question(models.Model):
             self.correct_amount = self.choice4_selected
 
         self.total_amount = self.choice1_selected + self.choice2_selected + self.choice3_selected + self.choice4_selected
-        self.correct_rate = round((self.correct_amount / self.total_amount), 4)*100
+        if self.total_amount > 0:
+            self.correct_rate = round((self.correct_amount / self.total_amount), 4)*100
         super().save(*args, **kwargs)
 
 

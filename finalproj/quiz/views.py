@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Question, Quiz, QuizResult, QuizResultDetail
+from .models import Category, Question, Quiz, QuizResult, QuizResultDetail
+from .filters import CategoryFilter, QuestionFilter, QuizFilter, QuizResultFilter
+from .forms import CategoryForm, QuestionForm, QuizForm
 import random
 import json
 
@@ -86,3 +88,53 @@ def quizresult(request):
         quiz_result.save() 
 
     return render(request, 'quiz/quizresult.html', locals())
+
+def quiz_admin(request):
+    questionForm = QuestionForm()
+    quizForm = QuizForm()
+    questions = Question.objects.all()
+    selected_questions = []
+
+    if request.method == "POST":
+        print(request.POST)
+        if 'queryForm' in request.POST:
+            questionFilter = QuestionFilter(request.POST, queryset=questions)
+            if questionFilter.is_valid():
+                print(request.POST.getlist('selected_questions'))
+                if request.POST.get('selected_questions') == '' or request.POST.getlist('selected_questions')[0] == '[]':
+                    selected_questions = []
+                else:
+                    selected_questions = list(map(int, request.POST.getlist('selected_questions')[0].replace('[', '').replace(']', '').split(',')))
+                print(selected_questions)
+                questions = questionFilter.qs
+        elif 'questionForm' in request.POST:
+            questionForm = QuestionForm(request.POST)
+            if questionForm.is_valid():
+                question = questionForm.save()
+                question.category.set(questionForm.cleaned_data.get('category'))
+                return redirect('quiz_admin')
+        elif 'quizForm' in request.POST:
+            quizForm = QuizForm(request.POST)
+            if quizForm.is_valid():
+                quiz = quizForm.save()
+                return redirect('quiz_admin')
+    else:
+        # Get request, no form submission
+        questionFilter = QuestionFilter(queryset=questions)
+        
+    # categories = Category.objects.all()
+    # questions = Question.objects.all()
+    # quizzes = Quiz.objects.all()
+    # quiz_results = QuizResult.objects.all()
+
+    # categoryFilter = CategoryFilter(queryset=categories)
+    # questionFilter = QuestionFilter(queryset=questions)
+    # quizFilter = QuizFilter(queryset=quizzes)
+    # quizResultFilter = QuizResultFilter(queryset=quiz_results)
+    # if request.method == "POST":
+    #     categoryFilter = CategoryFilter(request.POST, queryset=categories)
+    #     questionFilter = QuestionFilter(request.POST, queryset=questions)
+    #     quizFilter = QuizFilter(request.POST, queryset=quizzes)
+    #     quizResultFilter = QuizResultFilter(request.POST, queryset=quiz_results)
+        
+    return render(request, 'quiz/quizadmin.html', locals())
