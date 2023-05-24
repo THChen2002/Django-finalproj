@@ -2,58 +2,110 @@
 {% block title %}測驗管理頁面{% endblock %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" href="{% static 'css/towntab.css' %}">
 
-<!-- 新增問題表單 -->
-<h2>新增問題</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ questionForm.as_p }}
-    <button type="submit" class="btn btn-primary" name="questionForm">新增</button>
-</form>
+<div class="container">
+    <div class="tab-demo" >
+        <!-- tab標籤列 -->
+        <ul class="tab-title" style="list-style-type: none;justify-content:center;">
+            <li class="active">
+                <a href="javascript:;" data-tablink="one">新增問題</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-tablink="two">新增題目</a>
+            </li>
+        </ul>
+        <!-- tab內容 -->
+        <div class="tab-inner-wrap">
+            <div id="one" class="tab-inner shadow-lg" style="border-radius: 10px;">
+                <!-- 新增問題表單 -->
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ questionForm.as_p }}
+                    <button type="submit" class="btn btn-primary" name="questionForm">新增</button>
+                </form>
+            </div>
+            <div id="two" class="tab-inner shadow-lg" style="border-radius: 10px;">
+                <form method="POST" id="quizForm">
+                    {% csrf_token %}
+                    {{ quizForm.as_p }}
+                    <button type="submit" class="btn btn-primary" name="quizForm">新增</button>
+                </form>
+    
+                <!-- 問題列表 -->
+                <h2>問題列表</h2> <span id="select-count">已選題數：</span>
+                <form method="POST" id="filterForm">
+                    {% csrf_token %}
+                    題目：{{ questionFilter.form.question }}
+                    分類：{{ questionFilter.form.category }}
+                    題目類型：{{ questionFilter.form.question_type }}
+                    <button type="submit" class="btn btn-primary" name="queryForm">查詢</button>
+                    <input type="hidden" id="selectedQuestionsInput" name="selected_questions" value="{{ selected_questions }}" />
+                </form>
+                <br />
+                <table class="table">
+                    <thead>
+                        <th>題目</th>
+                        <th>分類</th>
+                        <th>題目類型</th>
+                        <th>操作<button class="btn btn-primary" id="select-all-btn">全部選擇</button><button class="btn btn-danger" id="clear-all-btn">全部清除</button></th>
+                    </thead>
+                    <tbody>
+                        {% for question in questionFilter.qs %}
+                        <tr>
+                            <td>{{ question.question }}</td>
+                            <td>
+                                {% for category in question.category.all %}
+                                {{ category.category }}
+                                {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ question.get_question_type_display }}</td>
+                            <td>
+                                <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        tabCutover();
+    });
 
-<h2>新增測驗</h2>
-<form method="POST" id="quizForm">
-    {% csrf_token %}
-    {{ quizForm.as_p }}
-    <button type="submit" class="btn btn-primary" name="quizForm">新增</button>
-</form>
+    function tabCutover1() {
+        var tablink = $(".tab-title li.active").find("a").data("tablink");
 
-<!-- 問題列表 -->
-<h2>問題列表</h2> <span id="select-count">已選題數：</span>
-<form method="POST" id="filterForm">
-    {% csrf_token %}
-    題目：{{ questionFilter.form.question }}
-    分類：{{ questionFilter.form.category }}
-    題目類型：{{ questionFilter.form.question_type }}
-    <button type="submit" class="btn btn-primary" name="queryForm">查詢</button>
-    <input type="hidden" id="selectedQuestionsInput" name="selected_questions" value="{{ selected_questions }}" />
-</form>
-<br />
-<table class="table">
-    <thead>
-        <th>題目</th>
-        <th>分類</th>
-        <th>題目類型</th>
-        <th>操作<button class="btn btn-primary" id="select-all-btn">全部選擇</button><button class="btn btn-danger" id="clear-all-btn">全部清除</button></th>
-    </thead>
-    <tbody>
-        {% for question in questionFilter.qs %}
-        <tr>
-            <td>{{ question.question }}</td>
-            <td>
-                {% for category in question.category.all %}
-                {{ category.category }}
-                {% if not forloop.last %}, {% endif %}
-                {% endfor %}
-            </td>
-            <td>{{ question.get_question_type_display }}</td>
-            <td>
-                <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        $('#' + tablink).show().siblings(".tab-inner").hide();
+
+        $(".tab-title li").click(function () {
+            $('#' + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+            $(this).addClass("active").siblings(".active").removeClass("active");
+        });
+    }
+
+    function tabCutover() {
+
+        $(".tab-title li.active").each(function () {
+            var tablink = $(this).find("a").data("tablink");
+
+            $('#' + tablink).show().siblings(".tab-inner").hide();
+        });
+
+        $(".tab-title li").click(function () {
+            $('#' + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+            $(this).addClass("active").siblings(".active").removeClass("active");
+        });
+    }
+
+</script>
+
+
 <script>
 // 在 DOM 加載完成後執行
 document.addEventListener('DOMContentLoaded', function () {
