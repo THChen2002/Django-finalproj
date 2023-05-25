@@ -18,56 +18,65 @@
         <!-- tab內容 -->
         <div class="tab-inner-wrap">
             <div id="one" class="tab-inner shadow-lg" style="border-radius: 10px;">
-                <!-- 新增問題表單 -->
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ questionForm.as_p }}
-                    <button type="submit" class="btn btn-primary" name="questionForm">新增</button>
-                </form>
+                <div style="margin: 15px;">
+                    <h2 style="font-weight: bold; ">新增問題</h2>
+                    <!-- 新增問題表單 -->
+                    <form method="POST" >
+                        {% csrf_token %}
+                        {{ questionForm.as_p }}
+                        <button type="submit" class="btn btn-success" name="questionForm" >新增</button>
+                    </form>
+                </div>
             </div>
             <div id="two" class="tab-inner shadow-lg" style="border-radius: 10px;">
-                <form method="POST" id="quizForm">
-                    {% csrf_token %}
-                    {{ quizForm.as_p }}
-                    <button type="submit" class="btn btn-primary" name="quizForm">新增</button>
-                </form>
-    
-                <!-- 問題列表 -->
-                <h2>問題列表</h2> <span id="select-count">已選題數：</span>
-                <form method="POST" id="filterForm">
-                    {% csrf_token %}
-                    題目：{{ questionFilter.form.question }}
-                    分類：{{ questionFilter.form.category }}
-                    題目類型：{{ questionFilter.form.question_type }}
-                    <button type="submit" class="btn btn-primary" name="queryForm">查詢</button>
-                    <input type="hidden" id="selectedQuestionsInput" name="selected_questions" value="{{ selected_questions }}" />
-                </form>
-                <br />
-                <table class="table">
-                    <thead>
-                        <th>題目</th>
-                        <th>分類</th>
-                        <th>題目類型</th>
-                        <th>操作<button class="btn btn-primary" id="select-all-btn">全部選擇</button><button class="btn btn-danger" id="clear-all-btn">全部清除</button></th>
-                    </thead>
-                    <tbody>
-                        {% for question in questionFilter.qs %}
-                        <tr>
-                            <td>{{ question.question }}</td>
-                            <td>
-                                {% for category in question.category.all %}
-                                {{ category.category }}
-                                {% if not forloop.last %}, {% endif %}
-                                {% endfor %}
-                            </td>
-                            <td>{{ question.get_question_type_display }}</td>
-                            <td>
-                                <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                <div style="margin: 15px;">
+                    <h2 style="font-weight: bold; ">新增題目</h2>
+                    <form method="POST" id="quizForm">
+                        {% csrf_token %}
+                        {{ quizForm.as_p }}
+                        <button type="submit" class="btn btn-success" name="quizForm">新增</button>
+                    </form>
+                    <hr>
+                    <!-- 問題列表 -->
+                    <h2 style="font-weight: bold; ">問題列表</h2> <span id="select-count">已選題數：</span>
+                    <form method="POST" id="filterForm">
+                        {% csrf_token %}
+                        題目：{{ questionFilter.form.question }}
+                        &emsp;
+                        分類：{{ questionFilter.form.category }}
+                        &emsp;
+                        題目類型：{{ questionFilter.form.question_type }}
+                        &emsp;
+                        <button type="submit" class="btn btn-primary" name="queryForm">查詢</button>
+                        <input type="hidden" id="selectedQuestionsInput" name="selected_questions" value="{{ selected_questions }}" />
+                    </form>
+                    <br />
+                    <table class="table">
+                        <thead>
+                            <th style="width: 55%;text-align: center;font-size: 16px;">題目</th>
+                            <th style="width: 10%;text-align: center;font-size: 16px;">分類</th>
+                            <th style="width: 10%;text-align: center;font-size: 16px;">題目類型</th>
+                            <th style="width: 25%;text-align: center;font-size: 16px;"><button class="btn btn-primary" id="select-all-btn">全選</button>&nbsp;<button class="btn btn-danger" id="clear-all-btn">全刪</button></th>
+                        </thead>
+                        <tbody>
+                            {% for question in questionFilter.qs %}
+                            <tr>
+                                <td>{{ question.question }}</td>
+                                <td style="text-align: center;">
+                                    {% for category in question.category.all %}
+                                    {{ category.category }}
+                                    {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>{{ question.get_question_type_display }}</td>
+                                <td style="text-align: center;">
+                                    <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

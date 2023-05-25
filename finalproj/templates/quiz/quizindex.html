@@ -3,7 +3,14 @@
 {% block content %}
 {% load static %}
 		<div class="container px-4 py-5" id="custom-cards" bis_skin_checked="1">
-			<h2 class="pb-2 border-bottom ">測驗選擇</h2>
+			<div class="row pb-2 border-bottom">
+                <div class="col-md-6">
+                    <h2 >測驗選擇</h2>
+                </div>
+                <div class="col-md-6" style="text-align: end;">
+                    <a href="/quiz/admin/" role="button" class="btn btn-primary">題目修改專區</a>
+                </div>
+            </div>
             <div class="row " style="justify-content: center;">
                 <div class="col-md-3 shadow-lg overflow-hidden" style="height:300px;width:400px;border-radius: 5px; margin: 10px;align-items: center;background-image:url('/static/images/apple.jpg');background-size: cover;" role="button" data-bs-toggle="collapse" data-bs-target="#apple-blog" aria-expanded="false" aria-controls="collapseExample">
                     <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold" style="text-decoration: none;color: #fcfcfc;text-shadow: 2px 2px 4px #454545;padding-left: 5px;" >APPLE新聞</h3>
