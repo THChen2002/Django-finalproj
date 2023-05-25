@@ -20,20 +20,26 @@
       <input type="hidden"  name="quiz_id" value='{{ quiz_id }}'>
       <!-- 這裡是為了讓後端知道花了多少時間 -->
       <input type="hidden" id="timeInput" name="time" value="0">
-      <div id="timer">00:00</div>
+      <div >
+         <p style="display: inline-block;font-size: 20px;">測驗時間</p>&emsp;<div id="timer" style="display: inline-block;font-size: 20px;">00:00</div>
+      </div>
+      
       {% for question in questions %}
       <div class="mainquiz container-fluid">
          <div class="scp-quizzes-main">
             <div class="scp-quizzes-data">
                <div class="row">
                   <div>
-                     <h3>{{ question.question }}</h3>
-                     <h4>難易度：
+                     <span class="badge rounded-pill" style="font-size: 24px;margin-bottom: 15px; background-color: #f03557;">難易度：
                         {% for i in question.question_level|times %}
-                        <img src="{% static 'images/quiz/star.png' %}" width="30px" height="30px">
+                        <img src="{% static 'images/quiz/star.png' %}" width="25px" height="25px">
                         {% endfor %}
-                     </h4>
-
+                        {% for i in question.question_level|minus_times %}
+                        <img src="{% static 'images/quiz/star_gray.png' %}" width="25px" height="25px">
+                        {% endfor %}
+                     </span>
+                     <br>
+                     <h3  style="display: inline-block;margin-bottom: 0px;">{{ question.question }}</h3>
                      {% if question.question_url%}
                      <img src="{{ question.question_url }}" alt="" width="30%">
                      {% endif %}
@@ -56,7 +62,7 @@
          </div>
       </div>
       {% endfor %}
-      <button type="submit">提交</button>
+      <button type="submit" class="btn btn-success">提交</button>
    </form>
 
 

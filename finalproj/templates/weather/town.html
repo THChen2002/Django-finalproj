@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="/static/css/towntab.css">
 <br>
 <div class="container-fluid" bis_skin_checked="1">
-    <div class="row" bis_skin_checked="1">
-        <div class="col-md-4 col-lg-5" id="app">
+    <div class="row" bis_skin_checked="1" id="app">
+        <div class="col-md-4 col-lg-5">
             <form id="region-form">
                 <div class="row g-3">
                     <div class="col-md-5">
@@ -11047,444 +11047,220 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                     <!-- tab內容 -->
                     <div class="tab-inner-wrap">
                         <div id="five" class="tab-inner">
-                            <div id="PC_week">
-                            <div class="table-responsive report-table pc grid_open">
-                                <table class="table table-bordered" id="TableId3hr">
-                                    <caption class="sr-only">逐三小時天氣預報資料</caption>
-                                    <thead>
-                                        <tr>
-                                            <th id="PC3_D">日期</th>
-                                            <th id="PC3_D1" headers="PC3_D" colspan="8" class="holiday">05/21<br>星期日
-                                            </th>
-                                            <th id="PC3_D2" headers="PC3_D" colspan="8">05/22<br>星期一</th>
-                                            <th id="PC3_D3" headers="PC3_D" colspan="8">05/23<br>星期二</th>
-                                            <th id="PC3_D4" headers="PC3_D">05/24<br>星期三</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="time">
-                                            <th id="PC3_Ti">時間</th>
-                                            <th id="PC3_D1H00" headers="PC3_Ti PC3_D1"><span>00:00</span></th>
-                                            <th id="PC3_D1H03" headers="PC3_Ti PC3_D1"><span>03:00</span></th>
-                                            <th id="PC3_D1H06" headers="PC3_Ti PC3_D1"><span>06:00</span></th>
-                                            <th id="PC3_D1H09" headers="PC3_Ti PC3_D1"><span>09:00</span></th>
-                                            <th id="PC3_D1H12" headers="PC3_Ti PC3_D1"><span>12:00</span></th>
-                                            <th id="PC3_D1H15" headers="PC3_Ti PC3_D1"><span>15:00</span></th>
-                                            <th id="PC3_D1H18" headers="PC3_Ti PC3_D1"><span>18:00</span></th>
-                                            <th id="PC3_D1H21" headers="PC3_Ti PC3_D1"><span>21:00</span></th>
-                                            <th id="PC3_D2H00" headers="PC3_Ti PC3_D2"><span>00:00</span></th>
-                                            <th id="PC3_D2H03" headers="PC3_Ti PC3_D2"><span>03:00</span></th>
-                                            <th id="PC3_D2H06" headers="PC3_Ti PC3_D2"><span>06:00</span></th>
-                                            <th id="PC3_D2H09" headers="PC3_Ti PC3_D2"><span>09:00</span></th>
-                                            <th id="PC3_D2H12" headers="PC3_Ti PC3_D2"><span>12:00</span></th>
-                                            <th id="PC3_D2H15" headers="PC3_Ti PC3_D2"><span>15:00</span></th>
-                                            <th id="PC3_D2H18" headers="PC3_Ti PC3_D2"><span>18:00</span></th>
-                                            <th id="PC3_D2H21" headers="PC3_Ti PC3_D2"><span>21:00</span></th>
-                                            <th id="PC3_D3H00" headers="PC3_Ti PC3_D3"><span>00:00</span></th>
-                                            <th id="PC3_D3H03" headers="PC3_Ti PC3_D3"><span>03:00</span></th>
-                                            <th id="PC3_D3H06" headers="PC3_Ti PC3_D3"><span>06:00</span></th>
-                                            <th id="PC3_D3H09" headers="PC3_Ti PC3_D3"><span>09:00</span></th>
-                                            <th id="PC3_D3H12" headers="PC3_Ti PC3_D3"><span>12:00</span></th>
-                                            <th id="PC3_D3H15" headers="PC3_Ti PC3_D3"><span>15:00</span></th>
-                                            <th id="PC3_D3H18" headers="PC3_Ti PC3_D3"><span>18:00</span></th>
-                                            <th id="PC3_D3H21" headers="PC3_Ti PC3_D3"><span>21:00</span></th>
-                                            <th id="PC3_D4H00" headers="PC3_Ti PC3_D4"><span>00:00</span></th>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_Wx">天氣狀況</th>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H00"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg"
-                                                    alt="陰" title="陰"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H03"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg"
-                                                    alt="多雲" title="多雲"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H06"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg"
-                                                    alt="多雲" title="多雲"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H09"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H12"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/08.svg"
-                                                    alt="午後短暫陣雨" title="午後短暫陣雨"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H15"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/08.svg"
-                                                    alt="午後短暫陣雨" title="午後短暫陣雨"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H18"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D1 PC3_D1H21"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg"
-                                                    alt="多雲" title="多雲"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H00"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H03"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H06"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H09"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H12"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg"
-                                                    alt="多雲" title="多雲"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H15"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/08.svg"
-                                                    alt="短暫陣雨" title="短暫陣雨"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H18"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/15.svg"
-                                                    alt="短暫陣雨或雷雨" title="短暫陣雨或雷雨"></td>
-                                            <td headers="PC3_Wx PC3_D2 PC3_D2H21"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/15.svg"
-                                                    alt="短暫陣雨或雷雨" title="短暫陣雨或雷雨"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H00"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/15.svg"
-                                                    alt="短暫陣雨或雷雨" title="短暫陣雨或雷雨"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H03"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/15.svg"
-                                                    alt="短暫陣雨或雷雨" title="短暫陣雨或雷雨"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H06"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/07.svg"
-                                                    alt="陰" title="陰"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H09"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/07.svg"
-                                                    alt="陰" title="陰"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H12"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/07.svg"
-                                                    alt="陰" title="陰"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H15"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/day/07.svg"
-                                                    alt="陰" title="陰"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H18"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg"
-                                                    alt="多雲" title="多雲"></td>
-                                            <td headers="PC3_Wx PC3_D3 PC3_D3H21"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                            <td headers="PC3_Wx PC3_D4 PC3_D4H00"><img
-                                                    src="/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg"
-                                                    alt="晴" title="晴"></td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_T">溫度</th>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H00"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H03"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H06"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H09"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H12"><span
-                                                    class="tem-C is-active">31</span><span
-                                                    class="tem-F is-hidden">88</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H15"><span
-                                                    class="tem-C is-active">30</span><span
-                                                    class="tem-F is-hidden">86</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H18"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_T PC3_D1 PC3_D1H21"><span
-                                                    class="tem-C is-active">26</span><span
-                                                    class="tem-F is-hidden">79</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H00"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H03"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H06"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H09"><span
-                                                    class="tem-C is-active">30</span><span
-                                                    class="tem-F is-hidden">86</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H12"><span
-                                                    class="tem-C is-active">35</span><span
-                                                    class="tem-F is-hidden">95</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H15"><span
-                                                    class="tem-C is-active">33</span><span
-                                                    class="tem-F is-hidden">91</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H18"><span
-                                                    class="tem-C is-active">29</span><span
-                                                    class="tem-F is-hidden">84</span></td>
-                                            <td headers="PC3_T PC3_D2 PC3_D2H21"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H00"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H03"><span
-                                                    class="tem-C is-active">22</span><span
-                                                    class="tem-F is-hidden">72</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H06"><span
-                                                    class="tem-C is-active">21</span><span
-                                                    class="tem-F is-hidden">70</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H09"><span
-                                                    class="tem-C is-active">22</span><span
-                                                    class="tem-F is-hidden">72</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H12"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H15"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H18"><span
-                                                    class="tem-C is-active">22</span><span
-                                                    class="tem-F is-hidden">72</span></td>
-                                            <td headers="PC3_T PC3_D3 PC3_D3H21"><span
-                                                    class="tem-C is-active">21</span><span
-                                                    class="tem-F is-hidden">70</span></td>
-                                            <td headers="PC3_T PC3_D4 PC3_D4H00"><span
-                                                    class="tem-C is-active">21</span><span
-                                                    class="tem-F is-hidden">70</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_AT">體感溫度</th>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H00"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H03"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H06"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H09"><span
-                                                    class="tem-C is-active">33</span><span
-                                                    class="tem-F is-hidden">91</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H12"><span
-                                                    class="tem-C is-active">36</span><span
-                                                    class="tem-F is-hidden">97</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H15"><span
-                                                    class="tem-C is-active">35</span><span
-                                                    class="tem-F is-hidden">95</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H18"><span
-                                                    class="tem-C is-active">33</span><span
-                                                    class="tem-F is-hidden">91</span></td>
-                                            <td headers="PC3_AT PC3_D1 PC3_D1H21"><span
-                                                    class="tem-C is-active">30</span><span
-                                                    class="tem-F is-hidden">86</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H00"><span
-                                                    class="tem-C is-active">29</span><span
-                                                    class="tem-F is-hidden">84</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H03"><span
-                                                    class="tem-C is-active">28</span><span
-                                                    class="tem-F is-hidden">82</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H06"><span
-                                                    class="tem-C is-active">27</span><span
-                                                    class="tem-F is-hidden">81</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H09"><span
-                                                    class="tem-C is-active">35</span><span
-                                                    class="tem-F is-hidden">95</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H12"><span
-                                                    class="tem-C is-active">38</span><span
-                                                    class="tem-F is-hidden">100</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H15"><span
-                                                    class="tem-C is-active">34</span><span
-                                                    class="tem-F is-hidden">93</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H18"><span
-                                                    class="tem-C is-active">29</span><span
-                                                    class="tem-F is-hidden">84</span></td>
-                                            <td headers="PC3_AT PC3_D2 PC3_D2H21"><span
-                                                    class="tem-C is-active">26</span><span
-                                                    class="tem-F is-hidden">79</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H00"><span
-                                                    class="tem-C is-active">27</span><span
-                                                    class="tem-F is-hidden">81</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H03"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H06"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H09"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H12"><span
-                                                    class="tem-C is-active">25</span><span
-                                                    class="tem-F is-hidden">77</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H15"><span
-                                                    class="tem-C is-active">24</span><span
-                                                    class="tem-F is-hidden">75</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H18"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                            <td headers="PC3_AT PC3_D3 PC3_D3H21"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                            <td headers="PC3_AT PC3_D4 PC3_D4H00"><span
-                                                    class="tem-C is-active">23</span><span
-                                                    class="tem-F is-hidden">73</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_Po">降雨機率</th>
-                                            <td colspan="2" headers="PC3_Po PC3_D1 PC3_D1H00 PC3_D1H03">20%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D1 PC3_D1H06 PC3_D1H09">20%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D1 PC3_D1H12 PC3_D1H15">50%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D1 PC3_D1H18 PC3_D1H21">0%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D2 PC3_D2H00 PC3_D2H03">10%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D2 PC3_D2H06 PC3_D2H09">0%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D2 PC3_D2H12 PC3_D2H15">50%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D2 PC3_D2H18 PC3_D2H21">80%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D3 PC3_D3H00 PC3_D3H03">60%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D3 PC3_D3H06 PC3_D3H09">20%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D3 PC3_D3H12 PC3_D3H15">20%</td>
-                                            <td colspan="2" headers="PC3_Po PC3_D3 PC3_D3H18 PC3_D3H21">20%</td>
-                                            <td headers="PC3_Po PC3_D4 PC3_D4H00">0%</td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_RH">相對濕度</th>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H00">85%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H03">86%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H06">88%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H09">80%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H12">68%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H15">76%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H18">80%</td>
-                                            <td headers="PC3_RH PC3_D1 PC3_D1H21">89%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H00">88%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H03">88%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H06">86%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H09">74%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H12">48%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H15">48%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H18">52%</td>
-                                            <td headers="PC3_RH PC3_D2 PC3_D2H21">52%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H00">85%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H03">93%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H06">87%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H09">81%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H12">66%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H15">62%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H18">63%</td>
-                                            <td headers="PC3_RH PC3_D3 PC3_D3H21">72%</td>
-                                            <td headers="PC3_RH PC3_D4 PC3_D4H00">80%</td>
-                                        </tr>
-                                        <tr class="W-BF">
-                                            <th id="PC3_BF">蒲福風級</th>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H00">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H03">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H06">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H09">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H12">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H15">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H18">≤1</td>
-                                            <td headers="PC3_BF PC3_D1 PC3_D1H21">≤1</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H00">≤1</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H03">≤1</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H06">≤1</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H09">2</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H12">3</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H15">3</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H18">2</td>
-                                            <td headers="PC3_BF PC3_D2 PC3_D2H21">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H00">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H03">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H06">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H09">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H12">2</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H15">2</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H18">≤1</td>
-                                            <td headers="PC3_BF PC3_D3 PC3_D3H21">≤1</td>
-                                            <td headers="PC3_BF PC3_D4 PC3_D4H00">≤1</td>
-                                        </tr>
-                                        <tr class="W-MS d-none">
-                                            <th id="PC3_MS">風速(m/s)</th>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H00">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H03">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H06">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H09">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H12">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H15">0</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H18">1</td>
-                                            <td headers="PC3_MS PC3_D1 PC3_D1H21">1</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H00">1</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H03">1</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H06">1</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H09">3</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H12">5</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H15">4</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H18">2</td>
-                                            <td headers="PC3_MS PC3_D2 PC3_D2H21">2</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H00">1</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H03">1</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H06">1</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H09">2</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H12">2</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H15">2</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H18">2</td>
-                                            <td headers="PC3_MS PC3_D3 PC3_D3H21">2</td>
-                                            <td headers="PC3_MS PC3_D4 PC3_D4H00">2</td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_WD">風向</th>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H00">偏南風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H03">東南風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H06">偏西風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H09">西北風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H12">偏西風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H15">偏西風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H18">偏東風</td>
-                                            <td headers="PC3_WD PC3_D1 PC3_D1H21">東南風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H00">東南風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H03">偏南風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H06">偏西風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H09">偏西風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H12">偏西風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H15">偏西風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H18">偏西風</td>
-                                            <td headers="PC3_WD PC3_D2 PC3_D2H21">偏西風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H00">偏北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H03">東北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H06">東北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H09">東北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H12">東北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H15">東北風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H18">偏東風</td>
-                                            <td headers="PC3_WD PC3_D3 PC3_D3H21">偏東風</td>
-                                            <td headers="PC3_WD PC3_D4 PC3_D4H00">偏東風</td>
-                                        </tr>
-                                        <tr>
-                                            <th id="PC3_CI">舒適度</th>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H00">舒適</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H03">舒適</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H06">舒適</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H09">舒適</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H12">悶熱</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H15">悶熱</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H18">舒適</td>
-                                            <td headers="PC3_CI PC3_D1 PC3_D1H21">舒適</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H00">舒適</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H03">舒適</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H06">舒適</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H09">悶熱</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H12">悶熱</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H15">悶熱</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H18">舒適</td>
-                                            <td headers="PC3_CI PC3_D2 PC3_D2H21">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H00">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H03">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H06">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H09">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H12">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H15">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H18">舒適</td>
-                                            <td headers="PC3_CI PC3_D3 PC3_D3H21">舒適</td>
-                                            <td headers="PC3_CI PC3_D4 PC3_D4H00">舒適</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered d-none" id="TableIdweeks"></table>
-                                <table class="table table-bordered d-none" id="TableId24hr"></table>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-1" >
+                                    <table class="table" style="width:100px ;text-align: center;border: 1px solid #DDDDDD;position: absolute;">
+                                        <thead>
+                                            <tr style="background-color: #42A1AE;color: #fff;">
+                                              <th scope="col">日期</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="color: #0F83A6;background-color: #fff;">
+                                            <tr>
+                                                <th scope="row">時間</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">天氣狀況</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">溫度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">體感溫度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">降雨機率</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">相對濕度</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">蒲福風級</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">風向</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">舒適度</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-11" style="margin-left: 100px;overflow-x: scroll;width: 87%;">
+                                    <table class="table" style="text-align: center;border-collapse: collapse;">
+                                        <thead style="border: 1px solid #DDDDDD;">
+                                            <tr style="color: #fff;width: 300px;">
+                                              <th scope="col" colspan="3" style="background-color: #D83023;">05/14星期日</th>
+                                              <th scope="col" colspan="8" style="background-color: #42A1AE;">05/15星期一</th>
+                                              <th scope="col" colspan="8" style="background-color: #42A1AE;">05/16星期二</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="color: #0F83A6;">
+                                                <td v-for="hr in hr_str">${ hr }:00</td>
+                                            </tr>
+                                            <tr>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/07.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/day/04.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/01.svg" alt="" width="23px" height="23px"></td>
+                                                <td><img src="https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/night/04.svg" alt="" width="23px" height="23px"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                            </tr>
+                                            <tr>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                                <td>22℃</td>
+                                            </tr>
+                                            <tr>
+                                                <td>30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                                <td colspan="2">30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                                <td>30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                                <td>2</td>
+                                            </tr>
+                                            <tr>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                                <td>東風</td>
+                                            </tr>
+                                            <tr>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                                <td>舒適</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>   
                             </div>
                         </div>
                         <div id="six" class="tab-inner">
@@ -11599,6 +11375,7 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
             }
     const app = new Vue({
         el: '#app',
+        delimiters: ['${', '}'],
         created() {
             window.app = this
             // 解析URL查詢參數
@@ -11650,6 +11427,9 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                 hr_chart.data.datasets[1].data = this.get_hr_values(AT);
                 hr_chart.data.labels = this.getStrHour(T);
                 hr_chart.update();
+
+                //表格
+                this.hr_str = this.getStrHour(T);
             })
 
             // 获取所有的path元素
@@ -11781,7 +11561,7 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                 for (let i = 1; i < 50; i += 2) {
                     values.push(parseInt(arr[i+1]));
                 }
-                console.log(values);
+                console.log('hrvalues',values);
                 return values;
             },
             getStrDate(arr){
@@ -11844,7 +11624,7 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                     }
                     values.push(hour);
                 }
-                console.log(values);
+                console.log('strhour',values);
                 return values;
             }
         },
@@ -11855,6 +11635,7 @@ l-0.2-0.2l-0.2-0.2l-0.1-0.1l-0.1-0.2l-0.1-0.1l-0.1-0.1l0.8-0.7l0.2-0.2l0.1-0.2l0
                 townName: "",
                 week_weather_data: null,
                 hr_weather_data: null,
+                hr_str: "", // 將時間陣列存儲在 timeArray 變數中
             }
         },
         computed: {

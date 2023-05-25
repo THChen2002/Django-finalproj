@@ -18,3 +18,7 @@ def get_str_time(user_answer_time):
 @register.filter
 def times(number):
     return range(number)
+
+@register.filter
+def minus_times(number):
+    return range(5-number)

@@ -105,8 +105,10 @@ def quiz_admin(request):
                     selected_questions = []
                 else:
                     selected_questions = list(map(int, request.POST.getlist('selected_questions')[0].replace('[', '').replace(']', '').split(',')))
-                print(selected_questions)
+                # print(selected_questions)
+                print(request.POST['quiz_name'])
                 questions = questionFilter.qs
+                quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
         elif 'questionForm' in request.POST:
             questionForm = QuestionForm(request.POST)
             if questionForm.is_valid():
