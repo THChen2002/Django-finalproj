@@ -11,26 +11,36 @@
          <h1>氣象科普測驗</h1>
       </div>
       <div class="col-md-6">
-         <button type="button" class="btn btn-danger"  data-bs-toggle="modal"data-bs-target="#alert" style="float: right; margin-left: 20px;">回測驗首頁</button>
+         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#alert"
+            style="float: right; margin-left: 20px;">回測驗首頁</button>
       </div>
    </div>
    <form id="quizForm" action="/quiz/result/" method="post">
       {% csrf_token %}
       <!-- 這裡是為了讓後端知道是哪一個測驗 -->
-      <input type="hidden"  name="quiz_id" value='{{ quiz_id }}'>
+      <input type="hidden" name="quiz_id" value='{{ quiz_id }}'>
       <!-- 這裡是為了讓後端知道花了多少時間 -->
       <input type="hidden" id="timeInput" name="time" value="0">
-      <div >
-         <p style="display: inline-block;font-size: 20px;">測驗時間</p>&emsp;<div id="timer" style="display: inline-block;font-size: 20px;">00:00</div>
+      <div class="row">
+         <div class="col-md-10">
+            {{quiz.quiz_description}}
+         </div>
+         <div class="col-md-2">
+            <div style="display: flex;justify-content:end;height: 150px;align-items:center">
+               <div id="countdowntimer"></div>
+            </div>
+         </div>
       </div>
       
+
       {% for question in questions %}
       <div class="mainquiz container-fluid">
          <div class="scp-quizzes-main">
             <div class="scp-quizzes-data">
                <div class="row">
                   <div>
-                     <span class="badge rounded-pill" style="font-size: 24px;margin-bottom: 15px; background-color: #f03557;">難易度：
+                     <span class="badge rounded-pill"
+                        style="font-size: 24px;margin-bottom: 15px; background-color: #f03557;">難易度：
                         {% for i in question.question_level|times %}
                         <img src="{% static 'images/quiz/star.png' %}" width="25px" height="25px">
                         {% endfor %}
@@ -39,7 +49,7 @@
                         {% endfor %}
                      </span>
                      <br>
-                     <h3  style="display: inline-block;margin-bottom: 0px;">{{ question.question }}</h3>
+                     <h3 style="display: inline-block;margin-bottom: 0px;">{{ question.question }}</h3>
                      {% if question.question_url%}
                      <img src="{{ question.question_url }}" alt="" width="30%">
                      {% endif %}
@@ -57,7 +67,8 @@
                <br>
                <input type="radio" name="question{{ forloop.counter }}" value="{{ question.choice4 }}">
                <label id="label4_{{ forloop.counter }}" onclick="recordAnswer({{ forloop.counter }}, this, 'D')">4. {{ question.choice4 }}</label>
-               <input type="hidden" id="hiddenInput{{ forloop.counter }}" name="question{{ forloop.counter }}" value='{"id": {{ question.pk }}, "userAnswer": "0"}'>
+               <input type="hidden" id="hiddenInput{{ forloop.counter }}" name="question{{ forloop.counter }}"
+                  value='{"id": {{ question.pk }}, "userAnswer": "0"}'>
             </div>
          </div>
       </div>
@@ -68,7 +79,8 @@
 
 
    <!--警告頁面-->
-   <div class="modal fade" id="alert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+   <div class="modal fade" id="alert" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
          <div class="modal-content">
             <div class="modal-header">
@@ -98,7 +110,7 @@
    function recordAnswer(questionNum, selectedOption, userAnswer) {
       // 將之前選中的標籤顏色重置
       var prevSelectedOptions = document.querySelectorAll("[id$='_" + questionNum + "']");
-      console.log("prev",prevSelectedOptions);
+      console.log("prev", prevSelectedOptions);
       if (prevSelectedOptions) {
          for (var i = 0; i < prevSelectedOptions.length; i++) {
             var prevSelectedOption = prevSelectedOptions[i];
@@ -117,53 +129,130 @@
       var labelId = selectedOption.id;
       console.log(labelId);
       document.getElementById(labelId).style.backgroundColor = "#78C1EA";
-      
+
       console.log(answers);
    }
 </script>
+
 <script>
-   // 計時器變數
-   var timerInterval;
-   var seconds = 0, minutes = 0
-   var timerDisplay = document.getElementById('timer');
    var timeInput = document.getElementById('timeInput');
+   const FULL_DASH_ARRAY = 283;
+   const WARNING_THRESHOLD = 10;
+   const ALERT_THRESHOLD = 5;
 
-   // 啟動計時器
-   function startTimer() {
-      timerInterval = setInterval(updateTimer, 1000);
-   }
- 
-   // 更新計時器顯示
-   function updateTimer() {
-      seconds++;
-      if (seconds >= 60) {
-         seconds = 0;
-         minutes++;
-         if (minutes >= 60) {
-            alert('時間到!');
-         }
+   const COLOR_CODES = {
+      info: {
+         color: "green"
+      },
+      warning: {
+         color: "orange",
+         threshold: WARNING_THRESHOLD
+      },
+      alert: {
+         color: "red",
+         threshold: ALERT_THRESHOLD
       }
- 
-      // 格式化時間
-      var timeString = formatTime(minutes) + ":" + formatTime(seconds);
+   };
 
-      // 更新計時器顯示
-      timerDisplay.textContent = timeString;
-      // 將時間值設定為隱藏input元素的值
-      timeInput.value = minutes*60 + seconds;
-   }
- 
-   // 格式化時間
-   function formatTime(time) {
-      return time < 10 ? "0" + time : time;
-   }
-   // 提交表單時停止計時器
-   document.getElementById('quizForm').addEventListener('submit', function() {
-      clearInterval(timerInterval);
-   });
+   const TIME_LIMIT = {{ quiz.quiz_time }};
+   let timePassed = 0;
+   let timeLeft = TIME_LIMIT;
+   let timerInterval = null;
+   let remainingPathColor = COLOR_CODES.info.color;
 
- 
-   // 開始計時器
+   document.getElementById("countdowntimer").innerHTML = `
+<div class="base-timer">
+  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <g class="base-timer__circle">
+      <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+      <path
+        id="base-timer-path-remaining"
+        stroke-dasharray="283"
+        class="base-timer__path-remaining ${remainingPathColor}"
+        d="
+          M 50, 50
+          m -45, 0
+          a 45,45 0 1,0 90,0
+          a 45,45 0 1,0 -90,0
+        "
+      ></path>
+    </g>
+  </svg>
+  <span id="base-timer-label" class="base-timer__label">${formatTime(
+      timeLeft
+   )}</span>
+</div>
+`;
+
    startTimer();
- </script>
+
+   function onTimesUp() {
+      clearInterval(timerInterval);
+      alert('時間到!');
+   }
+
+   function startTimer() {
+      timerInterval = setInterval(() => {
+         timePassed = timePassed += 1;
+         timeLeft = TIME_LIMIT - timePassed;
+         document.getElementById("base-timer-label").innerHTML = formatTime(
+            timeLeft
+         );
+         timeInput.value = timePassed;
+         setCircleDasharray();
+         setRemainingPathColor(timeLeft);
+
+         if (timeLeft === 0) {
+            onTimesUp();
+         }
+      }, 1000);
+   }
+
+   function formatTime(time) {
+      const minutes = Math.floor(time / 60);
+      let seconds = time % 60;
+      let str_mins = minutes
+      if (seconds < 10) {
+         seconds = `0${seconds}`;
+      }
+      if (str_mins < 10) {
+         str_mins = `0${str_mins}`;
+      }
+
+      return `${str_mins}:${seconds}`;
+   }
+
+   function setRemainingPathColor(timeLeft) {
+      const { alert, warning, info } = COLOR_CODES;
+      if (timeLeft <= alert.threshold) {
+         document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove(warning.color);
+         document
+            .getElementById("base-timer-path-remaining")
+            .classList.add(alert.color);
+      } else if (timeLeft <= warning.threshold) {
+         document
+            .getElementById("base-timer-path-remaining")
+            .classList.remove(info.color);
+         document
+            .getElementById("base-timer-path-remaining")
+            .classList.add(warning.color);
+      }
+   }
+
+   function calculateTimeFraction() {
+      const rawTimeFraction = timeLeft / TIME_LIMIT;
+      return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+   }
+
+   function setCircleDasharray() {
+      const circleDasharray = `${(
+         calculateTimeFraction() * FULL_DASH_ARRAY
+      ).toFixed(0)} 283`;
+      document
+         .getElementById("base-timer-path-remaining")
+         .setAttribute("stroke-dasharray", circleDasharray);
+   }
+</script>
 {% endblock %}
