@@ -8,16 +8,30 @@
     <div class="tab-demo" >
         <!-- tab標籤列 -->
         <ul class="tab-title" style="list-style-type: none;justify-content:center;">
-            <li class="active">
-                <a href="javascript:;" data-tablink="one">新增問題</a>
+            <li>
+                <a href="javascript:;" data-tablink="one">新增分類</a>
+            </li>
+            <li class="">
+                <a href="javascript:;" data-tablink="two">新增問題</a>
             </li>
             <li>
-                <a href="javascript:;" data-tablink="two">新增題目</a>
+                <a href="javascript:;" data-tablink="three">新增測驗</a>
             </li>
         </ul>
         <!-- tab內容 -->
         <div class="">
             <div id="one" class="tab-inner shadow-lg" style="border-radius: 10px;">
+                <div style="margin: 15px;">
+                    <h2 style="font-weight: bold; ">新增分類</h2>
+                    <!-- 新增問題表單 -->
+                    <form method="POST" >
+                        {% csrf_token %}
+                        {{ categoryForm.as_p }}
+                        <button type="submit" class="btn btn-success" name="categoryForm" >新增</button>
+                    </form>
+                </div>
+            </div>
+            <div id="two" class="tab-inner shadow-lg" style="border-radius: 10px;">
                 <div style="margin: 15px;">
                     <h2 style="font-weight: bold; ">新增問題</h2>
                     <!-- 新增問題表單 -->
@@ -39,9 +53,9 @@
                     </form>
                 </div>
             </div>
-            <div id="two" class="tab-inner shadow-lg" style="border-radius: 10px;">
+            <div id="three" class="tab-inner shadow-lg" style="border-radius: 10px;">
                 <div style="margin: 15px;">
-                    <h2 style="font-weight: bold; ">新增題目</h2>
+                    <h2 style="font-weight: bold; ">新增測驗</h2>
                     <form method="POST" id="quizForm">
                         {% csrf_token %}
                         {{ quizForm.as_p }}
@@ -81,7 +95,7 @@
                                 </td>
                                 <td>{{ question.get_question_type_display }}</td>
                                 <td style="text-align: center;">
-                                    <input type="checkbox" class="select-question" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
+                                    <input type="checkbox" class="select-question form-check-input" name="selected_questions" value="{{ question.id }}" {% if question.id in selected_questions %}checked{% endif %}>
                                 </td>
                             </tr>
                             {% endfor %}
@@ -98,27 +112,46 @@
         tabCutover();
     });
 
-    function tabCutover1() {
-        var tablink = $(".tab-title li.active").find("a").data("tablink");
+    // function tabCutover1() {
+    //     var tablink = $(".tab-title li.active").find("a").data("tablink");
+    //     console.log(tablink);
 
-        $('#' + tablink).show().siblings(".tab-inner").hide();
+    //     $('#' + tablink).show().siblings(".tab-inner").hide();
 
-        $(".tab-title li").click(function () {
-            $('#' + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
-            $(this).addClass("active").siblings(".active").removeClass("active");
-        });
-    }
+    //     $(".tab-title li").click(function () {
+    //         $('#' + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+    //         $(this).addClass("active").siblings(".active").removeClass("active");
+    //     });
+    // }
 
     function tabCutover() {
 
-        $(".tab-title li.active").each(function () {
-            var tablink = $(this).find("a").data("tablink");
+        // $(".tab-title li.active").each(function () {
+        //     var tablink = $(this).find("a").data("tablink");
+        //     console.log(tablink);
+        //     $('#' + tablink).show().siblings(".tab-inner").hide();
+        // });
+        var currentTab = "{{ current_tab }}"; // Replace "{{ current_tab }}" with the actual value passed from the view
+        console.log(currentTab);
+        // Show the default tab based on the current_tab parameter
+        if (currentTab === "one") {
+            $("#" + currentTab).show().siblings(".tab-inner").hide();
+            $(".tab-title li").eq(0).addClass("active");
+        } else if (currentTab === "two") {
+            $("#" + currentTab).show().siblings(".tab-inner").hide();
+            $(".tab-title li").eq(1).addClass("active");
+        } else if (currentTab === "three") {
+            $("#" + currentTab).show().siblings(".tab-inner").hide();
+            $(".tab-title li").eq(2).addClass("active");
+        }else{
+            //預設顯示第二個頁籤
+            $("#" + "two").show().siblings(".tab-inner").hide();
+            $(".tab-title li").eq(1).addClass("active");
+        }
 
-            $('#' + tablink).show().siblings(".tab-inner").hide();
-        });
-
-        $(".tab-title li").click(function () {
-            $('#' + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
+        // Handle tab click event
+        $(".tab-title li").click(function() {
+            $("#" + $(this).find("a").data("tablink")).show().siblings(".tab-inner").hide();
             $(this).addClass("active").siblings(".active").removeClass("active");
         });
     }

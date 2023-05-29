@@ -1,0 +1,46 @@
+.sideMenu > label {
+    width: 20px;
+    height: 80px;
+    background-color: #d1d1d1;
+    color: #686666;
+    position: absolute;
+    right: -20px;
+    top: 0; 
+    bottom: 0;
+    margin: auto;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 0 5px 5px 0;
+    box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
+  }
+
+#sideMenu-active:checked + .sideMenu {
+    transform: translateX(0);
+}
+
+#sideMenu-active:checked + .sideMenu > label .fas{
+    transform: scaleX(-1);
+}
+
+#sideMenu-active {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+.sideMenu {
+    width: 240px;
+    height: 65%;
+    background-color: #eee;
+    border-top: 5px solid #d1d1d1;
+    border-right: 5px solid #d1d1d1;
+    border-bottom: 5px solid #d1d1d1;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0;
+    box-shadow: 5px 0 5px rgba(23, 23, 54, 0.6);
+    position: absolute;
+    margin-top: 50px;
+    z-index: 9999;
+    transform: translateX(-98%);
+    transition: 0.5s;
+}

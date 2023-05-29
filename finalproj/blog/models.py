@@ -25,7 +25,7 @@ class BlogPost(models.Model):
     publish_time = models.DateTimeField(auto_now_add=True)
     enabled = models.BooleanField(default=False)
     press = models.IntegerField(default=0)
-    slug = models.SlugField(default="", null=False)
+    # slug = models.SlugField(default="", null=False)
     def __str__(self):
         return self.title
 

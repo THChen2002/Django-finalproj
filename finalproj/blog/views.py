@@ -5,6 +5,7 @@ import math
 from datetime import datetime, timedelta
 from django.utils import timezone
 from accounts.models import UserProfile
+import urllib.parse
 # Create your views here.
 
 #blog頁面
@@ -13,66 +14,71 @@ from accounts.models import UserProfile
 
 page1 = 1
 
-def index(request, pageindex=None):  #首頁
+def index(request, pageindex=None, category="all"):  #首頁
 	q = request.GET.get('q', None)
 	newsall  = ''
-	if q == None or q == "":
-		newsall = models.BlogPost.objects.all().order_by('-id')
-	elif q !=  None:
-		newsall = models.BlogPost.objects.filter(title__contains=q)
+	if category != "all":
+		if q == None or q == "":
+			newsall = models.BlogPost.objects.filter(category=models.Category.objects.get(title=category)).order_by('-id')
+		elif q !=  None:
+			newsall = models.BlogPost.objects.filter(title__contains=q)
+	else:
+		if q == None or q == "":
+			newsall = models.BlogPost.objects.all().order_by('-id')
+		elif q !=  None:
+			newsall = models.BlogPost.objects.filter(title__contains=q)
 	global page1
 	pagesize = 3
-	
 	datasize = len(newsall)
 	totpage = math.ceil(datasize / pagesize)
 	if q == None or q == "":
 		if pageindex==None:
 			page1 = 1
-			newsunits = models.BlogPost.objects.filter(enabled=True).order_by('-id')[:pagesize]
+			newsunits = newsall.filter(enabled=True).order_by('-id')[:pagesize]
 		elif pageindex=='1':
 			start = (page1-2)*pagesize
 			if start >= 0:
-				newsunits = models.BlogPost.objects.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
+				newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
 				page1 -= 1
 		elif pageindex=='2':
 			start = page1*pagesize
 			if start < datasize:
-				newsunits = models.BlogPost.objects.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
+				newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
 				page1 += 1
 		elif pageindex=='3':
 			start = (page1-1)*pagesize
-			newsunits = models.BlogPost.objects.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
+			newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
 	elif q !=  None:
 		if pageindex==None:
 			page1 = 1
-			newsunits = models.BlogPost.objects.filter(enabled=True, title__contains=q).order_by('-id')[:pagesize]
+			newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[:pagesize]
 		elif pageindex=='1':
 			start = (page1-2)*pagesize
 			if start >= 0:
-				newsunits = models.BlogPost.objects.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
+				newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
 				page1 -= 1
 		elif pageindex=='2':
 			start = page1*pagesize
 			if start < datasize:
-				newsunits = models.BlogPost.objects.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
+				newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
 				page1 += 1
 		elif pageindex=='3':
 			start = (page1-1)*pagesize
-			newsunits = models.BlogPost.objects.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
+			newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
 	currentpage = page1
 
-	return render(request, "blog/apple-blog.html", locals())
+	return render(request, "blog/blogindex.html", locals())
 
-def detail(request, slug=None):  #詳細頁面
+def detail(request, category=None, id=None):  #詳細頁面
 	if request.method == 'POST':
 		bcontent = request.POST.get('bcontent')
 		bblogpost = models.BlogPost.objects.get(id=request.POST.get('bblogpost'))
 		bauthor = UserProfile.objects.get(id=request.POST.get('bauthor'))
 		board = models.BoardUnit.objects.create(bblogpost=bblogpost, bcontent=bcontent, bauthor=bauthor)
 		board.save()
-		return redirect(reverse('blog_detail', args=[slug]))
+		return redirect(reverse('blog_detail', args=[id]))
 	else:
-		unit = get_object_or_404(models.BlogPost, slug=slug)
+		unit = get_object_or_404(models.BlogPost, id=id)
 		category = unit.category
 		title = unit.title
 		pubtime = unit.publish_time

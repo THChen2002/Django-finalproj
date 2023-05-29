@@ -1,33 +1,38 @@
 .tab-demo {
-    padding: 20px;
-  }
-  
-  .tab-title {
-    display: flex;  /*將li 排列再一起*/
-  }
-  
-  .tab-title li {
-    padding: auto;
-    border:1px solid #cecdcd;
-  }
-  
-  .tab-title li a {
-    display: block;
-    padding: 10px 5px;
-    width: 145px;
-    color: #333;
-    background-color: #fafafa;
-    text-decoration: none;
-    text-align: center;
-  }
-  
-  .tab-title li.active a {
-    color: #fff;
-    background-color: #0071bc;
-  }
-  
-  .tab-inner {
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
+  padding: 20px;
+}
+
+.tab-title {
+  display: flex;
+  /*將li 排列再一起*/
+}
+
+.tab-title li {
+  padding: auto;
+  border: 1px solid #cecdcd;
+}
+
+.tab-title li a {
+  display: block;
+  padding: 10px 5px;
+  width: 145px;
+  color: #333;
+  background-color: #fafafa;
+  text-decoration: none;
+  text-align: center;
+}
+
+.tab-title li.active a {
+  color: #fff;
+  background-color: #0071bc;
+}
+
+.tab-inner {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.errorlist{
+  color: red;
+  font-size: 18px;
+}

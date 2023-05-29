@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{title}}{% endblock %}
 {% load static %} 
-
 {% block content %}
 <br>
 <br>
@@ -57,7 +56,7 @@
 				<div class="row" style="margin:0px;padding:15px 0px;border-bottom: 1px solid #BEBEBE;">
 				 	<div class="col-md-1 d-flex"style="justify-content: center;">
 					{% if board.bauthor.profile_pic %}
-					  <img src="/media/{{ board.bauthor.profile_pic }}" class="rounded-circle mr-3"
+					  <img src="{% get_media_prefix %}{{ board.bauthor.profile_pic }}" class="rounded-circle mr-3"
 						alt="{{ board.bauthor.user_name }}'s profile picture" width="40" height="40">
 					{% else %}
 					  <img src="{% static 'images/user_default.png' %}" class="rounded-circle mr-3"
@@ -81,7 +80,7 @@
 			</div>
 			<br>
 			<div class="topfunction" >
-				<a class="btn btn-light" href="/apple-blog/" style="border: 2px solid black;border-radius: 8px;"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
+				<a class="btn btn-light" href="{% url 'blog_index' category=category %}" style="border: 2px solid black;border-radius: 8px;"><img src="{% static 'images/blogicon/back.png' %}" alt="上一頁" width="25" height="25"  />&nbsp;上一頁</a>
 			</div>
 		</div>
 	</div>

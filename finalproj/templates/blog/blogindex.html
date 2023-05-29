@@ -1,19 +1,21 @@
 {% extends "base.html" %}
-{% block title %}APPLE新聞{% endblock %}
+{% block title %}{{ category }}{% endblock %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="/static/css/blogbanner.css" />
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/blogbanner.css' %}" />
 <!--css icon-->
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 <main class="container">
 	<br>
 	<div id="carouselExample" class="carousel slide carousel-fade" data-bs-ride="carousel">
 		<div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"
+				aria-current="true" aria-label="Slide 1"></button>
 			<button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
 		</div>
 		<div class="carousel-inner">
 			<div class="carousel-item active" data-bs-interval="7000">
-				<img src="\static\images\blog\Apple_products.png" class="d-block w-100" alt="">
+				<img src="{% static 'images/blog/Apple_products.png' %}" class="d-block w-100" alt="">
 				<div class="carousel-overlay"></div>
 				<div class="carousel-caption d-none d-md-block" style="text-align: center;">
 					<h1 class="banner-h1">最新APPLE產品消息</h1>
@@ -21,7 +23,7 @@
 				</div>
 			</div>
 			<div class="carousel-item" data-bs-interval="7000">
-				<img src="\static\images\blog\iphone.png" class="d-block w-100" alt="">
+				<img src="{% static 'images/blog/iphone.png' %}" class="d-block w-100" alt="">
 				<div class="carousel-overlay"></div>
 				<div class="carousel-caption d-none d-md-block">
 					<h1 class="banner-h1">超實用軟體技巧</h1>
@@ -46,26 +48,44 @@
 			<div class="card" style="width: 100%;">
 				<div class="card-body">
 					<h2 class="card-title">{{ unit.title }}</h2>
-					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a href="{% url 'Profile' id=unit.author.id %}">{{ unit.author.user_name }}</a><span style="float: right;">點閱次數：{{ unit.press}}</span></h6>
+					<h6 class="card-subtitle mb-2 text-muted">{{ unit.publish_time }} by <a
+							href="{% url 'Profile' id=unit.author.id %}">{{ unit.author.user_name }}</a><span
+							style="float: right;">點閱次數：{{ unit.press}}</span></h6>
 					<p class="card-text" id="content">{{ unit.content | truncatechars_html:100 | safe }}</p>
-					<a href="/blog/{{unit.slug}}/" class="btn btn-outline-primary">more</a>
+					<a href="{% url 'blog_detail' category=category id=unit.id %}"
+						class="btn btn-outline-primary">more</a>
 				</div>
 			</div>
 			<br>
 			{% empty %}
-				<div class="status warning">
-					<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
-				</div>
+			<div class="status warning">
+				<p><span>注意</span> 目前新聞資料庫中沒有任何資料！</p>
+			</div>
 			{% endfor %}
 			<div class="topfunction">
-			{% if currentpage > 1 %}
-				<a href="/apple-blog/1/" title="上一頁">上一頁
-				</a>
-			{% endif %}
-			{% if currentpage < totpage %}
-				<a href="/apple-blog/2/" title="下一頁">下一頁
-				</a>
-			{% endif %}
+				{% if currentpage > 1 %}
+					<a href="{% url 'blog_index' category=category pageindex=1 %}" title="上一頁">上一頁</a>
+				{% endif %}
+				{% if currentpage < totpage %} 
+					<a href="{% url 'blog_index' category=category pageindex=2 %}" title="下一頁">下一頁</a>
+				{% endif %}
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-center">
+							<li class="page-item disabled">
+								<a class="page-link" href="#" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="page-item"><a class="page-link" href="#">1</a></li>
+							<li class="page-item"><a class="page-link" href="#">2</a></li>
+							<li class="page-item"><a class="page-link" href="#">3</a></li>
+							<li class="page-item">
+								<a class="page-link" href="#" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
 			</div>
 		</div>
 

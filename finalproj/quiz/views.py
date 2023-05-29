@@ -92,9 +92,10 @@ def quizresult(request):
 def quiz_admin(request):
     questionForm = QuestionForm()
     quizForm = QuizForm()
+    categoryForm = CategoryForm()
     questions = Question.objects.all()
     selected_questions = []
-
+    current_tab = 0
     if request.method == "POST":
         print(request.POST)
         if 'queryForm' in request.POST:
@@ -109,16 +110,27 @@ def quiz_admin(request):
                 print(request.POST['quiz_name'])
                 questions = questionFilter.qs
                 quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
+                current_tab = 3
+        elif 'categoryForm' in request.POST:
+            categoryForm = CategoryForm(request.POST)
+            if categoryForm.is_valid():
+                category = categoryForm.save()
+                return redirect('quiz_admin')
+            else:
+                current_tab = 'one'
+            
         elif 'questionForm' in request.POST:
             questionForm = QuestionForm(request.POST)
             if questionForm.is_valid():
                 question = questionForm.save()
                 question.category.set(questionForm.cleaned_data.get('category'))
+                current_tab = 2
                 return redirect('quiz_admin')
         elif 'quizForm' in request.POST:
             quizForm = QuizForm(request.POST)
             if quizForm.is_valid():
                 quiz = quizForm.save()
+                current_tab = 3
                 return redirect('quiz_admin')
     else:
         # Get request, no form submission
