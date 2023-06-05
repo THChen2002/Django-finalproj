@@ -6,67 +6,47 @@ from datetime import datetime, timedelta
 from django.utils import timezone
 from accounts.models import UserProfile
 import urllib.parse
+from django.db.models import Q
 # Create your views here.
 
 #blog頁面
-# def blog(request):
-#     return render(request, 'blog/apple-blog.html')
-
-page1 = 1
-
-def index(request, pageindex=None, category="all"):  #首頁
+def index(request, category="all"):  #首頁
 	q = request.GET.get('q', None)
+	page = request.GET.get('page', None)
 	newsall  = ''
 	if category != "all":
 		if q == None or q == "":
 			newsall = models.BlogPost.objects.filter(category=models.Category.objects.get(title=category)).order_by('-id')
 		elif q !=  None:
-			newsall = models.BlogPost.objects.filter(title__contains=q)
+			newsall = models.BlogPost.objects.filter(Q(title__contains=q) | Q(tags__title=q)).distinct()
 	else:
 		if q == None or q == "":
 			newsall = models.BlogPost.objects.all().order_by('-id')
 		elif q !=  None:
-			newsall = models.BlogPost.objects.filter(title__contains=q)
-	global page1
+			newsall = models.BlogPost.objects.filter(Q(title__contains=q) | Q(tags__title=q)).distinct()
+	print(newsall)
 	pagesize = 3
 	datasize = len(newsall)
 	totpage = math.ceil(datasize / pagesize)
 	if q == None or q == "":
-		if pageindex==None:
-			page1 = 1
-			newsunits = newsall.filter(enabled=True).order_by('-id')[:pagesize]
-		elif pageindex=='1':
-			start = (page1-2)*pagesize
-			if start >= 0:
-				newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
-				page1 -= 1
-		elif pageindex=='2':
-			start = page1*pagesize
-			if start < datasize:
-				newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
-				page1 += 1
-		elif pageindex=='3':
-			start = (page1-1)*pagesize
-			newsunits = newsall.filter(enabled=True).order_by('-id')[start:(start+pagesize)]
+		if page == None or page == '1':
+			page = 1
+			newsunits = newsall.filter(enabled=True).order_by('-id')[:page*pagesize]
+		else:
+			page = int(page)
+			start = (page-1)*pagesize
+			newsunits = newsall.filter(enabled=True).order_by('-id')[start:page*pagesize]
 	elif q !=  None:
-		if pageindex==None:
-			page1 = 1
-			newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[:pagesize]
-		elif pageindex=='1':
-			start = (page1-2)*pagesize
-			if start >= 0:
-				newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
-				page1 -= 1
-		elif pageindex=='2':
-			start = page1*pagesize
-			if start < datasize:
-				newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
-				page1 += 1
-		elif pageindex=='3':
-			start = (page1-1)*pagesize
-			newsunits = newsall.filter(enabled=True, title__contains=q).order_by('-id')[start:(start+pagesize)]
-	currentpage = page1
-
+		if page == None or page == '1':
+			page = 1
+			newsunits = newsall.filter(enabled=True).order_by('-id')[:page*pagesize]
+		else:
+			page = int(page)
+			start = (page-1)*pagesize
+			newsunits = newsall.filter(enabled=True).order_by('-id')[start:page*pagesize]
+	currentpage = page
+	print(newsunits)
+	
 	return render(request, "blog/blogindex.html", locals())
 
 def detail(request, category=None, id=None):  #詳細頁面

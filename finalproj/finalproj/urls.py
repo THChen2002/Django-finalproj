@@ -55,8 +55,7 @@ urlpatterns = [
 
     path('blog/', blog.index, name='blog_index'),
     path('blog/<str:category>/', blog.index, name='blog_index'),
-    path('blog/<str:category>/<str:pageindex>/', blog.index, name='blog_index'),
-    path('blog/<str:category>/detail/<int:id>/',  blog.detail, name='blog_detail'),
+    path('blog/<str:category>/<int:id>/',  blog.detail, name='blog_detail'),
 
     path('weather/', weather.weather),
     path('weather/town', weather.town, name='Town'),

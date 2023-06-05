@@ -22,7 +22,7 @@
 				<img src="{% static 'images/blogicon/clock.png' %}" alt="" width="16" height="16" />&nbsp;{{pubtime}}&nbsp;
 				<img src="{% static 'images/blogicon/price-tag.png' %}" alt="" width="16" height="16" />&nbsp;
 				{% for tag in tags.all %}
-					<span><a href="#" class="text-decoration-none">#{{ tag }}</a></span>
+					<span><a href="{% url 'blog_index' %}?q={{tag}}" class="text-decoration-none">#{{ tag }}</a></span>
 				{% endfor %} 
 				<p>&nbsp;&nbsp;{{content | safe}}</p>
 				</span>

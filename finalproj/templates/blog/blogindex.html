@@ -2,6 +2,7 @@
 {% block title %}{{ category }}{% endblock %}
 {% block content %}
 {% load static %}
+{% load blog_filter %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/blogbanner.css' %}" />
 <!--css icon-->
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
@@ -63,29 +64,47 @@
 			</div>
 			{% endfor %}
 			<div class="topfunction">
-				{% if currentpage > 1 %}
-					<a href="{% url 'blog_index' category=category pageindex=1 %}" title="上一頁">上一頁</a>
-				{% endif %}
-				{% if currentpage < totpage %} 
-					<a href="{% url 'blog_index' category=category pageindex=2 %}" title="下一頁">下一頁</a>
-				{% endif %}
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item disabled">
-								<a class="page-link" href="#" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#" aria-label="Next">
-									<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
-						</ul>
-					</nav>
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item {% if currentpage == 1 %}disabled{% endif %}">
+							<a class="page-link" href="{% url 'blog_index' category=category%}?page={{ currentpage|subtract:1 }}{% if q != None %}&q={{ q }}{% endif %}" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						{% if totpage <= 5 %}
+							{% for page in 1|rangetag:totpage %}
+								<li class="page-item {% if currentpage == page %}active{% endif %}">
+									<a class="page-link" id="page{{ page }}" href="{% url 'blog_index' category=category%}?page={{ page }}{% if q != None %}&q={{ q }}{% endif %}">{{ page }}</a>
+								</li>
+							{% endfor %}
+						{% else %}
+							{% if currentpage <= 3 %}
+								{% for page in 1|rangetag:5 %}
+									<li class="page-item {% if currentpage == page %}active{% endif %}">
+										<a class="page-link" id="page{{ page }}" href="{% url 'blog_index' category=category%}?page={{ page }}{% if q != None %}&q={{ q }}{% endif %}">{{ page }}</a>
+									</li>
+								{% endfor %}
+							{% elif currentpage >= totpage|subtract:2 %}
+								{% for page in totpage|subtract:4|rangetag:totpage %}
+									<li class="page-item {% if currentpage == page %}active{% endif %}">
+										<a class="page-link" id="page{{ page }}" href="{% url 'blog_index' category=category%}?page={{ page }}{% if q != None %}&q={{ q }}{% endif %}">{{ page }}</a>
+									</li>
+								{% endfor %}
+							{% else %}
+								{% for page in currentpage|page_range:totpage %}
+									<li class="page-item {% if currentpage == page %}active{% endif %}">
+										<a class="page-link" id="page{{ page }}" href="{% url 'blog_index' category=category%}?page={{ page }}{% if q != None %}&q={{ q }}{% endif %}">{{ page }}</a>
+									</li>
+								{% endfor %}
+							{% endif %}
+						{% endif %}
+						<li class="page-item {% if currentpage == totpage %}disabled{% endif %}">
+							<a class="page-link" href="{% url 'blog_index' category=category%}?page={{ currentpage|add:1 }}{% if q != None %}&q={{ q }}{% endif %}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
 			</div>
 		</div>
 
