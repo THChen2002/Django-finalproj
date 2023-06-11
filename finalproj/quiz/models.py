@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import UserProfile
+from blog.models import BlogPost
 
 # Create your models here.
 class Category(models.Model):
@@ -28,6 +29,7 @@ class Question(models.Model):
         ('C', 'C'),
         ('D', 'D'),
     ))
+    # blog = models.ForeignKey(BlogPost, on_delete=models.CASCADE, blank=True,null=True)
     detail_explanation = models.TextField(blank=True, null=True)
     # explanation_url = models.ImageField(upload_to='explanation_pics/',blank=True, null=True)
     explanation_url = models.URLField(blank=True, null=True)

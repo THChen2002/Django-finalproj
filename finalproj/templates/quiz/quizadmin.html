@@ -304,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 監聽 filterForm 的提交事件
     filterForm.addEventListener('submit', function (event) {
+        // event.preventDefault();
         // 建立 FormData 物件
         var formData = new FormData();
         formData.append('queryForm', '');

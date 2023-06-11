@@ -41,10 +41,10 @@
                     <div class="collapse" id="weather">
                         <div class="card card-body" >
                             <ul style="font-size: 18px;list-style-type: none;">
-                                <li><a class="dropdown-item" href="/quiz">颱風 測驗題</a></li>
-                                <li><a class="dropdown-item" href="/quiz">梅雨 測驗題</a></li>
-                                <li><a class="dropdown-item" href="/quiz">焚風 測驗題</a></li>
-                                <li><a class="dropdown-item" href="/quiz">氣溫 測驗題</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quiz' %}?quizid=1">颱風 測驗題</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quiz' %}?quizid=1">梅雨 測驗題</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quiz' %}?quizid=2">焚風 測驗題</a></li>
+                                <li><a class="dropdown-item" href="{% url 'quiz' %}?quizid=1">氣溫 測驗題</a></li>
                             </ul>
                         </div>
                     </div>

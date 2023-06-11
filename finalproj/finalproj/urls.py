@@ -36,6 +36,10 @@ urlpatterns = [
     path('login/', accounts.sign_in, name='Login'),
     path('logout/', accounts.log_out, name='Logout'),
     path('profile/', accounts.profile, name='Profile'),
+    path('profile/basic_info/', accounts.basic_info, name='Basic_info'),
+    path('profile/account/', accounts.account, name='Account'),
+    path('profile/dashboard/', accounts.dashboard, name='Dashboard'),
+    path('profile/notifications/', accounts.notifications, name='Notifications'),
     path('profile/<int:id>', accounts.profile, name='Profile'),
     path('photo', accounts.upload_photo, name='Photo'),
 
@@ -61,7 +65,7 @@ urlpatterns = [
     path('weather/town', weather.town, name='Town'),
     path('weather/radar', weather.radar),
     
-    path('quiz/', quiz.question),
+    path('quiz/', quiz.question, name='quiz'),
     path('quiz/index/', quiz.quizindex),
     path('quiz/result/', quiz.quizresult),
     path('quiz/admin/', quiz.quiz_admin, name='quiz_admin'),

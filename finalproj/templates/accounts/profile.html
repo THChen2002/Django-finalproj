@@ -6,286 +6,180 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <section style="background-color: #eee;">
     <input type="checkbox" name="" id="sideMenu-active" />
-        <div class="sideMenu" >
-            <div class="d-flex flex-column flex-shrink-0 p-3">
-                <span class="fs-4"><img src="{% static 'images/usericon/avatar.png' %}" width="30px" height="30px">&nbsp;Profile</span>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                  <li class="nav-item" style="padding-right: 10px;">
-                    <a href="#" class="nav-link active" aria-current="page">
-                      Home
+    <div class="sideMenu">
+        <div class="d-flex flex-column flex-shrink-0 p-3">
+            <span class="fs-4"><img src="{% static 'images/usericon/avatar.png' %}" width="30px"
+                    height="30px">&nbsp;Profile</span>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item" style="padding-right: 10px;">
+                    <a href="/profile/" class="nav-link active" aria-current="page">
+                        Home
                     </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link link-dark">
-                      Basic info
+                </li>
+                <li>
+                    <a href="/profile/basic_info/" class="nav-link link-dark">
+                        Basic info
                     </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link link-dark">
-                      Dashboard
+                </li>
+                <li>
+                    <a href="/profile/dashboard/" class="nav-link link-dark">
+                        Dashboard
                     </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link link-dark">
-                       Notifications
+                </li>
+                <li>
+                    <a href="/profile/notifications/" class="nav-link link-dark">
+                        Notifications
                     </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link link-dark">
+                </li>
+                <li>
+                    <a href="/profile/account/" class="nav-link link-dark">
                         Account
                     </a>
-                  </li>
-                </ul>
-                <hr>
-              </div>
-            <label for="sideMenu-active">
-                <i class="fas fa-angle-right"></i>
-            </label>
+                </li>
+            </ul>
+            <hr>
         </div>
+        <label for="sideMenu-active">
+            <i class="fas fa-angle-right"></i>
+        </label>
+    </div>
     <div class="container  py-5">
         <div class="row">
             <div class="col-lg-1"></div>
-            <div class="col-lg-3">
-                <div class="card mb-4">
-                    <div class="card-body text-center">
-                        <div style="position: relative; display: inline-block;">
-                            {% if unit.profile_pic %}
-                            <img src="/media/{{ unit.profile_pic }}" alt="{{ unit.user_name }}'s profile picture"
-                                class="rounded-circle img-fluid" style="width: 150px;">
-                            {% else %}
-                            <img src="{% static 'images/user_default.png' %}"
-                                alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid"
-                                style="width: 150px;">
-                            {% endif %}
-                            {% if unit.id == user.id %}
-                            <form id="photo-form" style="position: absolute; bottom: 0; right: 0;">
-                                {% csrf_token %}
-                                <div class="rounded-circle"
-                                    style="position: relative; background-color: white; width: 40px;height: 40px; border: 1px solid rgb(184, 184, 184); ">
-                                    <label for="photo"><img src="{% static 'images/usericon/camera.png' %}" width=25px
-                                            height=25px
-                                            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></label>
-                                </div>
-                                <div>
-                                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
-                                        style="display: none;">
-                                </div>
-                            </form>
-                            {% endif %}
+            <div class="col-lg-11 row">
+                <nav style="--bs-breadcrumb-divider: '>';background-color: #fff;border-radius: .25rem;width: 98%; margin:0px 12px 10px 12px ; border: 1px solid rgba(0,0,0,.125);"
+                    aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="align-items: center;margin: 10px 10px;">
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/profile/"
+                                style="text-decoration: none;">Home</a></li>
+                    </ol>
+                </nav>
+                <div class="col-lg-3">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body text-center">
+                            <div style="position: relative; display: inline-block;">
+                                {% if unit.profile_pic %}
+                                <img src="/media/{{ unit.profile_pic }}" alt="{{ unit.user_name }}'s profile picture"
+                                    class="rounded-circle img-fluid" style="width: 150px;">
+                                {% else %}
+                                <img src="{% static 'images/user_default.png' %}"
+                                    alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid"
+                                    style="width: 150px;">
+                                {% endif %}
+                                {% if unit.id == user.id %}
+                                <form id="photo-form" style="position: absolute; bottom: 0; right: 0;">
+                                    {% csrf_token %}
+                                    <div class="rounded-circle"
+                                        style="position: relative; background-color: white; width: 40px;height: 40px; border: 1px solid rgb(184, 184, 184); ">
+                                        <label for="photo"><img src="{% static 'images/usericon/camera.png' %}"
+                                                width=25px height=25px
+                                                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></label>
+                                    </div>
+                                    <div>
+                                        <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
+                                            style="display: none;">
+                                    </div>
+                                </form>
+                                {% endif %}
+                            </div>
+                            <h5 class="my-3">{{ unit.user_name }}</h5>
+                            <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
+                            <p class="text-muted mb-4">{{ unit.academic|default:'' }}</p>
+                            <div class="d-flex justify-content-center mb-2">
+                                <button type="button" class="btn btn-primary">Follow</button>
+                                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                            </div>
                         </div>
-                        <h5 class="my-3">{{ unit.user_name }}</h5>
-                        <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
-                        <p class="text-muted mb-4">{{ unit.academic|default:'' }}</p>
-                        <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary">Follow</button>
-                            <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                    </div>
+                    <div class="card mb-4 mb-lg-0 shadow-sm">
+                        <p class="d-flex justify-content-between align-items-center p-3 mb-0"
+                            style="font-weight: bold;font-size: 18px;">Personal website</p>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush rounded-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fas fa-globe fa-lg text-warning"></i>
+                                    <p class="mb-0">https://mdbootstrap.com</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-github fa-lg" style="color: #333333;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
+                                    <p class="mb-0">@mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
+                                    <p class="mb-0">mdbootstrap</p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4 mb-lg-0">
-                    <div class="card-body p-0">
-                        <ul class="list-group list-group-flush rounded-3">
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fas fa-globe fa-lg text-warning"></i>
-                                <p class="mb-0">https://mdbootstrap.com</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                <p class="mb-0">@mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                <p class="mb-0">mdbootstrap</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <p class="mb-0">Full Name</p>
-                            </div>
-                            <div class="col-sm-9">
-                                <p class="text-muted mb-0">{{ unit.last_name|default:'' }} {{unit.first_name|default:''}}</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <form id="profile-form">
-                            {% csrf_token %}
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="email">Email address</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        value="{{ unit.email|default:'' }}" placeholder="Your email" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="first_name">First name</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                        value="{{ unit.first_name|default:'' }}" placeholder="Your first name" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="last-name">Last name</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="last_name" name="last_name"
-                                        value="{{ unit.last_name|default:'' }}" placeholder="Your last name" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="address">Address</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="address" name="address"
-                                        value="{{ unit.address|default:'' }}" placeholder="Your address" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="gender">Gender</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    {% if unit.gender == "M" %}
-                                    <input type="radio" id="gender_M" value="M" checked="checked" name="gender"
-                                        style="display: none;" disabled><span id="gender_textM"
-                                        style="display: none;">&nbsp;Male&emsp;</span>
-                                    <input type="radio" id="gender_F" value="F" name="gender" style="display: none;"
-                                        disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
-                                    <input type="text" class="form-control" id="gender" value="Male" readonly>
-                                    {% elif unit.gender == "F" %}
-                                    <input type="radio" id="gender_M" value="M" name="gender" style="display: none;"
-                                        disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
-                                    <input type="radio" id="gender_F" value="F" checked="checked" name="gender"
-                                        style="display: none;" disabled><span id="gender_textF"
-                                        style="display: none;">&nbsp;Female</span>
-                                    <input type="text" class="form-control" id="gender" value="Female" readonly>
-                                    {% else %}
-                                    <input type="radio" id="gender_M" value="M" name="gender" style="display: none;"
-                                        disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
-                                    <input type="radio" id="gender_F" value="F" name="gender" style="display: none;"
-                                        disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
-                                    <input type="text" class="form-control" id="gender" value="" readonly>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="birth_date">Birthdate</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="date" class="form-control" id="birth_date" name="birth_date"
-                                        value="{{ birthdate }}" placeholder="Your birth date" readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="form-group row">
-                                <div class="col-sm-3">
-                                    <label for="phone_namber">Phonenumber</label>
-                                </div>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="phone_number" name="phone_number"
-                                        value="{{ unit.phone_number|default:'' }}" placeholder="Your phone number"
-                                        readonly>
-                                </div>
-                            </div>
-                            <hr>
-                            {% if unit.id == user.id %}
-                            <button type="button" id="edit-button" class="btn btn-primary"
-                                onclick="toggleEditMode()">Edit</button>
-                            <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData()"
-                                style="display: none;">Save</button>
-                            {% endif %}
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project
-                                    Status</p>
-                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                <div class="progress rounded mb-2" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="col-lg-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-4 mb-md-0 shadow-sm">
+                                <div class="card-body">
+                                    <p class="mb-4" style="font-weight: bold;font-size: 18px;">作答答對率</p>
+                                    <p class="mb-1" style="font-size: 16px;">Apple新聞</p>
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+                                            role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+                                            aria-valuemax="100">80%</div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: 16px;">氣象科普</p>
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated"
+                                            role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+                                            aria-valuemax="100">60%</div>
+                                    </div>
+                                    <p class="mt-4 mb-1" style="font-size: 16px;">其他</p>
+                                    <div class="progress rounded" style="height: 20px;">
+                                        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+                                            role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                                            aria-valuemax="100">20%</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card mb-4 mb-md-0">
-                            <div class="card-body">
-                                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project
-                                    Status</p>
-                                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4 mb-md-0 shadow-sm">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;font-size: 18px;">
+                                        各類型答對率
+                                    </p>
+                                    <canvas id="myChart" width="300" height="300"></canvas>
                                 </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4 mb-md-0 shadow-sm">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;font-size: 18px;">
+                                        相關留言
+                                    </p>
+                                    <canvas id="barChart" width="300" height="300"></canvas>
                                 </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                <div class="progress rounded" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                <div class="progress rounded mb-2" style="height: 5px;">
-                                    <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                                        aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-4 mb-md-0 shadow-sm">
+                                <div class="card-body">
+                                    <p style="font-weight: bold;font-size: 18px;">
+                                        相關留言
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -294,11 +188,111 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
-<script src="/static/js/profile.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+<script>
+    // 在页面加载完成后执行以下代码
+    window.addEventListener('load', function () {
+        // 获取下拉菜单和内容区域的元素
+        var dropdown = document.getElementById('dropdown1');
+        var contentDivs = document.getElementsByClassName('content');
+        console.log(dropdown);
+        console.log(contentDivs);
+        // 监听下拉菜单的值变化事件
+        dropdown.addEventListener('change', function () {
+            // 获取当前选中的选项值
+            var selectedValue = dropdown.value;
+
+            // 遍历所有内容区域元素
+            for (var i = 0; i < contentDivs.length; i++) {
+                var contentDiv = contentDivs[i];
+
+                // 检查内容区域的自定义属性与选中的值是否匹配
+                if (contentDiv.dataset.option === selectedValue) {
+                    // 显示匹配的内容区域
+                    contentDiv.style.display = 'block';
+                } else {
+                    // 隐藏其他内容区域
+                    contentDiv.style.display = 'none';
+                }
+            }
+        });
+    });
+</script>
+<!-- <script src="/static/js/profile.js"></script>
 <script>
     const profileUrl = "{% url 'Profile' %}";
     const photoUrl = "{% url 'Photo' %}";
+</script> -->
+<script>
+    var ctx = document.getElementById("myChart");
+    var myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['雲', '雨量', '氣壓', '天氣圖', '其他',],
+            datasets: [{
+                label: "個人作答率",
+                data: [75, 55, 34, 27, 18],
+                fill: true,
+                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                borderColor: "rgb(255, 99, 132)",
+                pointBackgroundColor: "rgb(255, 99, 132)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgb(255, 99, 132)"
+            },
+            {
+                label: "全體作答率",
+                data: [95, 75, 66, 12, 5],
+                fill: true,
+                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                borderColor: "rgb(54, 162, 235)",
+                pointBackgroundColor: "rgb(54, 162, 235)",
+                pointBorderColor: "#fff",
+                pointHoverBackgroundColor: "#fff",
+                pointHoverBorderColor: "rgb(54, 162, 235)"
+            }]
+        },
+        options: {
+            scale: {
+                angleLines: {
+                    display: false
+                },
+                ticks: {
+                    suggestedMin: 50,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+    var ctx = document.getElementById("barChart");
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            datasets: [{
+                label: "My First Dataset",
+                data: [65, 59, 80, 81, 56, 55, 40],
+                fill: false,
+                backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
 </script>
 
 {% endblock %}

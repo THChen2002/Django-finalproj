@@ -7,13 +7,7 @@ import json
 
 # Create your views here.
 def question(request):
-    # questions_length = len(Question.objects.all())
-    # questions_order = random.sample(range(1, questions_length+1), questions_length)
-    # questions = []
-    # for id in questions_order:
-    #     question = Question.objects.get(id=id)
-    #     questions.append(question)
-    quiz_id = 1
+    quiz_id = request.GET.get('quizid')
     quiz = Quiz.objects.get(id=quiz_id)    
     questions = []
     for question in quiz.quiz_questions.all():
@@ -107,10 +101,10 @@ def quiz_admin(request):
                 else:
                     selected_questions = list(map(int, request.POST.getlist('selected_questions')[0].replace('[', '').replace(']', '').split(',')))
                 # print(selected_questions)
-                print(request.POST['quiz_name'])
+                # print(request.POST['quiz_name'])
                 questions = questionFilter.qs
-                quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
-                current_tab = 3
+                # quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
+                current_tab = 'three'
         elif 'categoryForm' in request.POST:
             categoryForm = CategoryForm(request.POST)
             if categoryForm.is_valid():
@@ -124,13 +118,13 @@ def quiz_admin(request):
             if questionForm.is_valid():
                 question = questionForm.save()
                 question.category.set(questionForm.cleaned_data.get('category'))
-                current_tab = 2
+                current_tab = 'two'
                 return redirect('quiz_admin')
         elif 'quizForm' in request.POST:
             quizForm = QuizForm(request.POST)
             if quizForm.is_valid():
                 quiz = quizForm.save()
-                current_tab = 3
+                current_tab = 'three'
                 return redirect('quiz_admin')
     else:
         # Get request, no form submission

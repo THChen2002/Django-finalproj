@@ -168,7 +168,7 @@ def log_out(request):
     return redirect('/')
 
 #個人檔案頁面
-def profile(request, id=None):
+def basic_info(request, id=None):
     if request.method == 'POST':
         data = json.loads(request.body)
         email = data['data']['email']
@@ -206,7 +206,11 @@ def profile(request, id=None):
             unit = UserProfile.objects.get(id=user.id)
         birthdate = str(unit.birth_date)
         occupation = str(unit.occupation).replace("'", "").replace(",", "").title()
-    return render(request, 'accounts/profile.html', locals())
+    return render(request, 'accounts/basic_info.html', locals())
+
+#Dashborad頁面
+def dashboard(request):
+     return render(request, 'accounts/dashboard.html')
 
 #使用者點擊變更頭像
 def upload_photo(request):
@@ -297,3 +301,15 @@ def password_reset_complete(request):
 #about頁面
 def about(request):
      return render(request, 'about.html')
+
+#notifications頁面
+def notifications(request):
+     return render(request, 'accounts/notifications.html')
+
+#profile頁面
+def profile(request):
+     return render(request, 'accounts/profile.html')
+
+#account頁面
+def account(request):
+     return render(request, 'accounts/account.html')

@@ -13,7 +13,7 @@
                     <div class="col-md-6 weather-news"  v-if="now_area"style="color: #fff;font-weight: bold;">
                         <div class="row" style="margin: 20px 25px ;">
                             <div class="col-md-6" style="padding: 0px 15px 0px 0px;">                        
-                                <h4>{% verbatim %}{{now_area.place}}{% endverbatim %}</h4>
+                                <h4>${now_area.place}</h4>
                                 <div style="margin-top: 130px ;color: #fff;">
                                     <form action="town" id="home-form" class="" method="GET">
                                         <label for="home-select-town" style="font-size: 16px;">鄉鎮預報</label>
@@ -43,30 +43,39 @@
                                     <!-- <select onchange="location.href=this.options[this.selectedIndex].value"> -->
                                 </div>      
                             </div>
-                            <div class="col-md-6"style="justify-content: center;align-items: center;padding: 0px 0px 0px 25px;"> 
-                                <p style="text-align:center;margin-bottom:16;">{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[0] : '' }}{% endverbatim %}</p>
-                                <p style="text-align:center;margin-bottom:16;">{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[0][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[0][1] : '' }}{% endverbatim %}</p>                 
-                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[0] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[0] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[0] : ''">
-                                <p style="margin-top: 20px;margin-bottom: 16px;text-align: center;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[0] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[0] : '' }}{%endverbatim %}℃</p>
-                                <p style="padding: 0px 5px 0px 5px;justify-content: center;"><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[0] : '' }}{% endverbatim %}%</p>
+                            <div class="col-md-6"style="justify-content: center;align-items: center;padding: 0px 0px 0px 25px;">
+                                <p style="text-align:center;margin-bottom:16;">${ now_area && now_area.period && now_area.period.length ? now_area.period[0] : '' }</p>
+                                <p style="text-align:center;margin-bottom:16;">${ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[0][1] : '' }~${ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[0][1] : '' }</p>                 
+                                <template v-if="now_area && now_area.weather_icon && now_area.weather_icon.length">
+                                    <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + now_area.day_or_night[0] + '/' + now_area.weather_icon[0] + '.svg'" alt="" width="100px" height="100px" :title="now_area.weather_description[0]">
+                                </template>
+                                <div class="spinner-border text-muted" v-else></div>
+                                <p style="margin-top: 20px;margin-bottom: 16px;text-align: center;">${ now_area && now_area.low && now_area.low.length ? now_area.low[0] : '' }℃~${ now_area && now_area.high && now_area.high.length ? now_area.high[0] : '' }℃</p>
+                                <p style="padding: 0px 5px 0px 5px;justify-content: center;"><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;${ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[0] : '' }%</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6 weather-news">
                         <div class="row">
                             <div class="col-md-6"style="width: 120px;margin:20px 0px 20px 40px;padding:0px 30px 0px 0px ;text-align:center;color:#fff;font-weight: bold;border-right: 0.5px solid white;">
-                                <p>{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[1] : '' }}{% endverbatim %}</p>
-                                <p>{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[1][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[1][1] : '' }}{% endverbatim %}</p>
-                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[1] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[1] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[1] : ''">
-                                <p style="margin-top: 20px;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[1] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[1] : '' }}{%endverbatim %}℃</p>
-                                <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[1] : '' }}{% endverbatim %}%</p>
+                                <p>${ now_area && now_area.period && now_area.period.length ? now_area.period[1] : '' }</p>
+                                <p>${ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[1][1] : '' }~${ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[1][1] : '' }</p>
+                                <template v-if="now_area && now_area.weather_icon && now_area.weather_icon.length">
+                                    <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + now_area.day_or_night[1] + '/' + now_area.weather_icon[1] + '.svg'" alt="" width="100px" height="100px" :title="now_area.weather_description[1]">
+                                </template>
+                                <div class="spinner-border text-muted" v-else></div>
+                                <p style="margin-top: 20px;">${ now_area && now_area.low && now_area.low.length ? now_area.low[1] : '' }℃~${ now_area && now_area.high && now_area.high.length ? now_area.high[1] : '' }℃</p>
+                                <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;${ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[1] : '' }%</p>
                             </div>
                             <div class="col-md-6"style="width: 120px;margin:20px 40px 20px 0px;padding:0px 0px 0px 30px ;text-align:center;color:#fff;font-weight: bold;border-left: 0.5px solid white;">
-                                <p>{% verbatim %}{{ now_area && now_area.period && now_area.period.length ? now_area.period[2] : '' }}{% endverbatim %}</p>
-                                <p>{% verbatim %}{{ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[2][1] : '' }}{% endverbatim %}~{% verbatim %}{{ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[2][1] : '' }}{% endverbatim %}</p>
-                                <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + (now_area && now_area.day_or_night && now_area.day_or_night.length ? now_area.day_or_night[2] : '') + '/' + (now_area && now_area.weather_icon && now_area.weather_icon.length ? now_area.weather_icon[2] : '') + '.svg'" alt="" width="100px" height="100px" :title="now_area && now_area.weather_description && now_area.weather_description.length ? now_area.weather_description[2] : ''">
-                                <p style="margin-top: 20px;">{% verbatim %}{{ now_area && now_area.low && now_area.low.length ? now_area.low[2] : '' }}{% endverbatim %}℃~{% verbatim %}{{ now_area && now_area.high && now_area.high.length ? now_area.high[2] : '' }}{%endverbatim %}℃</p>
-                                <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;{% verbatim %}{{ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[2] : '' }}{% endverbatim %}%</p>
+                                <p>${ now_area && now_area.period && now_area.period.length ? now_area.period[2] : '' }</p>
+                                <p>${ now_area && now_area.start_time && now_area.start_time.length ? now_area.start_time[2][1] : '' }~${ now_area && now_area.end_time && now_area.end_time.length ? now_area.end_time[2][1] : '' }</p>
+                                <template v-if="now_area && now_area.weather_icon && now_area.weather_icon.length">
+                                    <img :src="'https://www.cwb.gov.tw/V8/assets/img/weather_icons/weathers/svg_icon/' + now_area.day_or_night[2] + '/' + now_area.weather_icon[2] + '.svg'" alt="" width="100px" height="100px" :title="now_area.weather_description[2]">
+                                </template>
+                                <div class="spinner-border text-muted" v-else></div>
+                                <p style="margin-top: 20px;">${ now_area && now_area.low && now_area.low.length ? now_area.low[2] : '' }℃~${ now_area && now_area.high && now_area.high.length ? now_area.high[2] : '' }℃</p>
+                                <p><img src="/static/images/weather/umbrella.png" alt="" width="20px" height="20px">&emsp;${ now_area && now_area.PoP && now_area.PoP.length ? now_area.PoP[2] : '' }%</p>
                             </div>
                         </div>
                     </div>
@@ -764,6 +773,7 @@
     var paths;
     const app = new Vue({
         el: '#app',
+        delimiters: ['${', '}'],
         created() {
             window.app = this
         },

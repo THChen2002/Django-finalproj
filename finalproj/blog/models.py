@@ -6,13 +6,13 @@ from accounts.models import UserProfile
 
 # 定義標籤名稱欄位
 class Tag(models.Model):
-    title = models.CharField(max_length=255, default="")
+    title = models.CharField(max_length=255, unique=True)
     def __str__(self):
         return self.title
 
 # 定義分類名稱欄位
 class Category(models.Model):
-    title = models.CharField(max_length=255, default="")
+    title = models.CharField(max_length=255, unique=True)
     def __str__(self):
         return self.title
 

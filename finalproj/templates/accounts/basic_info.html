@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+{% block title %}Basic info{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<section style="background-color: #eee;">
+    <input type="checkbox" name="" id="sideMenu-active" />
+        <div class="sideMenu" >
+            <div class="d-flex flex-column flex-shrink-0 p-3">
+                <span class="fs-4"><img src="{% static 'images/usericon/avatar.png' %}" width="30px" height="30px">&nbsp;Profile</span>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                  <li class="nav-item" style="padding-right: 10px;">
+                    <a href="/profile/" class="nav-link link-dark" >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/basic_info/" class="nav-link active" aria-current="page">
+                      Basic info
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/dashboard/" class="nav-link link-dark">
+                      Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/notifications/" class="nav-link link-dark">
+                       Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/account/" class="nav-link link-dark">
+                        Account
+                    </a>
+                  </li>
+                </ul>
+                <hr>
+              </div>
+            <label for="sideMenu-active">
+                <i class="fas fa-angle-right"></i>
+            </label>
+        </div>
+        <div class="container  py-5">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11 row">
+                    <nav style="--bs-breadcrumb-divider: '>';background-color: #fff;border-radius: .25rem;width: 98%; margin:0px 12px 10px 12px ; border: 1px solid rgba(0,0,0,.125);" aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="align-items: center;margin: 10px 10px;">
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/profile/" style="text-decoration: none;">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><a href="/profile/basic_info/" style="text-decoration: none;">Basic info</a></li>
+                        </ol>
+                    </nav>
+                    <div class="col-lg-3">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body text-center">
+                                <div style="position: relative; display: inline-block;">
+                                    {% if unit.profile_pic %}
+                                    <img src="/media/{{ unit.profile_pic }}" alt="{{ unit.user_name }}'s profile picture"
+                                        class="rounded-circle img-fluid" style="width: 150px;">
+                                    {% else %}
+                                    <img src="{% static 'images/user_default.png' %}"
+                                        alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid"
+                                        style="width: 150px;">
+                                    {% endif %}
+                                    {% if unit.id == user.id %}
+                                    <form id="photo-form" style="position: absolute; bottom: 0; right: 0;">
+                                        {% csrf_token %}
+                                        <div class="rounded-circle"
+                                            style="position: relative; background-color: white; width: 40px;height: 40px; border: 1px solid rgb(184, 184, 184); ">
+                                            <label for="photo"><img src="{% static 'images/usericon/camera.png' %}" width=25px
+                                                    height=25px
+                                                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></label>
+                                        </div>
+                                        <div>
+                                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
+                                                style="display: none;">
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                                <h5 class="my-3">{{ unit.user_name }}</h5>
+                                <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
+                                <p class="text-muted mb-4">{{ unit.academic|default:'' }}</p>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <button type="button" class="btn btn-primary">Follow</button>
+                                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Full Name</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ unit.last_name|default:'' }} {{unit.first_name|default:''}}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <form id="profile-form">
+                                    {% csrf_token %}
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="email">Email address</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                value="{{ unit.email|default:'' }}" placeholder="Your email" readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="first_name">First name</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="first_name" name="first_name"
+                                                value="{{ unit.first_name|default:'' }}" placeholder="Your first name" readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="last-name">Last name</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="last_name" name="last_name"
+                                                value="{{ unit.last_name|default:'' }}" placeholder="Your last name" readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="address">Address</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                value="{{ unit.address|default:'' }}" placeholder="Your address" readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="gender">Gender</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {% if unit.gender == "M" %}
+                                            <input type="radio" id="gender_M" value="M" checked="checked" name="gender"
+                                                style="display: none;" disabled><span id="gender_textM"
+                                                style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" name="gender" style="display: none;"
+                                                disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="Male" readonly>
+                                            {% elif unit.gender == "F" %}
+                                            <input type="radio" id="gender_M" value="M" name="gender" style="display: none;"
+                                                disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" checked="checked" name="gender"
+                                                style="display: none;" disabled><span id="gender_textF"
+                                                style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="Female" readonly>
+                                            {% else %}
+                                            <input type="radio" id="gender_M" value="M" name="gender" style="display: none;"
+                                                disabled><span id="gender_textM" style="display: none;">&nbsp;Male&emsp;</span>
+                                            <input type="radio" id="gender_F" value="F" name="gender" style="display: none;"
+                                                disabled><span id="gender_textF" style="display: none;">&nbsp;Female</span>
+                                            <input type="text" class="form-control" id="gender" value="" readonly>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="birth_date">Birthdate</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="birth_date" name="birth_date"
+                                                value="{{ birthdate }}" placeholder="Your birth date" readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label for="phone_namber">Phonenumber</label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="phone_number" name="phone_number"
+                                                value="{{ unit.phone_number|default:'' }}" placeholder="Your phone number"
+                                                readonly>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    {% if unit.id == user.id %}
+                                    <button type="button" id="edit-button" class="btn btn-primary"
+                                        onclick="toggleEditMode()">Edit</button>
+                                    <button type="submit" id="save-button" class="btn btn-primary" onclick="submitData()"
+                                        style="display: none;">Save</button>
+                                    {% endif %}
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+</section>
+<script src="/static/js/profile.js"></script>
+<script>
+    const profileUrl = "{% url 'Basic_info' %}";
+    const photoUrl = "{% url 'Photo' %}";
+</script>
+
+{% endblock %}

@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<section style="background-color: #eee;">
+    <input type="checkbox" name="" id="sideMenu-active" />
+        <div class="sideMenu" >
+            <div class="d-flex flex-column flex-shrink-0 p-3">
+                <span class="fs-4"><img src="{% static 'images/usericon/avatar.png' %}" width="30px" height="30px">&nbsp;Profile</span>
+                <hr>
+                <ul class="nav nav-pills flex-column mb-auto">
+                  <li class="nav-item" style="padding-right: 10px;">
+                    <a href="/profile/" class="nav-link  link-dark" >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/basic_info/" class="nav-link link-dark">
+                      Basic info
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/dashboard/" class="nav-link  active" aria-current="page">
+                      Dashboard
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/notifications/" class="nav-link link-dark">
+                       Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/profile/account/" class="nav-link link-dark">
+                        Account
+                    </a>
+                  </li>
+                </ul>
+                <hr>
+              </div>
+            <label for="sideMenu-active">
+                <i class="fas fa-angle-right"></i>
+            </label>
+        </div>
+        <div class="container  py-5">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11 row">
+                    <nav style="--bs-breadcrumb-divider: '>';background-color: #fff;border-radius: .25rem;width: 98%; margin:0px 12px 10px 12px ; border: 1px solid rgba(0,0,0,.125);" aria-label="breadcrumb">
+                        <ol class="breadcrumb" style="align-items: center;margin: 10px 10px;">
+                            <li class="breadcrumb-item active" aria-current="page"><a href="/profile/" style="text-decoration: none;">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="/profile/dashboard/" style="text-decoration: none;">Dashboard</a></li>
+                        </ol>
+                    </nav>
+                    <div class="col-lg-3">
+                        <div class="card mb-4">
+                            <div class="card-body text-center">
+                                <div style="position: relative; display: inline-block;">
+                                    {% if unit.profile_pic %}
+                                    <img src="/media/{{ unit.profile_pic }}" alt="{{ unit.user_name }}'s profile picture"
+                                        class="rounded-circle img-fluid" style="width: 150px;">
+                                    {% else %}
+                                    <img src="{% static 'images/user_default.png' %}"
+                                        alt="{{ unit.user_name }}'s profile picture" class="rounded-circle img-fluid"
+                                        style="width: 150px;">
+                                    {% endif %}
+                                    {% if unit.id == user.id %}
+                                    <form id="photo-form" style="position: absolute; bottom: 0; right: 0;">
+                                        {% csrf_token %}
+                                        <div class="rounded-circle"
+                                            style="position: relative; background-color: white; width: 40px;height: 40px; border: 1px solid rgb(184, 184, 184); ">
+                                            <label for="photo"><img src="{% static 'images/usericon/camera.png' %}" width=25px
+                                                    height=25px
+                                                    style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></label>
+                                        </div>
+                                        <div>
+                                            <input type="file" class="form-control" id="photo" name="photo" accept="image/*"
+                                                style="display: none;">
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                </div>
+                                <h5 class="my-3">{{ unit.user_name }}</h5>
+                                <p class="text-muted mb-1">{{ occupation|default:'' }}</p>
+                                <p class="text-muted mb-4">{{ unit.academic|default:'' }}</p>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <button type="button" class="btn btn-primary">Follow</button>
+                                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0 shadow-sm">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p style="font-weight: bold;font-size: 18px;">
+                                                    個別難度答對率
+                                                </p>
+                                            </div>
+                                             <div class="col-md-6">
+                                                <select id="dropdown1" class="form-select">
+                                                    <option value="option1">Apple新聞</option>
+                                                    <option value="option2">氣象科普</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="content" data-option="option1"> 
+                                            <p class="mb-1" style="font-size: 16px;">難度1之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 90%" aria-valuenow="970"aria-valuemin="0" aria-valuemax="100">90%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度2之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 30%" aria-valuenow="30"aria-valuemin="0" aria-valuemax="100">30%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度3之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 10%" aria-valuenow="10"aria-valuemin="0" aria-valuemax="100">10%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度4之答對率</p>
+                                            <div class="progress rounded" style="height:15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 7%" aria-valuenow="7"aria-valuemin="0" aria-valuemax="100">7%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度5之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 3%" aria-valuenow="3"aria-valuemin="0" aria-valuemax="100">3%</div>
+                                            </div>
+                                        </div>
+                                        <div class="content" data-option="option2"><p class="mb-1" style="font-size: 16px;">難度1之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 72%" aria-valuenow="72"aria-valuemin="0" aria-valuemax="100">72%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度2之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" style="width: 55%" aria-valuenow="55"aria-valuemin="0" aria-valuemax="100">55%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度3之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 22%" aria-valuenow="22"aria-valuemin="0" aria-valuemax="100">22%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度4之答對率</p>
+                                            <div class="progress rounded" style="height:15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 12%" aria-valuenow="12"aria-valuemin="0" aria-valuemax="100">12%</div>
+                                            </div>
+                                            <p class="mt-4 mb-1" style="font-size: 16px;">難度5之答對率</p>
+                                            <div class="progress rounded" style="height: 15px;">
+                                                <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 6%" aria-valuenow="6"aria-valuemin="0" aria-valuemax="100">6%</div>
+                                            </div>
+                                        </div>       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card mb-4 mb-md-0 shadow-sm">
+                                    <div class="card-body">
+                                        <p class="mb-4" style="font-weight: bold;font-size: 18px;">作答分析</p>
+                                        <div>
+                                            <canvas id="myChart" width="300" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4 mb-md-0 shadow-sm">
+                                    <div class="card-body">
+                                        <canvas id="lineChart" width="300" height="300"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+    integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+<script>
+    // 在页面加载完成后执行以下代码
+    window.addEventListener('load', function() {
+      // 获取下拉菜单和内容区域的元素
+      var dropdown = document.getElementById('dropdown1');
+      var contentDivs = document.getElementsByClassName('content');
+      console.log(dropdown);
+      console.log(contentDivs);
+      // 监听下拉菜单的值变化事件
+      dropdown.addEventListener('change', function() {
+        // 获取当前选中的选项值
+        var selectedValue = dropdown.value;
+        
+        // 遍历所有内容区域元素
+        for (var i = 0; i < contentDivs.length; i++) {
+          var contentDiv = contentDivs[i];
+          
+          // 检查内容区域的自定义属性与选中的值是否匹配
+          if (contentDiv.dataset.option === selectedValue) {
+            // 显示匹配的内容区域
+            contentDiv.style.display = 'block';
+          } else {
+            // 隐藏其他内容区域
+            contentDiv.style.display = 'none';
+          }
+        }
+      });
+    });
+  </script>
+<!-- <script src="/static/js/profile.js"></script>
+<script>
+    const profileUrl = "{% url 'Profile' %}";
+    const photoUrl = "{% url 'Photo' %}";
+</script> -->
+<script>
+function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+var ctx = document.getElementById("myChart");
+var myDoughnutChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: [
+            '雲',            
+            '雨量',
+            '氣壓',
+            '天氣圖',
+            '其他',
+        ],
+        datasets: [{
+            data: [10, 20, 30,20,5],
+            backgroundColor:['#2196f3','#ef5d60','#50D8D7','#FFC857','#1B5299',]
+        }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        labels: [ {
+            render: 'label',
+            position: 'outside',
+            fontSize: 16,
+        },
+        {
+            render: 'percentage',
+            fontColor:'white',
+            fontSize: 14,
+        }]
+      },
+    }
+});
+var ctx1 = document.getElementById("lineChart");
+var myLineChart = new Chart(ctx1, 
+    {"type":"line",
+     "data":{
+        "labels":["January","February","March","April","May","June","July"],
+        "datasets":[
+            {"label":"My First Dataset","data":[65,59,80,81,56,55,40],"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}
+        ]},
+        "options":{}
+    });
+  </script>
+
+{% endblock %}
