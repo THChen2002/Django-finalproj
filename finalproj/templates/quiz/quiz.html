@@ -49,7 +49,7 @@
                         {% endfor %}
                      </span>
                      <br>
-                     <h3 style="display: inline-block;margin-bottom: 0px;">{{ question.question }}</h3>
+                     <h3 style="display: inline-block;margin-bottom: 0px;">{{ forloop.counter }}. {{ question.question }}</h3>
                      {% if question.question_url%}
                      <img src="{{ question.question_url }}" alt="" width="30%">
                      {% endif %}
