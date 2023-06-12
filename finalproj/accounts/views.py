@@ -8,6 +8,8 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
 from accounts.models import UserProfile
+from quiz.models import Category, Question, Quiz, QuizResult, QuizResultDetail
+from django.db.models import Q
 
 from django.core.mail import EmailMessage
 from django.core.mail import send_mail
@@ -36,6 +38,8 @@ from tempfile import TemporaryFile
 from notifications.signals import notify
 from notifications.models import Notification
 from django.core import serializers
+
+import json
 
 
 # Create your views here.
@@ -163,9 +167,30 @@ def sign_in(request):
 
 # 登出
 def log_out(request):
-
     logout(request)
     return redirect('/')
+
+#profile頁面
+def profile(request):
+    quizResult = QuizResult.objects.get(user=UserProfile.objects.get(id=request.user.id))
+    quizResultDetail = QuizResultDetail.objects.filter(quiz_result=quizResult)
+    quizResultDetail_easy = quizResultDetail.filter(Q(question__question_level=1) | Q(question__question_level=2))
+    quizResultDetail_medium = quizResultDetail.filter(Q(question__question_level=3) | Q(question__question_level=4))
+    quizResultDetail_hard = quizResultDetail.filter(Q(question__question_level=5))
+    total_easy = quizResultDetail_easy.count()
+    total_medium = quizResultDetail_medium.count()
+    total_hard = quizResultDetail_hard.count()
+    correct_easy = quizResultDetail_easy.filter(correct=True).count()
+    correct_medium = quizResultDetail_medium.filter(correct=True).count()
+    correct_hard = quizResultDetail_hard.filter(correct=True).count()
+    correct_easy_rate = 0 if total_easy == 0 else round(correct_easy / total_easy * 100, 2)
+    correct_medium_rate = 0 if total_medium == 0 else round(correct_medium / total_medium * 100, 2)
+    correct_hard_rate = 0 if total_hard == 0 else round(correct_hard / total_hard * 100, 2)
+    print(correct_easy_rate)
+    print(correct_medium_rate)
+    print(correct_hard_rate)
+
+    return render(request, 'accounts/profile.html', locals())
 
 #個人檔案頁面
 def basic_info(request, id=None):
@@ -208,10 +233,6 @@ def basic_info(request, id=None):
         occupation = str(unit.occupation).replace("'", "").replace(",", "").title()
     return render(request, 'accounts/basic_info.html', locals())
 
-#Dashborad頁面
-def dashboard(request):
-     return render(request, 'accounts/dashboard.html')
-
 #使用者點擊變更頭像
 def upload_photo(request):
     if request.method == 'POST':
@@ -227,7 +248,37 @@ def upload_photo(request):
         )
         return redirect('/profile')
     return render(request, 'accounts/profile.html')
+
+#Dashborad頁面
+def dashboard(request):
+    categories = Category.objects.all()
+    quizResult = QuizResult.objects.get(user=UserProfile.objects.get(id=request.user.id))
+    quizResultDetail = QuizResultDetail.objects.filter(quiz_result=quizResult)
+    category_name = []
+    category_count = []
+    for category in categories:
+        print(category)
+        quizResultDetail_category = quizResultDetail.filter(question__category=category)
+        total = quizResultDetail_category.count()
+        if total != 0:
+            category_name.append(category.category)
+            category_count.append(total)
+    combined = zip(category_name, category_count)
+    sorted_combined = sorted(combined, key=lambda x: x[1], reverse=True)
+    sorted_category_name, sorted_category_count = zip(*sorted_combined)
+    sorted_category_name = json.dumps((sorted_category_name))
+    sorted_category_count = json.dumps(list(sorted_category_count))
+    print(sorted_category_name, sorted_category_count)
+
+    return render(request, 'accounts/dashboard.html', locals())
+
+#notifications頁面
+def notifications(request):
+    return render(request, 'accounts/notifications.html')
      
+#account頁面
+def account(request):
+    return render(request, 'accounts/account.html')
 
 #取得所有sessions
 def get_allsessions(request):
@@ -300,16 +351,4 @@ def password_reset_complete(request):
 
 #about頁面
 def about(request):
-     return render(request, 'about.html')
-
-#notifications頁面
-def notifications(request):
-     return render(request, 'accounts/notifications.html')
-
-#profile頁面
-def profile(request):
-     return render(request, 'accounts/profile.html')
-
-#account頁面
-def account(request):
-     return render(request, 'accounts/account.html')
+    return render(request, 'about.html')
