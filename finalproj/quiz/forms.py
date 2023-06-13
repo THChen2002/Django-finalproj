@@ -1,22 +1,22 @@
 from django import forms
-from .models import Category, Question, Quiz
+from .models import Tag, Question, Quiz
 
-class CategoryForm(forms.ModelForm):
+class TagForm(forms.ModelForm):
     class Meta:
-        model = Category
+        model = Tag
         widgets = {
-            'category': forms.TextInput(attrs={'class': 'form-control'}),
+            'tag': forms.TextInput(attrs={'class': 'form-control'}),
         }
         fields = '__all__'
 
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['question', 'question_url', 'category', 'choice1', 'choice2', 'choice3', 'choice4', 'question_type', 'question_level', 'correct_answer', 'detail_explanation', 'explanation_url']
+        fields = ['question', 'question_url', 'tag', 'choice1', 'choice2', 'choice3', 'choice4', 'question_type', 'question_level', 'correct_answer', 'detail_explanation', 'explanation_url']
         widgets = {
             'question': forms.TextInput(attrs={'class': 'form-control'}),
             'question_url': forms.TextInput(attrs={'class': 'form-control'}),
-            'category': forms.SelectMultiple(attrs={'class': 'form-control'}),
+            'tag': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'choice1': forms.TextInput(attrs={'class': 'form-control'}),
             'choice2': forms.TextInput(attrs={'class': 'form-control'}),
             'choice3': forms.TextInput(attrs={'class': 'form-control'}),

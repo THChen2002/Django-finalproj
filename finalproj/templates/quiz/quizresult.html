@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}氣象科普測驗{% endblock %}
+{% block title %}測驗結果{% endblock %}
 {% block content %}
 {% load static %}
 {% load quiz_filter %}
@@ -13,10 +13,17 @@
       <div class="col-md-6" >
          <div class="row" style="display: flex;align-items: center;">
             <div class=" col-md-6">
-               <h4>總題數：{{ quiz.question_amount }}，答對題數：{{ correct_amount }} 分數：{{ quiz_result.score }} 花費時間：{{ user_answer_time | get_str_time }}</h4>
+               <div>
+                  <h4 class="badge" style="font-size: 20px;background-color: #e8b008;">總題數：{{ quiz.question_amount }}</h4>
+                  <h4 class="badge" style="font-size: 20px;background-color: #4a67c4;">答對題數：{{ correct_amount }}</h4>
+               </div>
+               <div>
+                  <h4 class="badge bg-secondary" style="font-size: 20px;">分數：{{ quiz_result.score }}</h4>
+                  <h4 class="badge bg-secondary" style="font-size: 20px;">花費時間：{{ user_answer_time | get_str_time }}</h4>
+               </div>
             </div>
-            <div class="col-md-6">
-               <a href="/quiz/index/" type="button" class="btn btn-danger"   style="float: right; margin-left: 20px;">回測驗首頁</a>
+            <div class="col-md-6" style="display: flex;justify-content: flex-end;">
+               <a href="/quiz/index/" type="button" class="btn btn-danger">回測驗首頁</a>
             </div>
          </div>
       </div>
@@ -27,12 +34,17 @@
          <div class="scp-quizzes-data">
             <div class="row">
                <div>
-                  <h3>{{ forloop.counter }}. {{ question.question }} </h3>
-                  <h4 class="justify-content-end" style="display: inline;">正確答案 {{ question.correct_answer }}{{ userAnswer|get_answer:forloop.counter }} 正確率：{{ question.correct_rate }}%</h4>
+                  <div style="display: flex;justify-content: space-between;">
+                     <h3>{{ forloop.counter }}. {{ question.question }} </h3>
                   {% if question.question_url%}
-                  <img src="{{ question.question_url }}" alt="" width="30%">
+                  <img src="{{ question.question_url }}" alt="" width="30%" >
                   {% endif %}
-                  <h4>{{ question.detail_explanation }}</h4>
+                  </div> 
+                  <div>
+                     <h4 class="badge bg-info" style="font-size: 18px;display: block;width: 35%;">正確答案 {{ question.correct_answer }}&emsp;填寫的答案：{{ userAnswer|get_answer:forloop.counter }} &emsp;正確率：{{ question.correct_rate }}%</h4>
+                     <p class="badge rounded-pill bg-danger" style="font-size: 16px;">詳解</p>
+                     <h4 style="font-size: 18px;letter-spacing: 2px;">{{ question.detail_explanation }}</h4>
+                  </div>
                </div>
             </div>
             <br>

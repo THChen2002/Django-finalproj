@@ -246,10 +246,10 @@
     const photoUrl = "{% url 'Photo' %}";
 </script> -->
 <script>
-    var sortedCategoryName = JSON.parse('{{ sorted_category_name|safe }}');
-    var sortedCategoryCount = JSON.parse('{{ sorted_category_count|safe }}');
-    console.log(typeof (sortedCategoryName));
-    console.log(sortedCategoryCount);
+    var sortedtagName = JSON.parse('{{ sorted_tag_name|safe }}');
+    var sortedtagCount = JSON.parse('{{ sorted_tag_count|safe }}');
+    console.log(typeof (sortedtagName));
+    console.log(sortedtagCount);
     var ctx = document.getElementById("myChart");
     var myDoughnutChart = new Chart(ctx, {
         type: 'doughnut',
@@ -261,10 +261,10 @@
             //     '天氣圖',
             //     '其他',
             // ],
-            labels: sortedCategoryName,
+            labels: sortedtagName,
             datasets: [{
                 // data: [10, 20, 30,20,5],
-                data: sortedCategoryCount,
+                data: sortedtagCount,
                 backgroundColor: ['#2196f3', '#ef5d60', '#50D8D7', '#FFC857', '#1B5299',]
             }],
         },

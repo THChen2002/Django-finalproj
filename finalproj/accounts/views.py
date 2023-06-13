@@ -8,7 +8,7 @@ from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from allauth.socialaccount.models import SocialAccount
 from accounts.models import UserProfile
-from quiz.models import Category, Question, Quiz, QuizResult, QuizResultDetail
+from quiz.models import Tag, Question, Quiz, QuizResult, QuizResultDetail
 from django.db.models import Q
 
 from django.core.mail import EmailMessage
@@ -172,20 +172,29 @@ def log_out(request):
 
 #profile頁面
 def profile(request):
-    quizResult = QuizResult.objects.get(user=UserProfile.objects.get(id=request.user.id))
-    quizResultDetail = QuizResultDetail.objects.filter(quiz_result=quizResult)
-    quizResultDetail_easy = quizResultDetail.filter(Q(question__question_level=1) | Q(question__question_level=2))
-    quizResultDetail_medium = quizResultDetail.filter(Q(question__question_level=3) | Q(question__question_level=4))
-    quizResultDetail_hard = quizResultDetail.filter(Q(question__question_level=5))
-    total_easy = quizResultDetail_easy.count()
-    total_medium = quizResultDetail_medium.count()
-    total_hard = quizResultDetail_hard.count()
-    correct_easy = quizResultDetail_easy.filter(correct=True).count()
-    correct_medium = quizResultDetail_medium.filter(correct=True).count()
-    correct_hard = quizResultDetail_hard.filter(correct=True).count()
+    quizResults = QuizResult.objects.filter(user=UserProfile.objects.get(id=request.user.id))
+    quizResultDetails = []
+    
+    for quizResult in quizResults:
+        quizResultDetail = QuizResultDetail.objects.filter(quiz_result=quizResult)
+        quizResultDetails.extend(quizResultDetail)
+    
+    quizResultDetails_easy = [detail for detail in quizResultDetails if detail.question.question_level in [1, 2]]
+    quizResultDetails_medium = [detail for detail in quizResultDetails if detail.question.question_level in [3, 4]]
+    quizResultDetails_hard = [detail for detail in quizResultDetails if detail.question.question_level == 5]
+    
+    total_easy = len(quizResultDetails_easy)
+    total_medium = len(quizResultDetails_medium)
+    total_hard = len(quizResultDetails_hard)
+    
+    correct_easy = sum(detail.correct for detail in quizResultDetails_easy)
+    correct_medium = sum(detail.correct for detail in quizResultDetails_medium)
+    correct_hard = sum(detail.correct for detail in quizResultDetails_hard)
+    
     correct_easy_rate = 0 if total_easy == 0 else round(correct_easy / total_easy * 100, 2)
     correct_medium_rate = 0 if total_medium == 0 else round(correct_medium / total_medium * 100, 2)
     correct_hard_rate = 0 if total_hard == 0 else round(correct_hard / total_hard * 100, 2)
+    
     print(correct_easy_rate)
     print(correct_medium_rate)
     print(correct_hard_rate)
@@ -251,24 +260,24 @@ def upload_photo(request):
 
 #Dashborad頁面
 def dashboard(request):
-    categories = Category.objects.all()
+    tags = Tag.objects.all()
     quizResult = QuizResult.objects.get(user=UserProfile.objects.get(id=request.user.id))
     quizResultDetail = QuizResultDetail.objects.filter(quiz_result=quizResult)
-    category_name = []
-    category_count = []
-    for category in categories:
-        print(category)
-        quizResultDetail_category = quizResultDetail.filter(question__category=category)
-        total = quizResultDetail_category.count()
+    tag_name = []
+    tag_count = []
+    for tag in tags:
+        print(tag)
+        quizResultDetail_tag = quizResultDetail.filter(question__tag=tag)
+        total = quizResultDetail_tag.count()
         if total != 0:
-            category_name.append(category.category)
-            category_count.append(total)
-    combined = zip(category_name, category_count)
+            tag_name.append(tag.tag)
+            tag_count.append(total)
+    combined = zip(tag_name, tag_count)
     sorted_combined = sorted(combined, key=lambda x: x[1], reverse=True)
-    sorted_category_name, sorted_category_count = zip(*sorted_combined)
-    sorted_category_name = json.dumps((sorted_category_name))
-    sorted_category_count = json.dumps(list(sorted_category_count))
-    print(sorted_category_name, sorted_category_count)
+    sorted_tag_name, sorted_tag_count = zip(*sorted_combined)
+    sorted_tag_name = json.dumps((sorted_tag_name))
+    sorted_tag_count = json.dumps(list(sorted_tag_count))
+    print(sorted_tag_name, sorted_tag_count)
 
     return render(request, 'accounts/dashboard.html', locals())
 

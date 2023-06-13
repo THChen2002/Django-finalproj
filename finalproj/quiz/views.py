@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Category, Question, Quiz, QuizResult, QuizResultDetail
-from .filters import CategoryFilter, QuestionFilter, QuizFilter, QuizResultFilter
-from .forms import CategoryForm, QuestionForm, QuizForm
+from .models import Tag, Question, Quiz, QuizResult, QuizResultDetail
+from .filters import TagFilter, QuestionFilter, QuizFilter, QuizResultFilter
+from .forms import TagForm, QuestionForm, QuizForm
 import random
 import json
 
@@ -86,7 +86,7 @@ def quizresult(request):
 def quiz_admin(request):
     questionForm = QuestionForm()
     quizForm = QuizForm()
-    categoryForm = CategoryForm()
+    categoryForm = TagForm()
     questions = Question.objects.all()
     selected_questions = []
     current_tab = 0
@@ -106,7 +106,7 @@ def quiz_admin(request):
                 # quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
                 current_tab = 'three'
         elif 'categoryForm' in request.POST:
-            categoryForm = CategoryForm(request.POST)
+            categoryForm = TagForm(request.POST)
             if categoryForm.is_valid():
                 category = categoryForm.save()
                 return redirect('quiz_admin')
@@ -135,12 +135,12 @@ def quiz_admin(request):
     # quizzes = Quiz.objects.all()
     # quiz_results = QuizResult.objects.all()
 
-    # categoryFilter = CategoryFilter(queryset=categories)
+    # tagFilter = TagFilter(queryset=categories)
     # questionFilter = QuestionFilter(queryset=questions)
     # quizFilter = QuizFilter(queryset=quizzes)
     # quizResultFilter = QuizResultFilter(queryset=quiz_results)
     # if request.method == "POST":
-    #     categoryFilter = CategoryFilter(request.POST, queryset=categories)
+    #     tagFilter = TagFilter(request.POST, queryset=categories)
     #     questionFilter = QuestionFilter(request.POST, queryset=questions)
     #     quizFilter = QuizFilter(request.POST, queryset=quizzes)
     #     quizResultFilter = QuizResultFilter(request.POST, queryset=quiz_results)

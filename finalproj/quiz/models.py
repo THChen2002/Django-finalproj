@@ -8,11 +8,16 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+class Tag(models.Model):
+    tag = models.CharField(max_length=50, unique=True)
+    def __str__(self):
+        return self.tag
+
 class Question(models.Model):
     question = models.CharField(max_length=500, blank=False)
     # question_url = models.ImageField(upload_to='question_pics/',blank=True, null=True)
     question_url = models.URLField(blank=True, null=True)
-    category = models.ManyToManyField(Category)
+    tag = models.ManyToManyField(Tag)
     choice1 = models.CharField(max_length=150)
     choice2 = models.CharField(max_length=150)
     choice3 = models.CharField(max_length=150)

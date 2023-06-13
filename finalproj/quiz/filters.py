@@ -1,12 +1,12 @@
-from .models import Category, Question, Quiz, QuizResult, QuizResultDetail
+from .models import Tag, Question, Quiz, QuizResult, QuizResultDetail
 import django_filters
 
-class CategoryFilter(django_filters.FilterSet):
+class TagFilter(django_filters.FilterSet):
     category = django_filters.CharFilter(lookup_expr='icontains', label='Category')
 
     class Meta:
-        model = Category
-        fields = ['category']
+        model = Tag
+        fields = ['tag']
 
 class QuestionFilter(django_filters.FilterSet):
     question = django_filters.CharFilter(lookup_expr='icontains', label='Question')
