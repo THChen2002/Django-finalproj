@@ -26,8 +26,8 @@
                     <!-- 新增問題表單 -->
                     <form method="POST" >
                         {% csrf_token %}
-                        {{ categoryForm.as_p }}
-                        <button type="submit" class="btn btn-success" name="categoryForm" >新增</button>
+                        {{ tagForm.as_p }}
+                        <button type="submit" class="btn btn-success" name="tagForm" >新增</button>
                     </form>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         {{ questionForm.as_p }}
                         <!-- {{ questionForm.question }}
                         {{ questionForm.question_url }}
-                        {{ questionForm.category }}
+                        {{ questionForm.tag }}
                         {{ questionForm.choice1 }}
                         {{ questionForm.choice2 }}
                         {{ questionForm.choice3 }}
@@ -68,7 +68,7 @@
                         {% csrf_token %}
                         題目：{{ questionFilter.form.question }}
                         &emsp;
-                        分類：{{ questionFilter.form.category }}
+                        分類：{{ questionFilter.form.tag }}
                         &emsp;
                         題目類型：{{ questionFilter.form.question_type }}
                         &emsp;
@@ -88,8 +88,8 @@
                             <tr>
                                 <td>{{ question.question }}</td>
                                 <td style="text-align: center;">
-                                    {% for category in question.category.all %}
-                                    {{ category.category }}
+                                    {% for tag in question.tag.all %}
+                                    {{ tag.tag }}
                                     {% if not forloop.last %}, {% endif %}
                                     {% endfor %}
                                 </td>

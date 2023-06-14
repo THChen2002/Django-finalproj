@@ -86,7 +86,7 @@ def quizresult(request):
 def quiz_admin(request):
     questionForm = QuestionForm()
     quizForm = QuizForm()
-    categoryForm = TagForm()
+    tagForm = TagForm()
     questions = Question.objects.all()
     selected_questions = []
     current_tab = 0
@@ -105,10 +105,10 @@ def quiz_admin(request):
                 questions = questionFilter.qs
                 # quizForm = QuizForm({'quiz_name': request.POST['quiz_name'], 'quiz_description': request.POST['quiz_description']})
                 current_tab = 'three'
-        elif 'categoryForm' in request.POST:
-            categoryForm = TagForm(request.POST)
-            if categoryForm.is_valid():
-                category = categoryForm.save()
+        elif 'tagForm' in request.POST:
+            tagForm = TagForm(request.POST)
+            if tagForm.is_valid():
+                tag = tagForm.save()
                 return redirect('quiz_admin')
             else:
                 current_tab = 'one'
@@ -117,7 +117,7 @@ def quiz_admin(request):
             questionForm = QuestionForm(request.POST)
             if questionForm.is_valid():
                 question = questionForm.save()
-                question.category.set(questionForm.cleaned_data.get('category'))
+                question.tag.set(questionForm.cleaned_data.get('tag'))
                 current_tab = 'two'
                 return redirect('quiz_admin')
         elif 'quizForm' in request.POST:
@@ -130,7 +130,7 @@ def quiz_admin(request):
         # Get request, no form submission
         questionFilter = QuestionFilter(queryset=questions)
         
-    # categories = Category.objects.all()
+    # categories = tag.objects.all()
     # questions = Question.objects.all()
     # quizzes = Quiz.objects.all()
     # quiz_results = QuizResult.objects.all()
